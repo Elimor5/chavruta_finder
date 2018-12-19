@@ -1,0 +1,25 @@
+Users
+    -phone
+    -email
+    -firstname
+    -lastname
+    -level
+
+topic
+    -name
+
+course
+    -topic_id
+    -start_date
+    -end_date
+    -level
+    -instructor_id (user_id)
+
+enrollment
+    -user_id
+    -course_id
+    -is_instructor
+
+class
+    -course_id
+    -datetime
