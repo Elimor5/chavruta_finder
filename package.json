@@ -24,7 +24,9 @@
     "watch": "webpack --config ./node_modules/@vue/cli-service/webpack.config.js --watch"
   },
   "dependencies": {
+    "onsenui": "^2.10.6",
     "vue": "^2.5.17",
+    "vue-onsenui": "^2.6.1",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1"
   },
