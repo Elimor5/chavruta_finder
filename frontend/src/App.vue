@@ -1,5 +1,5 @@
 <template>
-    <div id="app">
+    <div id="app">  
         <v-ons-splitter>
             <v-ons-splitter-side
                 swipeable
@@ -30,7 +30,7 @@
                         <div class="center">{{$route.name}}</div>
 
                         <div class="right">
-                            <v-ons-button modifier="quiet">Login</v-ons-button>
+                            <v-ons-button modifier="quiet" @click="NavigateToLogin">Log in</v-ons-button>
                         </div>
 
                     </v-ons-toolbar>
@@ -54,6 +54,9 @@ export default {
     methods: {
         ToggleSplitter() {
             this.isSideOpen = !this.isSideOpen;
+        },
+        NavigateToLogin() {
+            this.$router.push({name:"Log In"})
         }
     }
 };

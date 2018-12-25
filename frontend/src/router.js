@@ -5,6 +5,7 @@ import axios from 'axios';
 import baseUrl from "../api/baseUrl";
 
 import Home from "./components/pages/home/Home.vue";
+import Login from './components/pages/auth/login/Login.vue';
 
 
 Vue.use(Router);
@@ -17,6 +18,11 @@ const router = new Router({
           path: "/",
           name: "Home",
           component: Home
+      },
+      {
+          path: "/auth/login",
+          name: "Log In",
+          component: Login
       }
   ]
 });
