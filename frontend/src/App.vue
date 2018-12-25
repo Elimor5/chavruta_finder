@@ -27,7 +27,12 @@
                             ></v-ons-toolbar-button>
                         </div>
 
-                        <div class="center">Chavruta Finder</div>
+                        <div class="center">{{$route.name}}</div>
+
+                        <div class="right">
+                            <v-ons-button modifier="quiet">Login</v-ons-button>
+                        </div>
+
                     </v-ons-toolbar>
 
                     <div class="pageContent">

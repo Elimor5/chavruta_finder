@@ -1,17 +1,34 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import Home from './components/pages/home/Home.vue'
+import Vue from "vue";
+import Router from "vue-router";
 
-Vue.use(Router)
+import axios from 'axios';
+import baseUrl from "../api/baseUrl";
 
-export default new Router({
-  mode: 'history',
+import Home from "./components/pages/home/Home.vue";
+
+
+Vue.use(Router);
+
+const router = new Router({
+  mode: "history",
   base: process.env.BASE_URL,
   routes: [
-    {
-      path: '/',
-      name: 'home',
-      component: Home
-    }
+      {
+          path: "/",
+          name: "Home",
+          component: Home
+      }
   ]
-})
+});
+
+router.beforeEach(async (to, from, next ) => {
+    const response = await axios({
+    method: 'GET',
+    url: `${baseUrl}/api/topics`,
+    });
+
+    console.log(response);
+    next();
+});
+
+export default router
