@@ -10,9 +10,7 @@
             >
                 <v-ons-page>
                     <v-ons-list>
-                        <v-ons-list-item
-                            tappable
-                        >
+                        <v-ons-list-item tappable>
                             <div class="center">test</div>
                         </v-ons-list-item>
                     </v-ons-list>
@@ -21,23 +19,21 @@
 
             <v-ons-splitter-content>
                 <v-ons-page>
-            <v-ons-toolbar>
-                <div class="left">
-                    <v-ons-toolbar-button
-                        icon="ion-navicon, material: md-menu"
-                        @click="ToggleSplitter"
-                    ></v-ons-toolbar-button>
-                </div>
+                    <v-ons-toolbar>
+                        <div class="left">
+                            <v-ons-toolbar-button
+                                icon="ion-navicon, material: md-menu"
+                                @click="ToggleSplitter"
+                            ></v-ons-toolbar-button>
+                        </div>
 
-                <div class="center">Chavruta Finder</div>
-            </v-ons-toolbar>
+                        <div class="center">Chavruta Finder</div>
+                    </v-ons-toolbar>
 
-            <router-view></router-view>
-        </v-ons-page>
+                    <router-view></router-view>
+                </v-ons-page>
             </v-ons-splitter-content>
         </v-ons-splitter>
-
-        
     </div>
 </template>
 
