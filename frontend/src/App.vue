@@ -32,9 +32,7 @@
                 <div class="center">Chavruta Finder</div>
             </v-ons-toolbar>
 
-            <p style="text-align: center">
-                <v-ons-button @click="$ons.notification.alert('Hello World!')">Click me!</v-ons-button>
-            </p>
+            <router-view></router-view>
         </v-ons-page>
             </v-ons-splitter-content>
         </v-ons-splitter>
