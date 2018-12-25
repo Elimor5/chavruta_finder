@@ -30,7 +30,9 @@
                         <div class="center">Chavruta Finder</div>
                     </v-ons-toolbar>
 
-                    <router-view></router-view>
+                    <div class="pageContent">
+                        <router-view></router-view>
+                    </div>
                 </v-ons-page>
             </v-ons-splitter-content>
         </v-ons-splitter>
@@ -52,7 +54,13 @@ export default {
 };
 </script>
 
+<style lang="scss" scoped>
+    .pageContent {
+        height: 100%;
 
-<style lang="scss">
+        div:first-child {
+            height: 100%;
+        }
+    }
 </style>
 
