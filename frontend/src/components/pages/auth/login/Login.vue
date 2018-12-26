@@ -39,9 +39,6 @@
                 @click="SubmitForm"
             >Log in</v-ons-button>
         </v-ons-list>
-
-        <pre>{{Form}}</pre>
-        <pre>{{$v}}</pre>
     </div>
 </template>
 
@@ -56,14 +53,21 @@ export default {
     },
     validations: LoginForm.getValidations(),
     methods: {
-        SubmitForm() {
+        async SubmitForm() {
             this.$v.$touch();
 
             if (this.$v.$invalid) {
                 return;
             }
 
-            LoginForm.submit(this.Form);
+            try {
+                const convertedFormData = LoginForm.convertFormData(this.Form)
+                
+                await LoginForm.submit(convertedFormData);
+            }
+            catch(e) {
+                console.log(e);
+            }
         }
     }
 };
