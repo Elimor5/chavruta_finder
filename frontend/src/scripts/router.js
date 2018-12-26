@@ -4,8 +4,8 @@ import Router from "vue-router";
 import axios from 'axios';
 import baseUrl from "../api/baseUrl";
 
-import Home from "./components/pages/home/Home.vue";
-import Login from './components/pages/auth/login/Login.vue';
+import Home from "../components/pages/home/Home.vue";
+import Login from '../components/pages/auth/login/Login.vue';
 
 
 Vue.use(Router);
