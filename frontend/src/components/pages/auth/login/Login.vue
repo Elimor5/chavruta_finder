@@ -4,7 +4,7 @@
             <v-ons-icon icon="md-account-box" class="list-item__icon"></v-ons-icon>
         </div>
         <v-ons-list class="formInputContainer">
-            <cf-formgroup>
+            <cf-formgroup :validation="$v.Form.Username">
                 <template slot="icon">
                     <v-ons-icon icon="fa-user" class="list-item__icon"></v-ons-icon>
                 </template>
@@ -17,7 +17,7 @@
                     ></v-ons-input>
                 </template>
             </cf-formgroup>
-            <cf-formgroup>
+            <cf-formgroup :validation="$v.Form.Password">
                 <template slot="icon">
                     <v-ons-icon icon="fa-key" class="list-item__icon"></v-ons-icon>
                 </template>
