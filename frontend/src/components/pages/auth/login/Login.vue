@@ -4,27 +4,24 @@
             <v-ons-icon icon="md-account-box" class="list-item__icon"></v-ons-icon>
         </div>
         <v-ons-list class="formInputContainer">
-            <v-ons-list-item modifier="nodivider">
-                <div class="left">
+            <cf-formgroup>
+                <template slot="icon">
                     <v-ons-icon icon="fa-user" class="list-item__icon"></v-ons-icon>
-                </div>
-                <label class="center">
+                </template>
+                <template slot="input">
                     <v-ons-input
                         class="inputField"
                         float="true"
                         placeholder="Username"
                         v-model="Form.Username"
                     ></v-ons-input>
-                </label>
-            </v-ons-list-item>
-            <template v-if="$v.Form.Username.$error">
-                <p>this field is required</p>
-            </template>
-            <v-ons-list-item modifier="nodivider">
-                <div class="left">
+                </template>
+            </cf-formgroup>
+            <cf-formgroup>
+                <template slot="icon">
                     <v-ons-icon icon="fa-key" class="list-item__icon"></v-ons-icon>
-                </div>
-                <label class="center">
+                </template>
+                <template slot="input">
                     <v-ons-input
                         class="inputField"
                         float="true"
@@ -32,9 +29,9 @@
                         type="password"
                         v-model="Form.Password"
                     ></v-ons-input>
-                </label>
-            </v-ons-list-item>
-
+                </template>
+            </cf-formgroup>
+        
             <v-ons-button
                 type="submit"
                 modifier="large"
@@ -84,14 +81,9 @@ export default {
 }
 
 .formInputContainer {
-    padding-top: 15px;
     padding-bottom: 20px;
-    text-align: center;
 
-    .inputField {
-        width: 100%;
-        padding-right: 20px;
-    }
+    text-align: center;
 
     .authSubmitButton {
         margin-top: 15px;
