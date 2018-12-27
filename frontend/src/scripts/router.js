@@ -30,10 +30,8 @@ const router = new Router({
 router.beforeEach(async (to, from, next ) => {
     const response = await axios({
     method: 'GET',
-    url: `${baseUrl}/api/topics`,
+    url: `${baseUrl}/topics`,
     });
-
-    console.log(response);
     next();
 });
 
