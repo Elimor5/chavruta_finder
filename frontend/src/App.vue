@@ -82,6 +82,8 @@ export default {
     .pageContent {
         height: 100%;
         position: relative;
+        transition: opacity .5s ease;
+        opacity: 1;
 
         &.loaderActive {
             opacity: 0.55;

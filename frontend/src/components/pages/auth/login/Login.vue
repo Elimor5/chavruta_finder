@@ -60,6 +60,8 @@ export default {
                 return;
             }
 
+            this.$loader.show();
+
             try {
                 const convertedFormData = LoginForm.convertFormData(this.Form)
                 
@@ -68,6 +70,8 @@ export default {
             catch(e) {
                 console.log(e);
             }
+
+            this.$loader.hide();
         }
     }
 };
