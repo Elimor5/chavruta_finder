@@ -1,5 +1,7 @@
 <template>
     <div id="app">  
+        <Toastr></Toastr>
+        
         <v-ons-splitter>
             <v-ons-splitter-side
                 swipeable
@@ -32,7 +34,6 @@
                         <div class="right">
                             <v-ons-button modifier="quiet" @click="NavigateToLogin">Log in</v-ons-button>
                         </div>
-
                     </v-ons-toolbar>
 
                     <div class="pageContent" :class="{'loaderActive': ShowLoader}">
@@ -50,10 +51,12 @@
 
 <script>
 import TrailLoader from './components/shared/loaders/TrailLoader.vue';
+import Toastr from './components/shared/toasters/Toastr.vue';
 
 export default {
     components: {
-        TrailLoader
+        TrailLoader,
+        Toastr
     },
     data() {
         return {
