@@ -41,8 +41,6 @@
                         <template v-if="ShowLoader">
                             <TrailLoader></TrailLoader>
                         </template>
-
-                        <pre>{{ShowLoader}}</pre>
                     </div>
                 </v-ons-page>
             </v-ons-splitter-content>
