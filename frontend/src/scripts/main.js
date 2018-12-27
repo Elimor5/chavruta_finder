@@ -25,7 +25,14 @@ document.addEventListener("DOMContentLoaded", function() {
     store,
     render: h => h(App),
     beforeCreate() {
-        Vue.prototype.isLoading = false;
+        Vue.prototype.$loader = { 
+            show: () => {
+                this.$store.commit('loader/toggle', true);
+            },
+            hide: () => {
+                this.$store.commit('loader/toggle', false);
+            }
+        };
     }
   }).$mount(el)
 });

@@ -35,12 +35,14 @@
 
                     </v-ons-toolbar>
 
-                    <div class="pageContent" :class="{'loaderActive': isLoading}">
+                    <div class="pageContent" :class="{'loaderActive': ShowLoader}">
                         <router-view></router-view>
                         
-                        <template v-if="isLoading">
+                        <template v-if="ShowLoader">
                             <TrailLoader></TrailLoader>
                         </template>
+
+                        <pre>{{ShowLoader}}</pre>
                     </div>
                 </v-ons-page>
             </v-ons-splitter-content>
@@ -59,6 +61,11 @@ export default {
         return {
             isSideOpen: false
         };
+    },
+    computed: {
+        ShowLoader() {
+            return this.$store.state.loader.isLoading;
+        }
     },
     methods: {
         ToggleSplitter() {
