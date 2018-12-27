@@ -35,8 +35,12 @@
 
                     </v-ons-toolbar>
 
-                    <div class="pageContent">
+                    <div class="pageContent" :class="{'loaderActive': isLoading}">
                         <router-view></router-view>
+                        
+                        <template v-if="isLoading">
+                            <TrailLoader></TrailLoader>
+                        </template>
                     </div>
                 </v-ons-page>
             </v-ons-splitter-content>
@@ -45,7 +49,12 @@
 </template>
 
 <script>
+import TrailLoader from './components/shared/loaders/TrailLoader.vue';
+
 export default {
+    components: {
+        TrailLoader
+    },
     data() {
         return {
             isSideOpen: false
@@ -65,6 +74,11 @@ export default {
 <style lang="scss" scoped>
     .pageContent {
         height: 100%;
+        position: relative;
+
+        &.loaderActive {
+            opacity: 0.55;
+        }
 
         div:first-child {
             height: 100%;
