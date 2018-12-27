@@ -1,4 +1,5 @@
-import { required, minLength, email } from 'vuelidate/lib/validators'
+import { required, minLength, email } from 'vuelidate/lib/validators';
+import {http} from '../../../api/http';
 
 export default {
     getDefaultData: () => {
@@ -7,7 +8,6 @@ export default {
             Password: null
         }
     },
-
     getValidations: () => {
         return {
             Form: {
@@ -22,7 +22,22 @@ export default {
             }
         }
     },
-    submit: (formData) => {
-        console.log('submitted');
+    convertFormData(formData) {
+        const {Username, Password} = formData;
+
+        return {
+            user: {
+                username: Username,
+                password: Password 
+            }
+        }
+    },
+    submit: async (formData) => {
+        const userResponse = await http({
+            url: `/session`,
+            method: 'POST',
+            params: formData,
+        });
+
     }
 }
