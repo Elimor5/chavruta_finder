@@ -1,11 +1,11 @@
 <template>
-    <div class="toastrComponent">
+    <div class="toastrComponent" :class="{'shown': ToastrToggled}">
         <div class="toastrContainer">
             <div class="iconContainer">
                 <v-ons-icon icon="fa-warning" class="list-item__icon"></v-ons-icon>
             </div>
             <div class="messageContainer">
-                <span>{{message}}</span>
+                <span>{{ToasterMessage}}</span>
             </div>
         </div>
     </div>
@@ -14,8 +14,11 @@
 <script>
 export default {
     computed: {
-        message() {
-            return;
+        ToasterMessage() {
+            return this.$store.state.toastr.message;
+        },
+        ToastrToggled() {
+            return this.$store.state.toastr.isVisible;
         }
     }
 }
@@ -24,8 +27,12 @@ export default {
 <style lang="scss" scoped>
 .toastrComponent {
     position: absolute;
-    top: 0px;
+    top: -57px;
     z-index: 1;
+
+    &.shown {
+        top: 0;
+    }
 
     height: 57px;
     width: 100%;

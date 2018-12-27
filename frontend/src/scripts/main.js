@@ -2,7 +2,7 @@ import Vue from 'vue';
 import App from '../App.vue';
 import FormGroup from '../components/shared/forms/form-group/FormGroup.vue';
 import router from './router';
-import store from './store';
+import store from './store/store';
 
 import 'onsenui/css/onsenui.css';
 import 'onsenui/css/onsen-css-components.css';
@@ -33,6 +33,12 @@ document.addEventListener("DOMContentLoaded", function() {
                 this.$store.commit('loader/toggle', false);
             }
         };
+        
+        Vue.prototype.$toastr = {
+            toast: (message) => {
+                this.$store.dispatch('toastr/toast', message);
+            }
+        }
     }
   }).$mount(el)
 });

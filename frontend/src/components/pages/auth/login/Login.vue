@@ -68,7 +68,7 @@ export default {
                 await LoginForm.submit(convertedFormData);
             }
             catch(e) {
-                console.log(e);
+                this.$toastr.toast(e);
             }
 
             this.$loader.hide();
