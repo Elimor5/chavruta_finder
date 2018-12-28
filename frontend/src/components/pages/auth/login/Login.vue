@@ -65,7 +65,7 @@ export default {
             try {
                 const convertedFormData = LoginForm.convertFormData(this.Form)
                 
-                await LoginForm.submit(convertedFormData);
+                const response = await LoginForm.submit(convertedFormData);
             }
             catch(e) {
                 this.$toastr.toast(e);

@@ -1,5 +1,6 @@
 import { required, minLength, email } from 'vuelidate/lib/validators';
 import {http} from '../../../api/http';
+import store from '../../store/store';
 
 export default {
     getDefaultData: () => {
@@ -33,11 +34,12 @@ export default {
         }
     },
     submit: async (formData) => {
-        const userResponse = await http({
+        const response = await http({
             url: `/session`,
             method: 'POST',
             params: formData,
         });
 
+        store.commit('identity/updateUser', response.data);
     }
 }
