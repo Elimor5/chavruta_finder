@@ -67,7 +67,7 @@ export default {
             return this.$store.state.loader.isLoading;
         },
         IsLoggedIn() {
-            return this.$store.getters["identity/isAuthenticated"];
+            return this.$store.state.identity.isAuthenticated;
         },
         isStatusCallMade() {
             return this.$store.state.identity.isStatusCallMade;

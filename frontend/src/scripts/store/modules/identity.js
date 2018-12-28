@@ -5,12 +5,8 @@ export default {
     namespaced: true,
     state: {
         currentUser: null,
-        isStatusCallMade: false
-    },
-    getters: {
-        isAuthenticated: (state) => {
-            return state.currentUser && !!state.currentUser.userIdentity;
-        }
+        isStatusCallMade: false,
+        isAuthenticated: false
     },
     mutations: {
         updateUser(state, userResponse) {
@@ -24,6 +20,14 @@ export default {
             };
 
             state.isStatusCallMade = true;
+
+            if (userIdentity) {
+                state.isAuthenticated = true;
+            }
+        },
+        resetUser(state) {
+            state.currentUser = null;
+            state.isAuthenticated = false;
         }
     },
     actions: {

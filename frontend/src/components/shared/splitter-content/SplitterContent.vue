@@ -33,8 +33,8 @@ export default {
     },
     computed: {
         IsLoggedIn() {
-            return this.$store.getters['identity/isAuthenticated'];
-        }, 
+            return this.$store.state.identity.isAuthenticated;
+        },
         UserFullName() {
             return this.$store.state.identity.currentUser.userIdentity.name;
         }
