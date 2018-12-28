@@ -3,12 +3,7 @@ class Api::SessionsController < ApplicationController
         @user = current_user;
         
         if @user 
-            render "api/users/show"
-        else
-            render(
-                json: ["Nobody signed in"],
-                status: 401
-            )
+            render "api/session/show"
         end 
     end 
 
