@@ -84,6 +84,9 @@ export default {
     watch: {
         $route(to, from) {
             this.isSideOpen = false;
+        },
+        IsLoggedIn(newVal) {
+            this.isSideOpen = false;
         }
     }
 };

@@ -51,6 +51,14 @@ export default {
             Form: LoginForm.getDefaultData()
         };
     },
+    computed: {
+        ReturnUrl() {
+            const fullPath = this.$route.query.returnUrl;
+            const baseUrl = window.location.origin;
+
+            return fullPath.split(baseUrl)[1];
+        }
+    },
     validations: LoginForm.getValidations(),
     methods: {
         async SubmitForm() {
@@ -66,6 +74,7 @@ export default {
                 const convertedFormData = LoginForm.convertFormData(this.Form)
                 
                 const response = await LoginForm.submit(convertedFormData);
+                this.$router.push(this.ReturnUrl)
             }
             catch(e) {
                 this.$toastr.toast(e);

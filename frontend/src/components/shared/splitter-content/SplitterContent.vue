@@ -20,7 +20,7 @@
             </template>
             <template v-else>
                 <v-ons-list>
-                    <router-link :to="{name:'Log In'}">
+                    <router-link :to="{name:'Log In', query: {returnUrl: CurrentPath}}">
                         <v-ons-list-item modifier="longdivider" tappable>
                             <div class="center">Log In</div>
                         </v-ons-list-item>
@@ -47,6 +47,9 @@ export default {
         },
         UserFullName() {
             return this.$store.state.identity.currentUser.userIdentity.name;
+        },
+        CurrentPath() {
+            return window.location.href;
         }
     },
     methods: {
@@ -60,7 +63,6 @@ export default {
 <style lang="scss" scoped>
 .pageHeader {
     padding-left: 15px;
-    margin-bottom: 0;
 }
 
 .avatarContainer {
