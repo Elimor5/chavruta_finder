@@ -1,11 +1,11 @@
 <template>
-    <div id="app" :class="{'loaderActive': ShowLoader}">  
+    <div id="app" :class="{'loaderActive': ShowLoader}">
         <Toastr></Toastr>
-        
+
         <template v-if="ShowLoader">
             <TrailLoader></TrailLoader>
         </template>
-        
+
         <template v-if="isStatusCallMade">
             <v-ons-splitter>
                 <v-ons-splitter-side
@@ -15,13 +15,7 @@
                     side="left"
                     :open.sync="isSideOpen"
                 >
-                    <v-ons-page>
-                        <v-ons-list>
-                            <v-ons-list-item tappable>
-                                <div class="center">test</div>
-                            </v-ons-list-item>
-                        </v-ons-list>
-                    </v-ons-page>
+                    <SplitterContent></SplitterContent>
                 </v-ons-splitter-side>
 
                 <v-ons-splitter-content>
@@ -53,13 +47,15 @@
 </template>
 
 <script>
-import TrailLoader from './components/shared/loaders/TrailLoader.vue';
-import Toastr from './components/shared/toasters/Toastr.vue';
+import TrailLoader from "./components/shared/loaders/TrailLoader.vue";
+import Toastr from "./components/shared/toasters/Toastr.vue";
+import SplitterContent from "./components/shared/splitter-content/SplitterContent.vue";
 
 export default {
     components: {
         TrailLoader,
-        Toastr
+        Toastr,
+        SplitterContent
     },
     data() {
         return {
@@ -71,7 +67,7 @@ export default {
             return this.$store.state.loader.isLoading;
         },
         IsLoggedIn() {
-            return this.$store.getters['identity/isAuthenticated'];
+            return this.$store.getters["identity/isAuthenticated"];
         },
         isStatusCallMade() {
             return this.$store.state.identity.isStatusCallMade;
@@ -82,29 +78,34 @@ export default {
             this.isSideOpen = !this.isSideOpen;
         },
         NavigateToLogin() {
-            this.$router.push({name:"Log In"})
+            this.$router.push({ name: "Log In" });
+        }
+    },
+    watch: {
+        $route(to, from) {
+            this.isSideOpen = false;
         }
     }
 };
 </script>
 
 <style lang="scss" scoped>
-    #app {
-        transition: opacity .5s ease;
-        opacity: 1;
+#app {
+    transition: opacity 0.5s ease;
+    opacity: 1;
 
-        &.loaderActive {
-            opacity: 0.55;
-        }
-        
-        .pageContent {
+    &.loaderActive {
+        opacity: 0.55;
+    }
+
+    .pageContent {
+        height: 100%;
+        position: relative;
+
+        div:first-child {
             height: 100%;
-            position: relative;
-
-            div:first-child {
-                height: 100%;
-            }
         }
     }
+}
 </style>
 

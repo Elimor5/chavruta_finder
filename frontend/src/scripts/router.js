@@ -5,8 +5,6 @@ import StatusCall from './startup/statusCall';
 
 import Home from "../components/pages/home/Home.vue";
 import Login from '../components/pages/auth/login/Login.vue';
-import store from "./store/store";
-
 
 Vue.use(Router);
 
