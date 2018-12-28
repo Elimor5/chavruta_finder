@@ -1,51 +1,54 @@
 <template>
-    <div id="app">  
+    <div id="app" :class="{'loaderActive': ShowLoader}">  
         <Toastr></Toastr>
         
-        <v-ons-splitter>
-            <v-ons-splitter-side
-                swipeable
-                width="200px"
-                collapse
-                side="left"
-                :open.sync="isSideOpen"
-            >
-                <v-ons-page>
-                    <v-ons-list>
-                        <v-ons-list-item tappable>
-                            <div class="center">test</div>
-                        </v-ons-list-item>
-                    </v-ons-list>
-                </v-ons-page>
-            </v-ons-splitter-side>
+        <template v-if="ShowLoader">
+            <TrailLoader></TrailLoader>
+        </template>
+        
+        <template v-if="isStatusCallMade">
+            <v-ons-splitter>
+                <v-ons-splitter-side
+                    swipeable
+                    width="200px"
+                    collapse
+                    side="left"
+                    :open.sync="isSideOpen"
+                >
+                    <v-ons-page>
+                        <v-ons-list>
+                            <v-ons-list-item tappable>
+                                <div class="center">test</div>
+                            </v-ons-list-item>
+                        </v-ons-list>
+                    </v-ons-page>
+                </v-ons-splitter-side>
 
-            <v-ons-splitter-content>
-                <v-ons-page>
-                    <v-ons-toolbar>
-                        <div class="left">
-                            <v-ons-toolbar-button
-                                icon="ion-navicon, material: md-menu"
-                                @click="ToggleSplitter"
-                            ></v-ons-toolbar-button>
+                <v-ons-splitter-content>
+                    <v-ons-page>
+                        <v-ons-toolbar>
+                            <div class="left">
+                                <v-ons-toolbar-button
+                                    icon="ion-navicon, material: md-menu"
+                                    @click="ToggleSplitter"
+                                ></v-ons-toolbar-button>
+                            </div>
+
+                            <div class="center">{{$route.name}}</div>
+                            <template v-if="!IsLoggedIn">
+                                <div class="right">
+                                    <v-ons-button modifier="quiet" @click="NavigateToLogin">Log in</v-ons-button>
+                                </div>
+                            </template>
+                        </v-ons-toolbar>
+
+                        <div class="pageContent">
+                            <router-view></router-view>
                         </div>
-
-                        <div class="center">{{$route.name}}</div>
-
-                        <div class="right">
-                            <v-ons-button modifier="quiet" @click="NavigateToLogin">Log in</v-ons-button>
-                        </div>
-                    </v-ons-toolbar>
-
-                    <div class="pageContent" :class="{'loaderActive': ShowLoader}">
-                        <router-view></router-view>
-                        
-                        <template v-if="ShowLoader">
-                            <TrailLoader></TrailLoader>
-                        </template>
-                    </div>
-                </v-ons-page>
-            </v-ons-splitter-content>
-        </v-ons-splitter>
+                    </v-ons-page>
+                </v-ons-splitter-content>
+            </v-ons-splitter>
+        </template>
     </div>
 </template>
 
@@ -66,6 +69,12 @@ export default {
     computed: {
         ShowLoader() {
             return this.$store.state.loader.isLoading;
+        },
+        IsLoggedIn() {
+            return this.$store.getters['identity/isAuthenticated'];
+        },
+        isStatusCallMade() {
+            return this.$store.state.identity.isStatusCallMade;
         }
     },
     methods: {
@@ -80,18 +89,21 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    .pageContent {
-        height: 100%;
-        position: relative;
+    #app {
         transition: opacity .5s ease;
         opacity: 1;
 
         &.loaderActive {
             opacity: 0.55;
         }
-
-        div:first-child {
+        
+        .pageContent {
             height: 100%;
+            position: relative;
+
+            div:first-child {
+                height: 100%;
+            }
         }
     }
 </style>
