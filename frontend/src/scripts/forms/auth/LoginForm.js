@@ -23,7 +23,7 @@ export default {
             }
         }
     },
-    convertFormData(formData) {
+    convertFormData: (formData) => {
         const {Username, Password} = formData;
 
         return {
@@ -39,7 +39,7 @@ export default {
             method: 'POST',
             params: formData,
         });
-
-        store.commit('identity/updateUser', response.data);
+        
+        store.commit('identity/updateUser', response);
     }
 }
