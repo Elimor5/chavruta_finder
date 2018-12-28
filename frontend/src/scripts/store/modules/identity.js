@@ -4,22 +4,26 @@ export default {
     strict: true,
     namespaced: true,
     state: {
-        currentUser: null
+        currentUser: null,
+        isStatusCallMade: false
     },
     getters: {
         isAuthenticated: (state) => {
-            return !!state.currentUser;
+            return state.currentUser && !!state.currentUser.userIdentity;
         }
     },
     mutations: {
         updateUser(state, userResponse) {
-            const {userIdentity, coursesCreated, preferredTopics, enrolledCourses} = userResponse;
+            const {userIdentity, coursesCreated, preferredTopics, enrolledCourses} = userResponse.data;
+            
             state.currentUser = {
                 userIdentity,
                 coursesCreated: coursesCreated ? Object.keys(coursesCreated) : null,
                 preferredTopics: preferredTopics ? Object.keys(preferredTopics) : null,
                 enrolledCourses: enrolledCourses ? Object.keys(enrolledCourses) : null
             };
+
+            state.isStatusCallMade = true;
         }
     },
     actions: {

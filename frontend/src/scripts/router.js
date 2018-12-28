@@ -1,11 +1,11 @@
 import Vue from "vue";
 import Router from "vue-router";
 
-import axios from 'axios';
-import baseUrl from "../api/baseUrl";
+import StatusCall from './startup/statusCall';
 
 import Home from "../components/pages/home/Home.vue";
 import Login from '../components/pages/auth/login/Login.vue';
+import store from "./store/store";
 
 
 Vue.use(Router);
@@ -28,10 +28,8 @@ const router = new Router({
 });
 
 router.beforeEach(async (to, from, next ) => {
-    const response = await axios({
-    method: 'GET',
-    url: `${baseUrl}/topics`,
-    });
+    await StatusCall();
+
     next();
 });
 
