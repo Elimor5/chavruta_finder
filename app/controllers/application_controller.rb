@@ -1,11 +1,15 @@
 class ApplicationController < ActionController::Base
-    # todo: get rid of skip_before_action and replace with protect_from_forgery
-    # protect_from_forgery with: :exception
-    skip_before_action :verify_authenticity_token
+    protect_from_forgery with: :exception
+
+    before_action :set_csrf_cookie
 
     helper_method :current_user, :logged_in?
 
     private
+
+    def set_csrf_cookie
+        cookies["CSRF-TOKEN"] = form_authenticity_token
+    end
 
     def current_user
         return nil unless session[:session_token]
