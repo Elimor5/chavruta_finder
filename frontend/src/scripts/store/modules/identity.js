@@ -38,6 +38,14 @@ export default {
             });
 
             context.commit('updateUser', userResponse);
+        },
+        async logOutUser(context) {
+            await http({
+                url: '/session',
+                method: 'DELETE'
+            });
+
+            context.commit('resetUser');
         }
     }
 }
