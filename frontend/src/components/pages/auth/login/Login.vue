@@ -74,6 +74,7 @@ export default {
                 const convertedFormData = LoginForm.convertFormData(this.Form)
                 
                 const response = await LoginForm.submit(convertedFormData);
+                
                 this.$router.push(this.ReturnUrl)
             }
             catch(e) {

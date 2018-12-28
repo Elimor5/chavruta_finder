@@ -1,45 +1,58 @@
 <template>
     <div class="splitterContentComponent">
-        <v-ons-page>
-            <h2 class="pageHeader">Chavruta Finder</h2>
+        <h3 class="pageHeader">Chavruta Finder</h3>
 
+        <template v-if="IsLoggedIn">
+            <div class="avatarContainer">
+                <UserAvatar></UserAvatar>
+            </div>
+
+            <p class="name">{{UserFullName}}</p>
+        </template>
+
+        <div class="navItems">
+            <SideNavItem @click="NavigateHome">
+                <template slot="icon">
+                    <v-ons-icon icon="fa-home" class="list-item__icon"></v-ons-icon>
+                </template>
+                <template slot="content">Home</template>
+            </SideNavItem>
+            <hr>
             <template v-if="IsLoggedIn">
-                <div class="avatarContainer">
-                    <UserAvatar></UserAvatar>
-                </div>
-
-                <p class="name">{{UserFullName}}</p>
-
-                <v-ons-list>
-                    <v-ons-list-item modifier="longdivider" tappable>
-                        <button @click="LogOutUser">
-                            <div class="center">Log Out</div>
-                        </button>
-                    </v-ons-list-item>
-                </v-ons-list>
+                <SideNavItem @click="LogOutUser">
+                    <template slot="icon">
+                        <v-ons-icon icon="fa-sign-out" class="list-item__icon"></v-ons-icon>
+                    </template>
+                    <template slot="content">Log out</template>
+                </SideNavItem>
             </template>
             <template v-else>
-                <v-ons-list>
-                    <router-link :to="{name:'Log In', query: {returnUrl: CurrentPath}}">
-                        <v-ons-list-item modifier="longdivider" tappable>
-                            <div class="center">Log In</div>
-                        </v-ons-list-item>
-                    </router-link>
-                    <v-ons-list-item modifier="longdivider" tappable>
-                        <div class="center">Sign Up</div>
-                    </v-ons-list-item>
-                </v-ons-list>
+                <SideNavItem @click="NavigateToLogin">
+                    <template slot="icon">
+                        <v-ons-icon icon="fa-key" class="list-item__icon"></v-ons-icon>
+                    </template>
+                    <template slot="content">Log In</template>
+                </SideNavItem>
+                <hr>
+                <SideNavItem @click="NavigateToSignUp">
+                    <template slot="icon">
+                        <v-ons-icon icon="fa-pen" class="list-item__icon"></v-ons-icon>
+                    </template>
+                    <template slot="content">Sign Up</template>
+                </SideNavItem>
             </template>
-        </v-ons-page>
+        </div>
     </div>
 </template>
 
 <script>
 import UserAvatar from "../user-avatar/UserAvatar.vue";
+import SideNavItem from "./_partials/side-nav-item/SideNavItem.vue";
 
 export default {
     components: {
-        UserAvatar
+        UserAvatar,
+        SideNavItem
     },
     computed: {
         IsLoggedIn() {
@@ -55,23 +68,51 @@ export default {
     methods: {
         LogOutUser() {
             return this.$store.dispatch("identity/logOutUser");
+        },
+        NavigateHome() {
+            this.$router.push("/");
+        },
+        NavigateToLogin() {
+            this.$router.push({
+                name: "Log In",
+                query: { returnUrl: this.CurrentPath }
+            });
+        },
+        NavigateToSignUp() {
+            this.$router.push({
+                name: "Sign Up",
+                query: { returnUrl: this.CurrentPath }
+            });
         }
     }
 };
 </script>
 
 <style lang="scss" scoped>
-.pageHeader {
-    padding-left: 15px;
-}
+.splitterContentComponent {
+    background-color: #efeff4;
+    height: 100%;
 
-.avatarContainer {
-    display: flex;
-    justify-content: center;
+    .pageHeader {
+        text-align: center;
+        padding: 15px;
+        margin: 0;
+    }
 
-    margin-top: 30px;
-}
-.name {
-    text-align: center;
+    .avatarContainer {
+        display: flex;
+        justify-content: center;
+
+        margin-top: 10px;
+    }
+    .name {
+        text-align: center;
+    }
+
+    .navItems {
+        width: 100%;
+        background: white;
+        padding: 7.5px 0;
+    }
 }
 </style>
