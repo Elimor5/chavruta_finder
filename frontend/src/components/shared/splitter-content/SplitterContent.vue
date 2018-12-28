@@ -2,7 +2,11 @@
     <div class="splitterContentComponent">
         <v-ons-page>
             <template v-if="IsLoggedIn">
-                <UserAvatar></UserAvatar>
+                <div class="avatarContainer" >
+                    <UserAvatar></UserAvatar>
+                </div>
+
+                <p class="name">{{UserFullName}}</p>
             </template>
             <template v-else>
                 <v-ons-list>
@@ -30,7 +34,22 @@ export default {
     computed: {
         IsLoggedIn() {
             return this.$store.getters['identity/isAuthenticated'];
+        }, 
+        UserFullName() {
+            return this.$store.state.identity.currentUser.userIdentity.name;
         }
     }
 }
 </script>
+
+<style lang="scss" scoped>
+    .avatarContainer {
+        display: flex;
+        justify-content: center;
+
+        margin-top: 50px;
+    }
+    .name {
+        text-align: center;
+    }
+</style>
