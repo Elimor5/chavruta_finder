@@ -19,6 +19,13 @@
             </SideNavItem>
             <hr>
             <template v-if="IsLoggedIn">
+                <SideNavItem @click="NavigateToEditAccount">
+                    <template slot="icon">
+                        <v-ons-icon icon="fa-user-edit" class="list-item__icon"></v-ons-icon>
+                    </template>
+                    <template slot="content">Edit Account</template>
+                </SideNavItem>
+                <hr>
                 <SideNavItem @click="LogOutUser">
                     <template slot="icon">
                         <v-ons-icon icon="fa-sign-out" class="list-item__icon"></v-ons-icon>
@@ -64,13 +71,14 @@ export default {
     },
     methods: {
         LogOutUser() {
-            return this.$store.dispatch("identity/logOutUser", {vm: this});
+            return this.$store.dispatch("identity/logOutUser", { vm: this });
         },
         NavigateHome() {
             this.$router.push("/");
         },
         NavigateToLogin() {
-            const returnUrl = this.$route.query.returnUrl || this.$route.fullPath;
+            const returnUrl =
+                this.$route.query.returnUrl || this.$route.fullPath;
 
             this.$router.push({
                 name: "Log In",
@@ -78,11 +86,17 @@ export default {
             });
         },
         NavigateToSignUp() {
-            const returnUrl = this.$route.query.returnUrl || this.$route.fullPath;
+            const returnUrl =
+                this.$route.query.returnUrl || this.$route.fullPath;
 
             this.$router.push({
                 name: "Sign Up",
                 query: { returnUrl }
+            });
+        },
+        NavigateToEditAccount() {
+            this.$router.push({
+                name: "Edit Account"
             });
         }
     }

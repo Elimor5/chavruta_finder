@@ -19,7 +19,7 @@ export default {
 
 <style lang="scss" scoped>
 .sideNavItemComponent {
-    width: 100%;
+    width: 97%;
     height: 40px;
     font-size: 20px;
     background-color: white;

@@ -1,7 +1,12 @@
 <template>
     <div class="authSignupComponent">
         <div class="iconContainer">
-            <v-ons-icon icon="md-account-add" class="list-item__icon"></v-ons-icon>
+            <template v-if="IsEditMode">
+                <v-ons-icon icon="fa-user-edit" class="list-item__icon"></v-ons-icon>
+            </template>
+            <template v-else>
+                <v-ons-icon icon="md-account-add" class="list-item__icon"></v-ons-icon>
+            </template>
         </div>
 
         <form @submit.prevent="SubmitForm">
@@ -57,27 +62,48 @@
                         <label class="left">
                             <v-ons-radio
                                 :input-id="'radio-' + $index"
-                                :value="level"
+                                :value="$index"
                                 v-model=" Form.Level"
                             ></v-ons-radio>
                         </label>
                         <label :for="'radio-' + $index" class="center">{{ level }}</label>
                     </v-ons-list-item>
                 </v-ons-list>
-                
-                <SubmitButton>Sign Up</SubmitButton>
+
+                <SubmitButton>
+                    <template v-if="IsEditMode">Update Account</template>
+                    <template v-else>Sign Up</template>
+                </SubmitButton>
             </v-ons-list>
         </form>
     </div>
 </template>
 
 <script>
-import SignupForm from "../../../../scripts/forms/auth/SignupForm.js";
+import SignupForm from "../../../../scripts/forms/auth/SignupForm";
+import EditUserForm from "../../../../scripts/forms/auth/EditUserForm";
+
 import SubmitButton from "../../../shared/buttons/submit-button/SubmitButton.vue";
 
 export default {
     components: {
         SubmitButton
+    },
+    created() {
+        if (this.IsEditMode) {
+            this.Form = EditUserForm.getDefaultData();
+        }
+    },
+    computed: {
+        IsLoggedIn() {
+            return this.$store.state.identity.isAuthenticated;
+        }
+    },
+    props: {
+        IsEditMode: {
+            type: Boolean,
+            default: false
+        }
     },
     data() {
         return {
@@ -98,13 +124,28 @@ export default {
             try {
                 const convertedFormData = SignupForm.convertFormData(this.Form);
 
-                const response = await SignupForm.submit(convertedFormData);
-                this.$router.push(this.$route.query.returnUrl || "/");
+                if (this.IsEditMode) {
+                    const response = await EditUserForm.submit(
+                        convertedFormData
+                    );
+                    
+                    this.$ons.notification.toast('Account has successfully been updated.', { timeout: 5000, animation: 'ascend' });
+                } else {
+                    const response = await SignupForm.submit(convertedFormData);
+                    this.$router.push(this.$route.query.returnUrl || "/");
+                }
             } catch (e) {
                 this.$toastr.toast(e);
             }
 
             this.$loader.hide();
+        }
+    },
+    watch: {
+        IsLoggedIn(newVal) {
+            if (!newVal) {
+                this.$router.push('/');
+            }
         }
     }
 };

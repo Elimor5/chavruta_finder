@@ -45,6 +45,22 @@ const router = new Router({
                 next();
             }
         }
+    },
+    {
+        path: "/auth/edit",
+        name: "Edit Account",
+        component: Signup,
+        beforeEnter(to, from, next) {
+            if (!store.state.identity.isAuthenticated) {
+                next({path: '/'});
+            }
+            else {
+                next();
+            }
+        },
+        props: {
+            IsEditMode: true
+        }
     }
   ]
 });
