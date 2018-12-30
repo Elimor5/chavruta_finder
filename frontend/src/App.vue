@@ -14,6 +14,7 @@
                     collapse
                     side="left"
                     :open.sync="isSideOpen"
+                    swipe-target-width="25px"
                 >
                     <SplitterContent></SplitterContent>
                 </v-ons-splitter-side>
