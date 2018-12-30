@@ -62,8 +62,6 @@ export default {
 
 <style lang="scss">
 .formGroupComponent {
-    padding-top: 15px;
-
     .formGroupContainer {
         height: 75px; 
 

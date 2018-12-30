@@ -42,13 +42,19 @@
                         <v-ons-icon icon="fa-key" class="list-item__icon"></v-ons-icon>
                     </template>
                     <template slot="input">
-                        <v-ons-input
-                            class="inputField"
-                            float="true"
-                            placeholder="Password"
-                            type="password"
-                            v-model="Form.Password"
-                        ></v-ons-input>
+                        <div class="passwordField">
+                            <v-ons-input
+                                class="inputField"
+                                float="true"
+                                placeholder="Password"
+                                :type=" IsPasswordShown? 'test' : 'password'"
+                                v-model="Form.Password"
+                            ></v-ons-input>
+
+                            <button  type="button" class="eyeIcon" :class="{'active': IsPasswordShown}" @click="ToggleShowPassword">
+                                <v-ons-icon icon="fa-eye" class="list-item__icon"></v-ons-icon>
+                            </button>
+                        </div>
                     </template>
                 </cf-formgroup>
 
@@ -107,11 +113,15 @@ export default {
     },
     data() {
         return {
-            Form: SignupForm.getDefaultData()
+            Form: SignupForm.getDefaultData(),
+            IsPasswordShown: false
         };
     },
     validations: SignupForm.getValidations(),
     methods: {
+        ToggleShowPassword() {
+            this.IsPasswordShown = !this.IsPasswordShown;
+        },
         async SubmitForm() {
             this.$v.$touch();
 
@@ -128,7 +138,7 @@ export default {
                     const response = await EditUserForm.submit(
                         convertedFormData
                     );
-                    
+
                     this.$ons.notification.toast('Account has successfully been updated.', { timeout: 5000, animation: 'ascend' });
                 } else {
                     const response = await SignupForm.submit(convertedFormData);
@@ -169,6 +179,25 @@ export default {
 
     .levelContainer {
         padding-left: 5px;
+    }
+
+    .passwordField {
+        width: 100%;
+        padding-right: 20px;
+        position: relative;
+
+        .eyeIcon {
+            position: absolute;
+            right: 20px;
+            bottom: 4px;
+            color: gray;
+            z-index: 1;
+        
+            &.active {
+                color: #0076ff;
+            }
+        }
+
     }
 }
 </style>
