@@ -51,7 +51,7 @@ export default {
                 context.commit('resetUser');
             }
             catch(e) {
-                vm.toastr.toast(e);
+                componentContext.vm.toastr.toast(e);
             }
         }
     }

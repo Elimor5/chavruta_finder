@@ -14,8 +14,10 @@ export default {
         }
     },
     actions: {
-        toast(context, messageContent) {
-            context.commit('setMessage', messageContent.toString());
+        toast(context, error) {
+            const errorMessage = (error.response && error.response.data.error) || error.toString();
+
+            context.commit('setMessage', errorMessage);
             context.commit('toggle', true);
 
             setTimeout(() => {
