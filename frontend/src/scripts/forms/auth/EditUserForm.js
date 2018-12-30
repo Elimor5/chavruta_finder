@@ -30,18 +30,6 @@ export default {
             }
         }
     },
-    convertFormData: (formData) => {
-        const {Username, Password, Name, Level} = formData;
-
-        return {
-            user: {
-                username: Username,
-				password: Password,
-				name: Name, 
-				level: Level
-            }
-        }
-    },
     submit: async (formData) => {
         const response = await http({
             url: `/users/${store.state.identity.currentUser.userIdentity.id}`,
