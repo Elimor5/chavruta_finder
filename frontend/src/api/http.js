@@ -2,7 +2,7 @@ import Axios from "axios";
 import baseUrl from './baseUrl';
 
 Axios.defaults.xsrfCookieName = "CSRF-TOKEN";
-Axios.defaults.xsrfHeaderName = "X-CSRF-Token";
+Axios.defaults.xsrfHeaderName = "X-CSRF-TOKEN";
 Axios.defaults.withCredentials = true;
 
 export function http(options) {
