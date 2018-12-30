@@ -11,7 +11,7 @@
         </template>
 
         <div class="navItems">
-            <SideNavItem @click="NavigateHome">
+            <SideNavItem Route="Home">
                 <template slot="icon">
                     <v-ons-icon icon="fa-home" class="list-item__icon"></v-ons-icon>
                 </template>
@@ -19,7 +19,7 @@
             </SideNavItem>
             <hr>
             <template v-if="IsLoggedIn">
-                <SideNavItem @click="NavigateToEditAccount">
+                <SideNavItem Route="Edit Account">
                     <template slot="icon">
                         <v-ons-icon icon="fa-user-edit" class="list-item__icon"></v-ons-icon>
                     </template>
@@ -34,14 +34,14 @@
                 </SideNavItem>
             </template>
             <template v-else>
-                <SideNavItem @click="NavigateToLogin">
+                <SideNavItem Route="Log In">
                     <template slot="icon">
                         <v-ons-icon icon="fa-key" class="list-item__icon"></v-ons-icon>
                     </template>
                     <template slot="content">Log In</template>
                 </SideNavItem>
                 <hr>
-                <SideNavItem @click="NavigateToSignUp">
+                <SideNavItem Route="Sign Up">
                     <template slot="icon">
                         <v-ons-icon icon="fa-pen" class="list-item__icon"></v-ons-icon>
                     </template>
@@ -72,32 +72,6 @@ export default {
     methods: {
         LogOutUser() {
             return this.$store.dispatch("identity/logOutUser", { vm: this });
-        },
-        NavigateHome() {
-            this.$router.push("/");
-        },
-        NavigateToLogin() {
-            const returnUrl =
-                this.$route.query.returnUrl || this.$route.fullPath;
-
-            this.$router.push({
-                name: "Log In",
-                query: { returnUrl }
-            });
-        },
-        NavigateToSignUp() {
-            const returnUrl =
-                this.$route.query.returnUrl || this.$route.fullPath;
-
-            this.$router.push({
-                name: "Sign Up",
-                query: { returnUrl }
-            });
-        },
-        NavigateToEditAccount() {
-            this.$router.push({
-                name: "Edit Account"
-            });
         }
     }
 };
