@@ -25,7 +25,7 @@ export default {
             const { validation } = this;
             const errors = [];
 
-            if (!validation.$error)
+            if (!validation || !validation.$error)
                return null;
 
             if (validation.hasOwnProperty('required') && !validation.required) {
@@ -41,11 +41,17 @@ export default {
             return errors[0];
         },
         IsErrorState() {
+            if (!this.validation)
+                return false;
+
             const {$invalid, $error} = this.validation;
             
             return $invalid && $error;
         },
         IsSuccessState() {
+            if (!this.validation)
+                return false; 
+
             const {$invalid, $error} = this.validation;
 
             return !$invalid && !$error;

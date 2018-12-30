@@ -7,6 +7,7 @@ import StatusCall from './startup/statusCall';
 
 import Home from "../components/pages/home/Home.vue";
 import Login from '../components/pages/auth/login/Login.vue';
+import Signup from '../components/pages/auth/signup/Signup.vue';
 
 Vue.use(Router);
 
@@ -31,7 +32,20 @@ const router = new Router({
                   next();
               }
           }
-      }
+      },
+      {
+        path: "/auth/signup",
+        name: "Sign Up",
+        component: Signup,
+        beforeEnter(to, from, next) {
+            if (store.state.identity.isAuthenticated) {
+                next({path: '/'});
+            }
+            else {
+                next();
+            }
+        }
+    }
   ]
 });
 
