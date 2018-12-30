@@ -15,7 +15,7 @@ export default {
     },
     actions: {
         toast(context, error) {
-            const errorMessage = (error.response && error.response.data.error) || error.toString();
+            const errorMessage = (error.response && error.response.data.toString()) || error.toString();
 
             context.commit('setMessage', errorMessage);
             context.commit('toggle', true);
