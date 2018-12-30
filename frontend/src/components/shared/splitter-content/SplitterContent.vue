@@ -60,28 +60,29 @@ export default {
         },
         UserFullName() {
             return this.$store.state.identity.currentUser.userIdentity.name;
-        },
-        CurrentPath() {
-            return window.location.href;
         }
     },
     methods: {
         LogOutUser() {
-            return this.$store.dispatch("identity/logOutUser");
+            return this.$store.dispatch("identity/logOutUser", {vm: this});
         },
         NavigateHome() {
             this.$router.push("/");
         },
         NavigateToLogin() {
+            const returnUrl = this.$route.query.returnUrl || this.$route.fullPath;
+
             this.$router.push({
                 name: "Log In",
-                query: { returnUrl: this.CurrentPath }
+                query: { returnUrl }
             });
         },
         NavigateToSignUp() {
+            const returnUrl = this.$route.query.returnUrl || this.$route.fullPath;
+
             this.$router.push({
                 name: "Sign Up",
-                query: { returnUrl: this.CurrentPath }
+                query: { returnUrl }
             });
         }
     }
