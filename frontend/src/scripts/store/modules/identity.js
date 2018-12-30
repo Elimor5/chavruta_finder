@@ -39,13 +39,20 @@ export default {
 
             context.commit('updateUser', userResponse);
         },
-        async logOutUser(context) {
-            await http({
-                url: '/session',
-                method: 'DELETE'
-            });
+        async logOutUser(context, componentContext) {
+            try {
+                await http({
+                    url: '/session',
+                    method: 'DELETE'
+                });
+                
+                componentContext.vm.$ons.notification.toast('You have successfully logged out.', { timeout: 5000, animation: 'ascend' });
 
-            context.commit('resetUser');
+                context.commit('resetUser');
+            }
+            catch(e) {
+                vm.toastr.toast(e);
+            }
         }
     }
 }
