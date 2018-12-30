@@ -33,7 +33,7 @@
                             class="inputField"
                             float="true"
                             placeholder="Name"
-                            v-model="Form.Name"
+                            v-model.trim="Form.Name"
                         ></v-ons-input>
                     </template>
                 </cf-formgroup>
