@@ -1,0 +1,1 @@
+export default process.env.NODE_ENV === 'production' ? 'chavruta-finder.com/api' : 'http://localhost:3000/api';

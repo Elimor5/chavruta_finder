@@ -41,7 +41,8 @@ class Api::UsersController < ApplicationController
         @user = User.find(params[:id])
 
         if @user && current_user.id == @user.id
-            @user.update_attributes!(user_update_params)
+            @user.password = params[:user][:password];
+            @user.update!(user_update_params)
 
             render :show
         else
