@@ -19,7 +19,7 @@ export default {
         margin-top: 15px;
         width: 90%;
         height: 35px;
-        background: #0076ff;
+        background: $colorPrimary;
         color: white;
         font-size: 17px;
         font-weight: bold;

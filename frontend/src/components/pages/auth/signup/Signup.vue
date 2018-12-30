@@ -194,7 +194,7 @@ export default {
             z-index: 1;
         
             &.active {
-                color: #0076ff;
+                color: $colorPrimary;
             }
         }
 

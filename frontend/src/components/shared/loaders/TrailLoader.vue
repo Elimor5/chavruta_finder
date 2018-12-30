@@ -23,7 +23,7 @@
         z-index: 1;
 
         .progress-circular--material__primary {
-            stroke: #0076ff;
+            stroke: $colorPrimary;
         }
     }
 }

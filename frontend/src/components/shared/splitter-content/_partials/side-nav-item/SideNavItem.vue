@@ -55,7 +55,7 @@ export default {
         }
 
         &.router-link-exact-active {
-            color: #0076ff;
+            color: $colorPrimary;
         }
         
         .contentContainer { 
