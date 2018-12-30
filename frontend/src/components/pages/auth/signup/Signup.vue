@@ -139,7 +139,7 @@ export default {
                         convertedFormData
                     );
 
-                    this.$ons.notification.toast('Account has successfully been updated.', { timeout: 5000, animation: 'ascend' });
+                    this.$ons.notification.toast('Account has been successfully updated.', { timeout: 5000, animation: 'ascend' });
                 } else {
                     const response = await SignupForm.submit(convertedFormData);
                     this.$router.push(this.$route.query.returnUrl || "/");
