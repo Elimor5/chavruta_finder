@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_07_153631) do
+ActiveRecord::Schema.define(version: 2018_12_31_044627) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -95,6 +95,8 @@ ActiveRecord::Schema.define(version: 2018_10_07_153631) do
     t.datetime "updated_at", null: false
     t.string "reset_digest"
     t.datetime "reset_sent_at"
+    t.boolean "is_instructor", default: false, null: false
+    t.boolean "is_male", default: true, null: false
     t.index ["username", "session_token"], name: "index_users_on_username_and_session_token", unique: true
   end
 
