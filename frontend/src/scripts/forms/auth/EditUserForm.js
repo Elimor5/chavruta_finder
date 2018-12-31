@@ -48,7 +48,7 @@ export default {
         const response = await http({
             url: `/users/${store.state.identity.currentUser.userIdentity.id}`,
             method: 'PUT',
-            params: formData,
+            data: formData,
         });
 
         store.commit('identity/updateUser', response);

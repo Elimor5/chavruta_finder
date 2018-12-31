@@ -61,7 +61,7 @@ export default {
         const response = await http({
             url: `/users`,
             method: 'POST',
-            params: formData,
+            data: formData,
         });
 
         store.commit('identity/updateUser', response);

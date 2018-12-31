@@ -1,5 +1,11 @@
-import { required, minLength, email } from 'vuelidate/lib/validators';
-import {http} from '../../../api/http';
+import {
+    required,
+    minLength,
+    email
+} from 'vuelidate/lib/validators';
+import {
+    http
+} from '../../../api/http';
 import store from '../../store/store';
 
 export default {
@@ -15,7 +21,7 @@ export default {
                 Username: {
                     required,
                     email
-                  },
+                },
                 Password: {
                     required,
                     minLength: minLength(6)
@@ -24,12 +30,15 @@ export default {
         }
     },
     convertFormData: (formData) => {
-        const {Username, Password} = formData;
+        const {
+            Username,
+            Password
+        } = formData;
 
         return {
             user: {
                 username: Username,
-                password: Password 
+                password: Password
             }
         }
     },
@@ -37,9 +46,9 @@ export default {
         const response = await http({
             url: `/session`,
             method: 'POST',
-            params: formData,
+            data: formData,
         });
-        
+
         store.commit('identity/updateUser', response);
     }
 }
