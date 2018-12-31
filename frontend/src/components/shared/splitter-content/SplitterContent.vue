@@ -35,14 +35,22 @@
                 <hr>
                 <SideNavItem Route="Edit Account">
                     <template slot="icon">
-                        <v-ons-icon icon="fa-user-edit" class="list-item__icon"></v-ons-icon>
+                        <v-ons-icon
+                            style="padding-right: 0"
+                            icon="fa-user-edit"
+                            class="list-item__icon"
+                        ></v-ons-icon>
                     </template>
                     <template slot="content">Edit Account</template>
                 </SideNavItem>
                 <hr>
                 <SideNavItem @click="LogOutUser">
                     <template slot="icon">
-                        <v-ons-icon icon="fa-sign-out" class="list-item__icon"></v-ons-icon>
+                        <v-ons-icon
+                            icon="fa-sign-out"
+                            class="list-item__icon"
+                            style="padding-left: 0"
+                        ></v-ons-icon>
                     </template>
                     <template slot="content">Log out</template>
                 </SideNavItem>
