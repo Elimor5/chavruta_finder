@@ -15,6 +15,7 @@
                             class="inputField"
                             float="true"
                             placeholder="Username"
+                            type="email"
                             v-model.trim="Form.Username"
                         ></v-ons-input>
                     </template>
