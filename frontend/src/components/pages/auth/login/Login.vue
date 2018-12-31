@@ -4,7 +4,7 @@
             <v-ons-icon icon="md-account-box" class="list-item__icon"></v-ons-icon>
         </div>
 
-        <form @submit.prevent="SubmitForm">
+        <form @submit.prevent="SubmitForm" novalidate>
             <v-ons-list class="formInputContainer">
                 <cf-formgroup :validation="$v.Form.Username">
                     <template slot="icon">
