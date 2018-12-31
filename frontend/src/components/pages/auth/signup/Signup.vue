@@ -64,7 +64,7 @@
                     </template>
                 </cf-formgroup>
 
-                <v-ons-list class="levelContainer">
+                <v-ons-list class="listContainer">
                     <v-ons-list-header>Learning Level (Optional)</v-ons-list-header>
                     <v-ons-list-item
                         v-for="(level, $index) in ['Beginner', 'Intermediate', 'Advanced']"
@@ -75,10 +75,39 @@
                             <v-ons-radio
                                 :input-id="'radio-' + $index"
                                 :value="$index"
-                                v-model=" Form.Level"
+                                v-model="Form.Level"
                             ></v-ons-radio>
                         </label>
                         <label :for="'radio-' + $index" class="center">{{ level }}</label>
+                    </v-ons-list-item>
+                </v-ons-list>
+
+                <v-ons-list class="listContainer">
+                    <v-ons-list-header>Gender</v-ons-list-header>
+                    <v-ons-list-item tappable>
+                        <label class="left">
+                            <v-ons-radio input-id="radio-male" value="1" v-model="Form.IsMale"></v-ons-radio>
+                        </label>
+                        <label for="radio-male" class="center">Male</label>
+                    </v-ons-list-item>
+                    <v-ons-list-item tappable>
+                        <label class="left">
+                            <v-ons-radio input-id="radio-female" value="0" v-model="Form.IsMale"></v-ons-radio>
+                        </label>
+                        <label for="radio-female" class="center">Female</label>
+                    </v-ons-list-item>
+                </v-ons-list>
+
+                <v-ons-list class="listContainer">
+                    <v-ons-list-header>Are you teaching?</v-ons-list-header>
+                    <v-ons-list-item tappable>
+                        <label class="left">
+                            <v-ons-checkbox
+                                input-id="checkbox-instructor"
+                                v-model="Form.IsInstructor"
+                            ></v-ons-checkbox>
+                        </label>
+                        <label for="checkbox-instructor" class="center">I am an instructor</label>
                     </v-ons-list-item>
                 </v-ons-list>
 
@@ -163,7 +192,7 @@ export default {
     watch: {
         IsLoggedIn(newVal) {
             if (!newVal) {
-                this.$router.push('/');
+                this.$router.push("/");
             }
         }
     }
@@ -186,7 +215,7 @@ export default {
 
     text-align: center;
 
-    .levelContainer {
+    .listContainer {
         padding-left: 5px;
     }
 

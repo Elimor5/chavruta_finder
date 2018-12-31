@@ -14,7 +14,9 @@ export default {
             Username: null,
             Password: null,
             Name: null,
-            Level: null
+            Level: null,
+            IsMale: 1,
+            IsInstructor: false
         }
     },
     getValidations: () => {
@@ -39,7 +41,9 @@ export default {
             Username,
             Password,
             Name,
-            Level
+            Level,
+            IsInstructor,
+            IsMale
         } = formData;
 
         return {
@@ -47,7 +51,9 @@ export default {
                 username: Username,
                 password: Password,
                 name: Name,
-                level: Level
+                level: Level,
+                is_instructor: IsInstructor,
+                is_male: IsMale === '1' ? true : false
             }
         }
     },

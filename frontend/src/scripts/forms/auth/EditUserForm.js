@@ -13,14 +13,18 @@ export default {
         const {
             level,
             name,
-            username
+            username,
+            is_instructor,
+            is_male
         } = store.state.identity.currentUser.userIdentity;
 
         return {
             Username: username,
             Password: null,
             Name: name,
-            Level: level
+            Level: level,
+            IsMale: is_male === true ? '1' : '0',
+            IsInstructor: is_instructor
         }
     },
     getValidations: () => {
