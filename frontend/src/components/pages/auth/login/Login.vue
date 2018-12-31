@@ -58,6 +58,7 @@ export default {
     methods: {
         async SubmitForm() {
             this.$v.$touch();
+            this.$scrollToError();
 
             if (this.$v.$invalid) {
                 return;

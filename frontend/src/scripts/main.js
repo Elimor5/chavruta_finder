@@ -40,6 +40,16 @@ document.addEventListener("DOMContentLoaded", function() {
                     this.$store.dispatch('toastr/toast', message);
                 }
             }
+
+            Vue.prototype.$scrollToError = function() {
+                this.$nextTick(() => {
+                    const firstError = document.querySelectorAll('.inputError')[0];
+
+                    firstError.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                })
+            }
         }
     }).$mount(el)
 });

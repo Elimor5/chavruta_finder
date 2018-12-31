@@ -1,6 +1,15 @@
 <template>
     <div class="formGroupComponent">
-        <v-ons-list-item class="formGroupContainer" :class="{'success': IsSuccessState, 'error': IsErrorState}" modifier="nodivider">
+        <div
+            class="focusNavbarOffset"
+            :class="{'inputError': IsErrorState}"
+        ></div>
+
+        <v-ons-list-item
+            class="formGroupContainer"
+            :class="{'success': IsSuccessState, 'error': IsErrorState}"
+            modifier="nodivider"
+        >
             <div class="left">
                 <slot name="icon"></slot>
             </div>
@@ -8,9 +17,7 @@
                 <slot name="input"></slot>
 
                 <template v-if="ErrorMessage">
-                    <p class="error">
-                        {{ErrorMessage}}
-                    </p>
+                    <p class="error">{{ErrorMessage}}</p>
                 </template>
             </label>
         </v-ons-list-item>
@@ -25,34 +32,39 @@ export default {
             const { validation } = this;
             const errors = [];
 
-            if (!validation || !validation.$error)
-               return null;
+            if (!validation || !validation.$error) return null;
 
-            if (validation.hasOwnProperty('required') && !validation.required) {
-                errors.push('this field is required');
-            } 
-            else if (validation.hasOwnProperty('email') && !validation.email) {
-                errors.push('please enter a valid email address');
-            }
-            else if (validation.hasOwnProperty('minLength') && !validation.minLength) {
-                errors.push(`minimum length must be at least ${validation.$params.minLength.min} characters`);
+            if (validation.hasOwnProperty("required") && !validation.required) {
+                errors.push("this field is required");
+            } else if (
+                validation.hasOwnProperty("email") &&
+                !validation.email
+            ) {
+                errors.push("please enter a valid email address");
+            } else if (
+                validation.hasOwnProperty("minLength") &&
+                !validation.minLength
+            ) {
+                errors.push(
+                    `minimum length must be at least ${
+                        validation.$params.minLength.min
+                    } characters`
+                );
             }
 
             return errors[0];
         },
         IsErrorState() {
-            if (!this.validation)
-                return false;
+            if (!this.validation) return false;
 
-            const {$invalid, $error} = this.validation;
-            
+            const { $invalid, $error } = this.validation;
+
             return $invalid && $error;
         },
         IsSuccessState() {
-            if (!this.validation)
-                return false; 
+            if (!this.validation) return false;
 
-            const {$invalid, $error} = this.validation;
+            const { $invalid, $error } = this.validation;
 
             return !$invalid && !$error;
         }
@@ -62,8 +74,16 @@ export default {
 
 <style lang="scss">
 .formGroupComponent {
+    position: relative;
+
+    .focusNavbarOffset {
+        position: absolute;
+        top: -100px;
+        visibility: hidden;
+    }
+
     .formGroupContainer {
-        height: 75px; 
+        height: 75px;
 
         .inputField {
             width: 100%;
