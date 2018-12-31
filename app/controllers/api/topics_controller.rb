@@ -1,11 +1,11 @@
 class Api::TopicsController < ApplicationController
     def index
-        if params[:search]
-            @topics = Topic.search_topic(params[:search])
+        if params[:topic][:search]
+            @topics = Topic.search_topic(params[:topic][:search])
         else
             @topics = Topic.all
         end
-
+        
         render :index
     end
 
@@ -33,6 +33,6 @@ class Api::TopicsController < ApplicationController
     private
 
     def topic_params
-        params.require(:topic).permit(:name)
+        params.require(:topic).permit(:name, :search)
     end
 end

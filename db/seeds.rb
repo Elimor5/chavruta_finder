@@ -5,3 +5,8 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+topics = ActiveSupport::JSON.decode(File.read('sefaria_categories.json'));
+
+topics.each do |topic|
+    Topic.create({name: topic});
+end 
