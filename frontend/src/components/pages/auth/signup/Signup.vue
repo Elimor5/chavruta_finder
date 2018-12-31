@@ -9,7 +9,7 @@
             </template>
         </div>
 
-        <form @submit.prevent="SubmitForm">
+        <form @submit.prevent="SubmitForm" novalidate>
             <v-ons-list class="formInputContainer">
                 <cf-formgroup :validation="$v.Form.Username">
                     <template slot="icon">
@@ -19,6 +19,7 @@
                         <v-ons-input
                             class="inputField"
                             float="true"
+                            type="email"
                             placeholder="Username"
                             v-model.trim="Form.Username"
                         ></v-ons-input>
@@ -51,7 +52,12 @@
                                 v-model="Form.Password"
                             ></v-ons-input>
 
-                            <button  type="button" class="eyeIcon" :class="{'active': IsPasswordShown}" @click="ToggleShowPassword">
+                            <button
+                                type="button"
+                                class="eyeIcon"
+                                :class="{'active': IsPasswordShown}"
+                                @click="ToggleShowPassword"
+                            >
                                 <v-ons-icon icon="fa-eye" class="list-item__icon"></v-ons-icon>
                             </button>
                         </div>
@@ -139,7 +145,10 @@ export default {
                         convertedFormData
                     );
 
-                    this.$ons.notification.toast('Account has been successfully updated.', { timeout: 5000, animation: 'ascend' });
+                    this.$ons.notification.toast(
+                        "Account has been successfully updated.",
+                        { timeout: 5000, animation: "ascend" }
+                    );
                 } else {
                     const response = await SignupForm.submit(convertedFormData);
                     this.$router.push(this.$route.query.returnUrl || "/");
@@ -192,12 +201,13 @@ export default {
             bottom: 4px;
             color: gray;
             z-index: 1;
-        
+            background: transparent;
+            border: none;
+
             &.active {
                 color: $colorPrimary;
             }
         }
-
     }
 }
 </style>
