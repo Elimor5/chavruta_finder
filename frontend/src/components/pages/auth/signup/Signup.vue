@@ -51,7 +51,12 @@
                                 v-model="Form.Password"
                             ></v-ons-input>
 
-                            <button  type="button" class="eyeIcon" :class="{'active': IsPasswordShown}" @click="ToggleShowPassword">
+                            <button
+                                type="button"
+                                class="eyeIcon"
+                                :class="{'active': IsPasswordShown}"
+                                @click="ToggleShowPassword"
+                            >
                                 <v-ons-icon icon="fa-eye" class="list-item__icon"></v-ons-icon>
                             </button>
                         </div>
@@ -139,7 +144,10 @@ export default {
                         convertedFormData
                     );
 
-                    this.$ons.notification.toast('Account has been successfully updated.', { timeout: 5000, animation: 'ascend' });
+                    this.$ons.notification.toast(
+                        "Account has been successfully updated.",
+                        { timeout: 5000, animation: "ascend" }
+                    );
                 } else {
                     const response = await SignupForm.submit(convertedFormData);
                     this.$router.push(this.$route.query.returnUrl || "/");
@@ -192,12 +200,13 @@ export default {
             bottom: 4px;
             color: gray;
             z-index: 1;
-        
+            background: transparent;
+            border: none;
+
             &.active {
                 color: $colorPrimary;
             }
         }
-
     }
 }
 </style>
