@@ -4,7 +4,7 @@
 
         <template v-if="IsLoggedIn">
             <div class="avatarContainer">
-                <UserAvatar></UserAvatar>
+                <UserAvatar size="70"></UserAvatar>
             </div>
 
             <p class="name">{{UserFullName}}</p>
@@ -18,7 +18,21 @@
                 <template slot="content">Home</template>
             </SideNavItem>
             <hr>
+            <SideNavItem Route="Find Chavruta">
+                <template slot="icon">
+                    <v-ons-icon icon="fa-search" class="list-item__icon"></v-ons-icon>
+                </template>
+                <template slot="content">Find Chavruta</template>
+            </SideNavItem>
+            <hr>
             <template v-if="IsLoggedIn">
+                <SideNavItem Route="New Chavruta">
+                    <template slot="icon">
+                        <v-ons-icon icon="fa-book-reader" class="list-item__icon"></v-ons-icon>
+                    </template>
+                    <template slot="content">New Chavruta</template>
+                </SideNavItem>
+                <hr>
                 <SideNavItem Route="Edit Account">
                     <template slot="icon">
                         <v-ons-icon icon="fa-user-edit" class="list-item__icon"></v-ons-icon>
@@ -85,6 +99,7 @@ export default {
     .pageHeader {
         text-align: center;
         padding: 15px;
+        font-size: 20px;
         margin: 0;
     }
 

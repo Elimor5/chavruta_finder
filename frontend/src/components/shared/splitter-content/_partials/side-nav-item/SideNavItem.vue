@@ -1,22 +1,22 @@
 <template>
-<div class="sideNavItemComponent">
-    <template v-if="Route">
-        <router-link :to="{name: Route}" class="sideNavItemButton">
-            <slot name="icon"></slot>
-            <div class="contentContainer">
-                <slot name="content"></slot>
-            </div>
-        </router-link>
-    </template>
-    <template v-else>
-        <button class="sideNavItemButton" @click="HandleClick">
-            <slot name="icon"></slot>
-            <div class="contentContainer">
-                <slot name="content"></slot>
-            </div>
-        </button>
-    </template>
-</div>
+    <div class="sideNavItemComponent">
+        <template v-if="Route">
+            <router-link :to="{name: Route}" class="sideNavItemButton">
+                <slot name="icon"></slot>
+                <div class="contentContainer">
+                    <slot name="content"></slot>
+                </div>
+            </router-link>
+        </template>
+        <template v-else>
+            <button class="sideNavItemButton" @click="HandleClick">
+                <slot name="icon"></slot>
+                <div class="contentContainer">
+                    <slot name="content"></slot>
+                </div>
+            </button>
+        </template>
+    </div>
 </template>
 
 <script>
@@ -38,8 +38,8 @@ export default {
 .sideNavItemComponent {
     .sideNavItemButton {
         width: 97%;
-        height: 40px;
-        font-size: 20px;
+        height: 30px;
+        font-size: 15px;
         background-color: white;
         border: none;
         color: gray;
@@ -57,8 +57,8 @@ export default {
         &.router-link-exact-active {
             color: $colorPrimary;
         }
-        
-        .contentContainer { 
+
+        .contentContainer {
             padding: 0 7.5px;
         }
     }
