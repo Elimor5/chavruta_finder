@@ -37,6 +37,8 @@
                             </template>
                         </v-ons-toolbar>
 
+                        <PullHook></PullHook>
+
                         <div class="pageContent">
                             <router-view></router-view>
                         </div>
@@ -51,12 +53,14 @@
 import TrailLoader from "./components/shared/loaders/TrailLoader.vue";
 import Toastr from "./components/shared/toasters/Toastr.vue";
 import SplitterContent from "./components/shared/splitter-content/SplitterContent.vue";
+import PullHook from "./components/shared/pull-hook/PullHook.vue";
 
 export default {
     components: {
         TrailLoader,
         Toastr,
-        SplitterContent
+        SplitterContent,
+        PullHook
     },
     data() {
         return {
