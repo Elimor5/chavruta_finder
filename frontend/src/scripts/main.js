@@ -41,14 +41,21 @@ document.addEventListener("DOMContentLoaded", function() {
                 }
             }
 
-            Vue.prototype.$scrollToError = function() {
-                this.$nextTick(() => {
-                    const firstError = document.querySelectorAll('.inputError')[0];
 
-                    firstError.scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                })
+            Vue.prototype.$validate = function(vuelidate) {
+                vuelidate.$touch();
+
+                if (vuelidate.$error) {
+                    this.$nextTick(() => {
+                        const firstError = document.querySelectorAll('.inputError')[0];
+
+                        firstError.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    })
+                }
+
+                return vuelidate.$invalid ? false : true;
             }
         }
     }).$mount(el)

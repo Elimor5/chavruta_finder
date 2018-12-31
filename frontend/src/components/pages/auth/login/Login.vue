@@ -43,7 +43,7 @@
 
 <script>
 import LoginForm from "../../../../scripts/forms/auth/LoginForm.js";
-import SubmitButton from "../../../shared/buttons/submit-button/SubmitButton.vue"
+import SubmitButton from "../../../shared/buttons/submit-button/SubmitButton.vue";
 
 export default {
     components: {
@@ -57,12 +57,7 @@ export default {
     validations: LoginForm.getValidations(),
     methods: {
         async SubmitForm() {
-            this.$v.$touch();
-            this.$scrollToError();
-
-            if (this.$v.$invalid) {
-                return;
-            }
+            if (!this.$validate(this.$v)) return;
 
             this.$loader.show();
 
@@ -70,7 +65,7 @@ export default {
                 const convertedFormData = LoginForm.convertFormData(this.Form);
 
                 const response = await LoginForm.submit(convertedFormData);
-                this.$router.push(this.$route.query.returnUrl || '/');
+                this.$router.push(this.$route.query.returnUrl || "/");
             } catch (e) {
                 this.$toastr.toast(e);
             }

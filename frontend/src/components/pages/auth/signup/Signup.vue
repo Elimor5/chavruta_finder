@@ -110,7 +110,7 @@
                         <label for="checkbox-instructor" class="center">I am an instructor</label>
                     </v-ons-list-item>
                 </v-ons-list>
-
+                
                 <SubmitButton>
                     <template v-if="IsEditMode">Update Account</template>
                     <template v-else>Sign Up</template>
@@ -158,13 +158,7 @@ export default {
             this.IsPasswordShown = !this.IsPasswordShown;
         },
         async SubmitForm() {
-            this.$v.$touch();
-
-            this.$scrollToError();
-
-            if (this.$v.$invalid) {
-                return;
-            }
+            if (!this.$validate(this.$v)) return;
 
             this.$loader.show();
 
