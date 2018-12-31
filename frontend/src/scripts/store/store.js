@@ -4,6 +4,7 @@ import Vuex from 'vuex'
 import loader from './modules/loader';
 import toastr from './modules/toastr';
 import identity from './modules/identity';
+import topic from './modules/topic';
 
 Vue.use(Vuex)
 
@@ -11,6 +12,7 @@ export default new Vuex.Store({
     modules: {
         loader,
         toastr,
-        identity
+        identity,
+        topic
     }
 })
