@@ -20,15 +20,12 @@ export default {
 <style lang="scss" scoped>
 .searchResultComponent {
     background-color: white;
-    border-bottom: solid 1px gray;
     text-align: left;
+    border: none;
 
     padding: 15px;
     font-size: 14px;
     width: 100%;
-
-    transition: background-color 0.5s ease;
-    transition: color 0.5s ease;
 
     &:hover,
     &:focus {

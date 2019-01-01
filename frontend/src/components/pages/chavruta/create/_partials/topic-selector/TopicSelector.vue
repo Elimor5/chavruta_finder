@@ -3,9 +3,14 @@
         <h3 class="pageHeader">Step 1: Choose a topic</h3>
 
         <div class="searchContainer">
-            <v-ons-search-input class="topicInput" placeholder="Search Topics" v-model="Query"></v-ons-search-input>
+            <v-ons-search-input
+                ref="searchInput"
+                class="topicInput"
+                placeholder="Search Topics"
+                v-model="Query"
+            ></v-ons-search-input>
 
-            <template v-if="ShowDropdown && Topics">
+            <template v-if="IsDropdownOpen && Topics">
                 <div class="topicsResultsContainer">
                     <template v-for="(topic, $index) in Topics">
                         <TopicResult
@@ -23,16 +28,27 @@
 
 <script>
 import debounce from "lodash/debounce";
+
 import TopicResult from "./_partials/topic-result/TopicResult.vue";
 
 export default {
     components: {
         TopicResult
     },
+    mounted() {
+        this.$nextTick(() => {
+            const searchInput = this.$refs["searchInput"];
+
+            searchInput.$el.onfocus = () => {
+                this.ToggleDropdown(true);
+            };
+        });
+    },
     data() {
         return {
             Query: null,
-            ShowDropdown: false,
+            IsDropdownOpen: false,
+            SearchInput: null,
             DebouncedTopicsCall: debounce(this.GetTopicsByQuery, 500)
         };
     },
@@ -55,13 +71,17 @@ export default {
             const searchBar = document.querySelector(".pageHeader");
             searchBar.scrollIntoView({ behavior: "smooth" });
 
-            this.ShowDropdown = false;
+            this.ToggleDropdown(false);
+        },
+        ToggleDropdown(boolean) {
+            this.IsDropdownOpen = boolean;
         }
     },
     watch: {
         Query(newVal) {
-            if (newVal.length < 3) return;
-            this.ShowDropdown = true;
+            if (newVal.length !== 0 && newVal.length < 3) return;
+
+            this.ToggleDropdown(true);
 
             this.DebouncedTopicsCall();
         }
