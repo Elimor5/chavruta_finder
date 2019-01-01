@@ -10,10 +10,13 @@
 </template>
 
 <script>
+import debounce from "lodash/debounce";
+
 export default {
     data() {
         return {
-            Query: null
+            Query: null,
+            DebouncedTopicsCall: debounce(this.GetTopicsByQuery, 500)
         };
     },
     computed: {
@@ -21,15 +24,20 @@ export default {
             return this.$store.state.topic.topics;
         }
     },
-    watch: {
-        async Query(newVal) {
-            if (newVal.length < 3) return;
-            
+    methods: {
+        async GetTopicsByQuery() {
             await this.$store.dispatch("topic/getAllTopics", {
                 topic: {
-                    search: newVal
+                    search: this.Query
                 }
             });
+        }
+    },
+    watch: {
+        Query(newVal) {
+            if (newVal.length < 3) return;
+
+            this.DebouncedTopicsCall();
         }
     }
 };
