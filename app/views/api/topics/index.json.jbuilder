@@ -1,7 +1,5 @@
 json.set! :topics do
     @topics.each do |topic|
-        json.set! topic.id do
-            json.extract! topic, :name
-        end
+        json.partial! "api/topics/topic", topic: topic
     end
 end

@@ -11,9 +11,10 @@ class Api::TopicsController < ApplicationController
 
     def create
         @topic = Topic.new(topic_params)
+        @topic.author_id = current_user.id
 
         if @topic.save
-            render json: {message: 'topic created successfully', name: @topic.name}
+            render :show
         else
             render json: @topic.errors.full_messages, status: 422
         end
