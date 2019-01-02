@@ -1,58 +1,33 @@
 <template>
     <div class="createChavrutaComponent">
-        <h3>Step 1: Choose a topic</h3>
+        <TopicSelector @selected="UpdateSelectedTopic"></TopicSelector>
 
-        <p class="searchContainer">
-            <v-ons-search-input class="topicInput" placeholder="Search Topics" v-model="Query"></v-ons-search-input>
-        </p>
-        <pre>{{Topics}}</pre>
+        <template v-if="Form.TopicId">
+            <SelectedTopicCard :TopicId="Form.TopicId"></SelectedTopicCard>
+        </template>
     </div>
 </template>
 
 <script>
-import debounce from "lodash/debounce";
+import CreateChavrutaForm from "../../../../scripts/forms/chavruta/CreateChavrutaForm";
+
+import SelectedTopicCard from "./_partials/topic-selector/_partials/selected-topic-card/SelectedTopicCard.vue";
+import TopicSelector from "./_partials/topic-selector/TopicSelector.vue";
 
 export default {
     data() {
         return {
-            Query: null,
-            DebouncedTopicsCall: debounce(this.GetTopicsByQuery, 500)
+            Form: CreateChavrutaForm.getDefaultData()
         };
     },
-    computed: {
-        Topics() {
-            return this.$store.state.topic.topics;
-        }
+    components: {
+        TopicSelector,
+        SelectedTopicCard
     },
     methods: {
-        async GetTopicsByQuery() {
-            await this.$store.dispatch("topic/getAllTopics", {
-                topic: {
-                    search: this.Query
-                }
-            });
-        }
-    },
-    watch: {
-        Query(newVal) {
-            if (newVal.length < 3) return;
-
-            this.DebouncedTopicsCall();
+        UpdateSelectedTopic(topicId) {
+            this.Form.TopicId = topicId;
         }
     }
 };
 </script>
-
-<style lang="scss" scoped>
-.createChavrutaComponent {
-    padding: 15px 15px 0 15px;
-
-    .searchContainer {
-        padding: 15px 0;
-
-        .topicInput {
-            width: 100%;
-        }
-    }
-}
-</style>
