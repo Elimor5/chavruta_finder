@@ -28,7 +28,6 @@
 
 <script>
 import CreateTopicForm from "../../../../../../../../scripts/forms/chavruta/CreateTopicForm";
-import ChavrutaService from "../../../../../../../../scripts/services/chavruta/ChavrutaService";
 
 import SubmitButton from "../../../../../../../shared/buttons/submit-button/SubmitButton.vue";
 

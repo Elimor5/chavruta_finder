@@ -3,7 +3,6 @@ import {
     maxLength
 } from 'vuelidate/lib/validators';
 
-import store from '../../store/store';
 import ChavrutaService from '../../services/chavruta/ChavrutaService'
 
 
