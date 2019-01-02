@@ -25,16 +25,18 @@ export default {
     },
     convertFormData(formData) {
         const {
-            Name
+            Name,
         } = formData;
 
         return {
             topic: {
                 name: Name,
             }
-        };
+        }
     },
     async submit(formData) {
-        const response = await ChavrutaService.createTopic(formData);
+        return await ChavrutaService.createNewTopic(
+            formData
+        );
     }
 }

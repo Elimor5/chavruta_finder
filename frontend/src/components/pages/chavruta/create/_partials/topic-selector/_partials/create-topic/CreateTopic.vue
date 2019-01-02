@@ -28,6 +28,7 @@
 
 <script>
 import CreateTopicForm from "../../../../../../../../scripts/forms/chavruta/CreateTopicForm";
+import ChavrutaService from "../../../../../../../../scripts/services/chavruta/ChavrutaService";
 
 import SubmitButton from "../../../../../../../shared/buttons/submit-button/SubmitButton.vue";
 
@@ -51,6 +52,29 @@ export default {
     methods: {
         async SubmitForm() {
             if (!this.$validate(this.$v)) return;
+
+            this.$loader.show();
+
+            try {
+                const convertedForm = CreateTopicForm.convertFormData(
+                    this.Form
+                );
+
+                const response = await CreateTopicForm.submit(convertedForm);
+
+                this.$store.commit("topic/mergeTopics", response.data);
+
+                this.$emit("topic-created", Object.keys(response.data)[0]);
+
+                this.$ons.notification.toast(
+                    `Topic has been added successfully`,
+                    { timeout: 5000, animation: "ascend" }
+                );
+            } catch (e) {
+                this.$toastr.toast(e);
+            }
+
+            this.$loader.hide();
         }
     },
     validations: CreateTopicForm.getValidations()

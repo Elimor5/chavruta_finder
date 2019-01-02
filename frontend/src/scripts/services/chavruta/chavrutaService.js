@@ -9,5 +9,13 @@ export default {
             method: 'GET',
             params: searchQuery
         });
+    },
+
+    async createNewTopic(createTopicForm) {
+        return await http({
+            url: '/topics',
+            method: 'POST',
+            data: createTopicForm
+        })
     }
 }

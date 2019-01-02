@@ -34,7 +34,7 @@
             </template>
 
             <template v-if="IsCreateTopicFormShown">
-                <CreateTopic :Query="Query" @created="SelectTopic"></CreateTopic>
+                <CreateTopic :Query="Query" @created="SelectTopic" @topic-created="AddNewTopic"></CreateTopic>
             </template>
         </div>
     </div>
@@ -91,6 +91,11 @@ export default {
             searchBar.scrollIntoView({ behavior: "smooth" });
 
             this.CloseDropdown();
+        },
+        AddNewTopic(topicId) {
+            this.ShowCreateTopicForm = false;
+
+            this.SelectTopic(topicId);
         },
         CloseDropdown() {
             this.IsDropdownOpen = false;
