@@ -11,17 +11,30 @@
                 v-on-clickaway="CloseDropdown"
             ></v-ons-search-input>
 
-            <template v-if="IsDropdownOpen && Topics">
+            <template v-if="IsDropdownOpen">
                 <div class="topicsResultsContainer">
-                    <template v-for="(topic, $index) in Topics">
+                    <template v-if="Topics">
+                        <template v-for="(topic, $index) in Topics">
+                            <TopicResult
+                                :key="$index"
+                                :Topic="topic"
+                                :Index="$index"
+                                @selected="SelectTopic"
+                            ></TopicResult>
+                        </template>
+                    </template>
+
+                    <template v-if="Query && Query.length >2">
                         <TopicResult
-                            :key="$index"
-                            :Topic="topic"
-                            :Index="$index"
-                            @selected="SelectTopic"
+                            :CreateTopic="true"
+                            @toggle-topic-form="ShowCreateTopicForm(true)"
                         ></TopicResult>
                     </template>
                 </div>
+            </template>
+
+            <template v-if="IsCreateTopicFormShown">
+                <CreateTopic :Query="Query" @created="SelectTopic"></CreateTopic>
             </template>
         </div>
     </div>
@@ -31,10 +44,12 @@
 import debounce from "lodash/debounce";
 
 import TopicResult from "./_partials/topic-result/TopicResult.vue";
+import CreateTopic from "./_partials/create-topic/CreateTopic.vue";
 
 export default {
     components: {
-        TopicResult
+        TopicResult,
+        CreateTopic
     },
     mounted() {
         this.$nextTick(() => {
@@ -50,7 +65,8 @@ export default {
             Query: null,
             IsDropdownOpen: false,
             SearchInput: null,
-            DebouncedTopicsCall: debounce(this.GetTopicsByQuery, 500)
+            DebouncedTopicsCall: debounce(this.GetTopicsByQuery, 500),
+            IsCreateTopicFormShown: false
         };
     },
     computed: {
@@ -69,6 +85,8 @@ export default {
         SelectTopic(topicId) {
             this.$emit("selected", topicId);
 
+            this.IsCreateTopicFormShown = false;
+
             const searchBar = document.querySelector(".pageHeader");
             searchBar.scrollIntoView({ behavior: "smooth" });
 
@@ -79,6 +97,9 @@ export default {
         },
         OpenDropdown() {
             this.IsDropdownOpen = true;
+        },
+        ShowCreateTopicForm(boolean) {
+            this.IsCreateTopicFormShown = boolean;
         }
     },
     watch: {

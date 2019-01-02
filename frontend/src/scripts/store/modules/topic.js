@@ -1,4 +1,4 @@
-import ChavrutaService from '../../services/chavruta/chavrutaService';
+import ChavrutaService from '../../services/chavruta/ChavrutaService';
 import merge from 'lodash/merge';
 
 export default {

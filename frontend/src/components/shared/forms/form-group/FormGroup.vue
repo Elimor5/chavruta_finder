@@ -1,9 +1,6 @@
 <template>
     <div class="formGroupComponent">
-        <div
-            class="focusNavbarOffset"
-            :class="{'inputError': IsErrorState}"
-        ></div>
+        <div class="focusNavbarOffset" :class="{'inputError': IsErrorState}"></div>
 
         <v-ons-list-item
             class="formGroupContainer"
@@ -50,6 +47,15 @@ export default {
                         validation.$params.minLength.min
                     } characters`
                 );
+            } else if (
+                validation.hasOwnProperty("maxLength") &&
+                !validation.maxLength
+            ) {
+                errors.push(
+                    `max length must be at least ${
+                        validation.$params.maxLength.max
+                    } characters`
+                );
             }
 
             return errors[0];
@@ -91,23 +97,23 @@ export default {
         }
 
         &.success {
-            .text-input--material{
+            .text-input--material {
                 &:focus {
                     background-image: linear-gradient(green, green),
-                    linear-gradient(to top, transparent 1px, #afafaf 1px);
+                        linear-gradient(to top, transparent 1px, #afafaf 1px);
                 }
-            } 
+            }
         }
 
         &.error {
-            .text-input--material{
+            .text-input--material {
                 &:focus {
                     background-image: linear-gradient(red, red),
-                    linear-gradient(to top, transparent 1px, #afafaf 1px);
+                        linear-gradient(to top, transparent 1px, #afafaf 1px);
                 }
-            } 
+            }
         }
-        
+
         .error {
             margin: 0 0 3px 0;
             font-size: 12px;

@@ -1,0 +1,81 @@
+<template>
+    <div class="createTopicFormComponent">
+        <form @submit.prevent="SubmitForm" novalidate>
+            <v-ons-list class="formInputContainer">
+                <cf-formgroup :validation="$v.Form.Name">
+                    <template slot="icon">
+                        <v-ons-icon
+                            icon="fa-book-open"
+                            class="list-item__icon"
+                            size="30px, material:30px"
+                        ></v-ons-icon>
+                    </template>
+                    <template slot="input">
+                        <v-ons-input
+                            class="inputField"
+                            float="true"
+                            placeholder="Topic Name "
+                            v-model.trim="Form.Name"
+                        ></v-ons-input>
+                    </template>
+                </cf-formgroup>
+
+                <SubmitButton>Add</SubmitButton>
+            </v-ons-list>
+        </form>
+    </div>
+</template>
+
+<script>
+import CreateTopicForm from "../../../../../../../../scripts/forms/chavruta/CreateTopicForm";
+
+import SubmitButton from "../../../../../../../shared/buttons/submit-button/SubmitButton.vue";
+
+export default {
+    created() {
+        this.Form.Name = this.Query;
+    },
+    components: {
+        SubmitButton
+    },
+    data() {
+        return {
+            Form: CreateTopicForm.getDefaultData()
+        };
+    },
+    props: {
+        Query: {
+            type: String
+        }
+    },
+    methods: {
+        async SubmitForm() {
+            if (!this.$validate(this.$v)) return;
+        }
+    },
+    validations: CreateTopicForm.getValidations()
+};
+</script>
+
+<style lang="scss" scoped>
+.createTopicFormComponent {
+    margin-top: 20px;
+
+    .formInputContainer {
+        display: flex;
+        align-items: center;
+
+        .formGroupComponent {
+            flex-grow: 1;
+        }
+
+        .submitButtonComponent {
+            margin-top: 0;
+            margin: 0 15px;
+            width: inherit;
+        }
+    }
+}
+</style>
+
+
