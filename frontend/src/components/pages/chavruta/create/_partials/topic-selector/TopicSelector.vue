@@ -8,6 +8,7 @@
                 class="topicInput"
                 placeholder="Search Topics"
                 v-model="Query"
+                v-on-clickaway="CloseDropdown"
             ></v-ons-search-input>
 
             <template v-if="IsDropdownOpen && Topics">
@@ -40,7 +41,7 @@ export default {
             const searchInput = this.$refs["searchInput"];
 
             searchInput.$el.onfocus = () => {
-                this.ToggleDropdown(true);
+                this.OpenDropdown();
             };
         });
     },
@@ -71,17 +72,20 @@ export default {
             const searchBar = document.querySelector(".pageHeader");
             searchBar.scrollIntoView({ behavior: "smooth" });
 
-            this.ToggleDropdown(false);
+            this.CloseDropdown();
         },
-        ToggleDropdown(boolean) {
-            this.IsDropdownOpen = boolean;
+        CloseDropdown() {
+            this.IsDropdownOpen = false;
+        },
+        OpenDropdown() {
+            this.IsDropdownOpen = true;
         }
     },
     watch: {
         Query(newVal) {
             if (newVal.length !== 0 && newVal.length < 3) return;
 
-            this.ToggleDropdown(true);
+            this.OpenDropdown();
 
             this.DebouncedTopicsCall();
         }

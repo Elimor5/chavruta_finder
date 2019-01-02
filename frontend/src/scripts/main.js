@@ -9,6 +9,10 @@ import VueOnsen from 'vue-onsenui';
 
 import Vuelidate from 'vuelidate';
 
+import {
+    directive as onClickaway
+} from 'vue-clickaway';
+
 import FormGroup from '../components/shared/forms/form-group/FormGroup.vue';
 
 Vue.config.productionTip = false
@@ -57,6 +61,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
                 return vuelidate.$invalid ? false : true;
             }
+
+            Vue.directive('onClickaway', onClickaway);
         }
     }).$mount(el)
 });
