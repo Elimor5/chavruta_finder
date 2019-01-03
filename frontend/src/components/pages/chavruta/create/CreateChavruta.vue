@@ -30,7 +30,18 @@
 
         <LevelSelector v-model="Form.Level"></LevelSelector>
 
-        <template v-if="IsInstructor">Step</template>
+        <template v-if="IsInstructor">
+            <h3 class="sectionHeader">Are you teaching?</h3>
+
+            <v-ons-list class="listContainer instructorContainer">
+                <v-ons-list-item tappable>
+                    <label class="left">
+                        <v-ons-checkbox input-id="checkbox-instructor" v-model="IsTeaching"></v-ons-checkbox>
+                    </label>
+                    <label for="checkbox-instructor" class="center">I am teaching this Chavruta</label>
+                </v-ons-list-item>
+            </v-ons-list>
+        </template>
     </div>
 </template>
 
@@ -45,6 +56,7 @@ import LevelSelector from "./_partials/level-selector/LevelSelector.vue";
 export default {
     data() {
         return {
+            IsTeaching: false,
             Form: CreateChavrutaForm.getDefaultData()
         };
     },
@@ -71,6 +83,15 @@ export default {
     },
     validations() {
         return CreateChavrutaForm.getValidations();
+    },
+    watch: {
+        IsTeaching(newVal) {
+            if (newVal) {
+                this.Form.InstructorId = this.$store.state.identity.currentUser.userIdentity.id;
+            } else {
+                this.Form.InstructorId = null;
+            }
+        }
     }
 };
 </script>
@@ -79,7 +100,8 @@ export default {
 .createChavrutaComponent {
     padding: 0 15px;
 
-    .titleFormGroup {
+    .titleFormGroup,
+    .instructorContainer {
         margin: 0 -15px;
     }
     .sectionHeader {
