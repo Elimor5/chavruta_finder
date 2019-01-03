@@ -1,7 +1,5 @@
 <template>
     <div class="topicSelectorComponent">
-        <h3 class="pageHeader">Step 1: Choose a topic</h3>
-
         <div class="searchContainer">
             <v-ons-search-input
                 ref="searchInput"
@@ -121,12 +119,8 @@ export default {
 
 <style lang="scss" scoped>
 .topicSelectorComponent {
-    padding: 15px 15px 0 15px;
-
     .searchContainer {
         position: relative;
-
-        padding: 15px 0;
 
         .topicInput {
             width: 100%;

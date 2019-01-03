@@ -1,7 +1,5 @@
 <template>
     <div class="dateSelectorComponent">
-        <h3>Step 2: Select a Date Range</h3>
-
         <p>Chavruta Start Date:</p>
         <DatePicker
             v-model="DateRange.StartDate"
@@ -48,6 +46,6 @@ export default {
 
 <style lang="scss" scoped>
 .dateSelectorComponent {
-    padding: 30px 15px;
+    padding-bottom: 30px 0;
 }
 </style>

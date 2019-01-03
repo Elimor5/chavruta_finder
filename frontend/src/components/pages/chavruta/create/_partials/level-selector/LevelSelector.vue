@@ -1,7 +1,5 @@
 <template>
     <div class="levelSelectorComponent">
-        <p class="header">Step 3. Select a Skill Level</p>
-
         <v-ons-list>
             <v-ons-list-item v-for="(level, $index) in Levels" :key="level" tappable>
                 <label class="left">
@@ -48,6 +46,8 @@ export default {
 
 <style lang="scss" scoped>
 .levelSelectorComponent {
+    margin: 0 -15px;
+
     .header {
         padding: 15px;
     }
