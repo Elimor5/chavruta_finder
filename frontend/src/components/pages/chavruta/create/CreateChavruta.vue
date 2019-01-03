@@ -1,16 +1,32 @@
 <template>
     <div class="createChavrutaComponent">
-        <h3 class="sectionHeader">Step 1: Choose a topic</h3>
+        <h3 class="sectionHeader">Step 1: Name Your Chavruta</h3>
+        <cf-formgroup class="titleFormGroup" :validation="$v.Form.Title">
+            <template slot="icon">
+                <v-ons-icon icon="fa-group" size="30px" class="list-item__icon"></v-ons-icon>
+            </template>
+            <template slot="input">
+                <v-ons-input
+                    class="inputField"
+                    float="true"
+                    placeholder="Chavruta Title"
+                    type="text"
+                    v-model.trim="Form.Title"
+                ></v-ons-input>
+            </template>
+        </cf-formgroup>
+
+        <h3 class="sectionHeader">Step 2: Choose a topic</h3>
         <TopicSelector @selected="UpdateSelectedTopic"></TopicSelector>
 
         <template v-if="Form.TopicId">
             <SelectedTopicCard :TopicId="Form.TopicId"></SelectedTopicCard>
         </template>
 
-        <h3 class="sectionHeader">Step 2: Select a Date Range</h3>
+        <h3 class="sectionHeader">Step 3: Select a Date Range</h3>
         <DateSelector @range-added="OnDateRangeAdded"></DateSelector>
 
-        <h3 class="sectionHeader">Step 3. Select a Skill Level</h3>
+        <h3 class="sectionHeader">Step 4. Select a Skill Level</h3>
 
         <LevelSelector v-model="Form.Level"></LevelSelector>
 
@@ -52,6 +68,9 @@ export default {
             this.Form.StartDate = dateRange.StartDate;
             this.Form.EndDate = dateRange.EndDate;
         }
+    },
+    validations() {
+        return CreateChavrutaForm.getValidations();
     }
 };
 </script>
@@ -60,6 +79,9 @@ export default {
 .createChavrutaComponent {
     padding: 0 15px;
 
+    .titleFormGroup {
+        margin: 0 -15px;
+    }
     .sectionHeader {
         margin: 40px 0 15px 0;
     }
