@@ -1,6 +1,6 @@
 <template>
     <div class="levelSelectorComponent">
-        <p>Step 3. Select a Skill Level</p>
+        <p class="header">Step 3. Select a Skill Level</p>
 
         <v-ons-list>
             <v-ons-list-item v-for="(level, $index) in Levels" :key="level" tappable>
@@ -25,7 +25,7 @@ export default {
     },
     computed: {
         Levels() {
-            return ["beginner", "intermediate", "advanced"];
+            return ["Beginner", "Intermediate", "Advanced", "Any"];
         }
     },
     props: {
@@ -45,3 +45,11 @@ export default {
     }
 };
 </script>
+
+<style lang="scss" scoped>
+.levelSelectorComponent {
+    .header {
+        padding: 15px;
+    }
+}
+</style>
