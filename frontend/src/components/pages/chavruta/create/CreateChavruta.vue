@@ -7,6 +7,8 @@
         </template>
 
         <DateSelector @range-added="OnDateRangeAdded"></DateSelector>
+
+        <LevelSelector v-model="Form.Level"></LevelSelector>
     </div>
 </template>
 
@@ -16,6 +18,7 @@ import CreateChavrutaForm from "../../../../scripts/forms/chavruta/CreateChavrut
 import SelectedTopicCard from "./_partials/topic-selector/_partials/selected-topic-card/SelectedTopicCard.vue";
 import TopicSelector from "./_partials/topic-selector/TopicSelector.vue";
 import DateSelector from "./_partials/date-selector/DateSelector.vue";
+import LevelSelector from "./_partials/level-selector/LevelSelector.vue";
 
 export default {
     data() {
@@ -26,7 +29,8 @@ export default {
     components: {
         TopicSelector,
         SelectedTopicCard,
-        DateSelector
+        DateSelector,
+        LevelSelector
     },
     methods: {
         UpdateSelectedTopic(topicId) {

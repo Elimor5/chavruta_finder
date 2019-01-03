@@ -9,8 +9,7 @@
             lang="en"
             :not-before="new Date()"
         ></DatePicker>
-
-        <div class="endDateContainer" :class="{'active': !!DateRange.StartDate}">
+        <template v-if="DateRange.StartDate">
             <p>Chavruta End Date:</p>
             <DatePicker
                 v-model="DateRange.EndDate"
@@ -18,7 +17,7 @@
                 lang="en"
                 :not-before="new Date(DateRange.StartDate)"
             ></DatePicker>
-        </div>
+        </template>
     </div>
 </template>
 
@@ -50,14 +49,5 @@ export default {
 <style lang="scss" scoped>
 .dateSelectorComponent {
     padding: 30px 15px;
-
-    .endDateContainer {
-        opacity: 0;
-        transition: opacity 0.25s ease-in;
-
-        &.active {
-            opacity: 1;
-        }
-    }
 }
 </style>
