@@ -42,7 +42,7 @@ class Api::UsersController < ApplicationController
 
         if @user && current_user.id == @user.id
             @user.password = params[:user][:password];
-            @user.update!(user_update_params)
+            @user.update!(user_params)
 
             render :show
         else
@@ -55,8 +55,4 @@ class Api::UsersController < ApplicationController
 	def user_params
 		params.require(:user).permit(:username, :password, :name, :level, :is_instructor, :is_male)
 	end
-
-    def user_update_params
-        params.require(:user).permit(:username, :name, :level)
-    end
 end
