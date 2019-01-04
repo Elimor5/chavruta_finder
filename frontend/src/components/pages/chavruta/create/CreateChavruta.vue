@@ -52,6 +52,9 @@
             placeholder="Describe your Chavruta"
             v-model.trim="Form.Summary"
         ></textarea>
+
+        <h3 class="sectionHeader">Final Step! When are you meeting?</h3>
+        <AvailabilitiesSelector :Availabilities="Form.Availabilities"></AvailabilitiesSelector>
     </div>
 </template>
 
@@ -62,6 +65,7 @@ import SelectedTopicCard from "./_partials/topic-selector/_partials/selected-top
 import TopicSelector from "./_partials/topic-selector/TopicSelector.vue";
 import DateSelector from "./_partials/date-selector/DateSelector.vue";
 import LevelSelector from "./_partials/level-selector/LevelSelector.vue";
+import AvailabilitiesSelector from "./_partials/availabilities-selector/AvailabilitiesSelector.vue";
 
 export default {
     data() {
@@ -74,7 +78,8 @@ export default {
         TopicSelector,
         SelectedTopicCard,
         DateSelector,
-        LevelSelector
+        LevelSelector,
+        AvailabilitiesSelector
     },
     computed: {
         IsInstructor() {
