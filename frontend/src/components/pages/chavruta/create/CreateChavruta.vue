@@ -42,6 +42,16 @@
                 </v-ons-list-item>
             </v-ons-list>
         </template>
+
+        <h3 class="sectionHeader">Include a description (optional)</h3>
+        <textarea
+            class="summaryInput"
+            float="true"
+            maxlength="250"
+            type="email"
+            placeholder="Describe your Chavruta"
+            v-model.trim="Form.Summary"
+        ></textarea>
     </div>
 </template>
 
@@ -104,8 +114,14 @@ export default {
     .instructorContainer {
         margin: 0 -15px;
     }
+
     .sectionHeader {
         margin: 40px 0 15px 0;
+    }
+
+    .summaryInput {
+        width: 100%;
+        height: 70px;
     }
 }
 </style>

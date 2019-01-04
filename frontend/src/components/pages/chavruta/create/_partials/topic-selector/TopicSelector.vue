@@ -130,6 +130,7 @@ export default {
     .topicsResultsContainer {
         position: absolute;
         width: 100%;
+        z-index: 1;
     }
 }
 </style>
