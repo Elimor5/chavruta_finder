@@ -18,9 +18,9 @@ class Api::AvailabilitiesController < ApplicationController
             render :show
         else
             if !@availability
-                render(json: {message: 'Availability does not exsit'}, status: 422)
+                render(json: ['Availability does not exsit'], status: 422)
             else
-                render(json: {message: "User not authorized"}, status: 422)
+                render(json: ["User not authorized"], status: 422)
             end
         end
     end
@@ -31,12 +31,12 @@ class Api::AvailabilitiesController < ApplicationController
         if @availability && @availability.user_id == current_user.id
             @availability.destroy!
 
-            render(json: {message: 'Availability successfully deleted.'}, status: 200)
+            render(json: ['Availability successfully deleted.'], status: 200)
         else
             if !@availability
-                render(json: {message: 'Availability does not exsit'}, status: 400)
+                render(json: ['Availability does not exsit'], status: 400)
             else
-                render(json: {message: "User not authorized"}, status: 400)
+                render(json: ["User not authorized"], status: 400)
             end
         end
     end

@@ -36,7 +36,7 @@ class Api::CoursesController < ApplicationController
         if @course
             render :show
         else
-            render(json: {message: 'Course not found'}, status: 422)
+            render(json: ['Course not found'], status: 422)
         end
     end
 
@@ -48,7 +48,7 @@ class Api::CoursesController < ApplicationController
 
             render :show
         else
-            render(json: {message: 'Course not found'}, status: 422)
+            render(json: ['Course not found'], status: 422)
         end
     end
 
@@ -58,9 +58,9 @@ class Api::CoursesController < ApplicationController
         if @course && @course.author_id == current_user.id
             @course.destroy!
 
-            render(json: {message: 'Course successfully deleted.'}, status: 200)
+            render(json: ['Course successfully deleted.'], status: 200)
         else
-            render(json: {message:'Course does not exist or User not authorized'}, status: 400)
+            render(json: ['Course does not exist or User not authorized'], status: 400)
         end
     end
 
