@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_02_062506) do
+ActiveRecord::Schema.define(version: 2019_01_04_160034) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "availabilities", force: :cascade do |t|
     t.string "occurrence", null: false
-    t.integer "week_day"
+    t.string "weekdays"
     t.integer "length", null: false
     t.integer "month_day"
     t.datetime "created_at", null: false
