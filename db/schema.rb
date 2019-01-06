@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 2019_01_06_013739) do
     t.datetime "updated_at", null: false
     t.text "title", null: false
     t.integer "author_id", null: false
-    t.integer "gender_restriction", null: false
+    t.string "gender_restriction", null: false
     t.index ["author_id"], name: "index_courses_on_author_id"
     t.index ["instructor_id"], name: "index_courses_on_instructor_id"
     t.index ["topic_id"], name: "index_courses_on_topic_id"

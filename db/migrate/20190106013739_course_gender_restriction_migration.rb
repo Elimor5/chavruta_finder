@@ -1,5 +1,5 @@
 class CourseGenderRestrictionMigration < ActiveRecord::Migration[5.2]
   def change
-    add_column :courses, :gender_restriction, :integer, null: false
+    add_column :courses, :gender_restriction, :string, null: false
   end
 end
