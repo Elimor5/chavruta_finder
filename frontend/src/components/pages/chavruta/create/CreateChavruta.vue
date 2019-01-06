@@ -27,8 +27,10 @@
         <DateSelector @range-added="OnDateRangeAdded"></DateSelector>
 
         <h3 class="sectionHeader">Step 4. Select a Skill Level</h3>
-
         <LevelSelector v-model="Form.Level"></LevelSelector>
+
+        <h3 class="sectionHeader">Step 5. Is this Chavruta for Men or Women?</h3>
+        <GenderRestrictionsSelector v-model="Form.GenderRestriction"></GenderRestrictionsSelector>
 
         <template v-if="IsInstructor">
             <h3 class="sectionHeader">Are you teaching?</h3>
@@ -65,6 +67,7 @@ import SelectedTopicCard from "./_partials/topic-selector/_partials/selected-top
 import TopicSelector from "./_partials/topic-selector/TopicSelector.vue";
 import DateSelector from "./_partials/date-selector/DateSelector.vue";
 import LevelSelector from "./_partials/level-selector/LevelSelector.vue";
+import GenderRestrictionsSelector from "./_partials/gender-restrictions-selector/GenderRestrictionsSelector.vue";
 import AvailabilitiesSelector from "./_partials/availabilities-selector/AvailabilitiesSelector.vue";
 
 export default {
@@ -79,7 +82,8 @@ export default {
         SelectedTopicCard,
         DateSelector,
         LevelSelector,
-        AvailabilitiesSelector
+        AvailabilitiesSelector,
+        GenderRestrictionsSelector
     },
     computed: {
         IsInstructor() {

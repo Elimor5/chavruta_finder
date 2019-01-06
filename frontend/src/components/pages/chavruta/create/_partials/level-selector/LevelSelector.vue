@@ -7,11 +7,6 @@
                 </label>
                 <label :for="'radio-' + $index" class="center">{{ level }}</label>
             </v-ons-list-item>
-            <template v-if="Level">
-                <v-ons-list-item>
-                    <div class="center">Selected Level: {{ Levels[Level] }}</div>
-                </v-ons-list-item>
-            </template>
         </v-ons-list>
     </div>
 </template>
