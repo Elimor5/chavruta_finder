@@ -71,6 +71,9 @@ import GenderRestrictionsSelector from "./_partials/gender-restrictions-selector
 import AvailabilitiesSelector from "./_partials/availabilities-selector/AvailabilitiesSelector.vue";
 
 export default {
+    creatted() {
+        window.scrollTo(0, 0);
+    },
     data() {
         return {
             IsTeaching: false,
