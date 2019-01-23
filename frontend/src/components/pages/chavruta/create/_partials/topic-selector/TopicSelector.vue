@@ -11,6 +11,11 @@
 
             <template v-if="IsDropdownOpen">
                 <div class="topicsResultsContainer">
+                    <template v-if="ShowLoader">
+                        <div class="trailLoaderContainer">
+                            <v-ons-progress-circular class="trailLoader" indeterminate="true"></v-ons-progress-circular>
+                        </div>
+                    </template>
                     <template v-if="Topics">
                         <template v-for="(topic, $index) in Topics">
                             <TopicResult
@@ -64,7 +69,8 @@ export default {
             IsDropdownOpen: false,
             SearchInput: null,
             DebouncedTopicsCall: debounce(this.GetTopicsByQuery, 500),
-            IsCreateTopicFormShown: false
+            IsCreateTopicFormShown: false,
+            ShowLoader: false
         };
     },
     computed: {
@@ -74,11 +80,15 @@ export default {
     },
     methods: {
         async GetTopicsByQuery() {
+            this.ShowLoader = true;
+
             await this.$store.dispatch("topic/getAllTopics", {
                 topic: {
                     search: this.Query
                 }
             });
+
+            this.ShowLoader = false;
         },
         SelectTopic(topicId) {
             this.$emit("selected", topicId);
@@ -119,6 +129,22 @@ export default {
 
 <style lang="scss" scoped>
 .topicSelectorComponent {
+    .searchContainer {
+        .trailLoaderContainer {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            background: white;
+            padding: 15px 0;
+
+            .trailLoader {
+                .progress-circular--material__primary {
+                    stroke: $colorPrimary;
+                }
+            }
+        }
+    }
+
     .searchContainer {
         position: relative;
 
