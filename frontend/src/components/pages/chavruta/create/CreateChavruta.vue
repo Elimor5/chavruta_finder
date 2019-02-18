@@ -56,7 +56,11 @@
         ></textarea>
 
         <h3 class="sectionHeader">Final Step! When are you meeting?</h3>
-        <AvailabilitiesSelector :Availabilities="Form.Availabilities"></AvailabilitiesSelector>
+        <div v-for="(courseSchedule, idx) in Form.CourseSchedules" :key="idx">
+            <CourseScheduleForm :CourseScheduleForm="courseSchedule"></CourseScheduleForm>>
+        </div>
+
+        <pre>{{Form}}</pre>
     </div>
 </template>
 
@@ -68,11 +72,15 @@ import TopicSelector from "./_partials/topic-selector/TopicSelector.vue";
 import DateSelector from "./_partials/date-selector/DateSelector.vue";
 import LevelSelector from "./_partials/level-selector/LevelSelector.vue";
 import GenderRestrictionsSelector from "./_partials/gender-restrictions-selector/GenderRestrictionsSelector.vue";
-import AvailabilitiesSelector from "./_partials/availabilities-selector/AvailabilitiesSelector.vue";
+import CourseScheduleForm from "./_partials/course-schedule-form/CourseScheduleForm.vue";
 
 export default {
-    creatted() {
+    created() {
         window.scrollTo(0, 0);
+
+        this.Form.CourseSchedules.push(
+            CreateChavrutaForm.getDefaultCourseSchedule()
+        );
     },
     data() {
         return {
@@ -85,7 +93,7 @@ export default {
         SelectedTopicCard,
         DateSelector,
         LevelSelector,
-        AvailabilitiesSelector,
+        CourseScheduleForm,
         GenderRestrictionsSelector
     },
     computed: {
@@ -137,4 +145,3 @@ export default {
     }
 }
 </style>
-

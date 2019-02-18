@@ -78,10 +78,11 @@ export default {
             align-items: center;
             justify-content: center;
 
-            height: 45px;
-            width: 45px;
+            height: 40px;
+            width: 40px;
 
             font-size: 17px;
+            border: none;
 
             background-color: white;
             transition: background-color 0.25s ease;

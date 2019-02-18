@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import AddAvailabilityForm from "../../../../../../../../scripts/forms/chavruta/AddAvailabilityForm";
+import CourseScheduleForm from "../../../../../../scripts/forms/chavruta/CourseScheduleForm";
 import WeekdayPicker from "./_partials/WeekdayPicker.vue";
 
 export default {
@@ -32,7 +32,7 @@ export default {
     },
     data() {
         return {
-            Form: AddAvailabilityForm.getDefaultData()
+            Form: CourseScheduleForm.getDefaultData()
         };
     },
     computed: {
