@@ -57,10 +57,8 @@
 
         <h3 class="sectionHeader">Final Step! When are you meeting?</h3>
         <div v-for="(courseSchedule, idx) in Form.CourseSchedules" :key="idx">
-            <CourseScheduleForm :CourseScheduleForm="courseSchedule"></CourseScheduleForm>>
+            <CourseScheduleForm :Form="courseSchedule"></CourseScheduleForm>
         </div>
-
-        <pre>{{Form}}</pre>
     </div>
 </template>
 

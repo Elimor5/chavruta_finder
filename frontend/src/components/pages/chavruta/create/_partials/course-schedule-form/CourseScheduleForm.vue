@@ -1,5 +1,5 @@
 <template>
-    <div class="addAvailabilityComponent">
+    <div class="courseScheduleFormComponent" v-if="Form">
         <v-ons-list class="listContainer">
             <v-ons-list-header>Select occurence</v-ons-list-header>
             <v-ons-list-item tappable>
@@ -19,21 +19,28 @@
         <template v-if="OccursWeekly">
             <WeekdayPicker v-model="Form.Weekdays"></WeekdayPicker>
         </template>
+
+        <TimePicker v-model="Form.Time"></TimePicker>
+        <TimeLengthPicker v-model="Form.Length"></TimeLengthPicker>
     </div>
 </template>
 
 <script>
-import CourseScheduleForm from "../../../../../../scripts/forms/chavruta/CourseScheduleForm";
 import WeekdayPicker from "./_partials/WeekdayPicker.vue";
+import TimeLengthPicker from "./_partials/TimeLengthPicker.vue";
+import TimePicker from "./_partials/TimePicker.vue";
 
 export default {
     components: {
-        WeekdayPicker
+        WeekdayPicker,
+        TimeLengthPicker,
+        TimePicker
     },
-    data() {
-        return {
-            Form: CourseScheduleForm.getDefaultData()
-        };
+    props: {
+        Form: {
+            type: Object,
+            required: true
+        }
     },
     computed: {
         OccursWeekly() {
