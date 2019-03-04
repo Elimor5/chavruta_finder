@@ -3,6 +3,7 @@ import {
 } from 'vuelidate/lib/validators';
 
 import ChavrutaService from '../../services/chavruta/ChavrutaService'
+import TimePickerHelper from '../../helpers/course/TimePickerHelper';
 
 
 export default {
@@ -11,8 +12,7 @@ export default {
             Occurence: 'weekly',
             Weekdays: null,
             MonthDay: null,
-            Time: null,
-            StartTime: null,
+            StartTime: TimePickerHelper.convertToDateTime(20, 0),
             Length: null
         }
     },

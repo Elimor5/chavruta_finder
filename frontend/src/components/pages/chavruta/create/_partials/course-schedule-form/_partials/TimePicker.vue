@@ -18,7 +18,7 @@
                     <v-ons-select class="dropdownContainer" v-model="SelectedMinutes">
                         <option
                             v-for="(time) in [0, 15, 30, 45]"
-                            :value="ParseMinutes(time)"
+                            :value="time"
                             :key="time"
                         >{{ PaddedTime(time) }}</option>
                     </v-ons-select>
@@ -48,6 +48,15 @@ export default {
             required: true
         }
     },
+    created() {
+        this.SelectedHour = TimePickerHelper.setHourFromDateTime(this.value);
+        this.SelectedMinutes = TimePickerHelper.setMinutesFromDateTime(
+            this.value
+        );
+        this.SelectedMeridian = TimePickerHelper.setMeridianFromDateTime(
+            this.value
+        );
+    },
     data() {
         return {
             SelectedHour: null,
@@ -69,9 +78,6 @@ export default {
     methods: {
         PaddedTime(index) {
             return ("0" + index).slice(-2);
-        },
-        ParseMinutes(minutes) {
-            return minutes / 60;
         }
     },
     watch: {
