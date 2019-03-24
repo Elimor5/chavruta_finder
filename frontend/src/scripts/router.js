@@ -83,6 +83,8 @@ const router = new Router({
 });
 
 router.beforeEach(async (to, from, next) => {
+    document.title = "Chavruta Finder"
+
     await StatusCall();
 
     next();
