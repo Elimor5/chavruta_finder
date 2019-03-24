@@ -32,6 +32,13 @@ export default {
             return ["SU", "M", "TU", "W", "TH", "F", "SA"];
         }
     },
+    created() {
+        const intValue = parseInt(this.value);
+
+        if (intValue) {
+            this.ToggleWeekdaysFromValue(this.value);
+        }
+    },
     methods: {
         ToggleActiveWeekday(index) {
             const activeDaysClone = Object.assign({}, this.ActiveWeekdays);
@@ -43,6 +50,16 @@ export default {
             }
 
             this.ActiveWeekdays = activeDaysClone;
+        },
+        ToggleWeekdaysFromValue(value) {
+            if (!value) {
+                return;
+            }
+
+            const activeIndex = value.length - 1;
+            this.ToggleActiveWeekday(activeIndex);
+
+            this.ToggleWeekdaysFromValue(value.slice(1));
         }
     },
     watch: {
