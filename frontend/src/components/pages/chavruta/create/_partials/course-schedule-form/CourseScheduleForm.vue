@@ -20,8 +20,11 @@
             <WeekdayPicker v-model="Form.Weekdays"></WeekdayPicker>
         </template>
 
-        <TimePicker v-model="Form.Time"></TimePicker>
-        <TimeLengthPicker v-model="Form.Length"></TimeLengthPicker>
+        <div class="timeContainer">
+            <TimePicker v-model="Form.StartTime"></TimePicker>
+            <TimeLengthPicker :StartTime="Form.StartTime" v-model="Form.Length"></TimeLengthPicker>
+        </div>
+
     </div>
 </template>
 
@@ -51,9 +54,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.addAvailabilityComponent {
+.courseScheduleFormComponent {
     .listContainer {
         margin: 0 -15px;
+    }
+
+    .timeContainer {
+        display: flex;
     }
 }
 </style>

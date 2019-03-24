@@ -1,6 +1,6 @@
 <template>
     <div class="timePickerComponent">
-        <p>What time are you meeting?</p>
+        <p>Start time</p>
         <v-ons-list>
             <v-ons-list-item>
                 <div class="center">
@@ -87,3 +87,15 @@ export default {
     }
 };
 </script>
+
+<style lang="scss" scoped>
+.timePickerComponent {
+    .list {
+        display: flex;
+
+        .list-item {
+            width: 65px;
+        }
+    }
+}
+</style>

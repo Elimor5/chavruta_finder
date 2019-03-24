@@ -1,6 +1,6 @@
 <template>
     <div class="timeLengthPickerComponent">
-        <p>How long is each class?</p>
+        <p>Class length</p>
         <v-ons-list>
             <v-ons-list-item>
                 <div class="center">
@@ -55,6 +55,8 @@ export default {
 
 <style lang="scss">
 .timeLengthPickerComponent {
+    margin-left: 15px;
+
     .list {
         display: flex;
     }
