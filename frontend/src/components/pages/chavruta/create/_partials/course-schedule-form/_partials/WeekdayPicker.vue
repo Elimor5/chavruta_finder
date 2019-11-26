@@ -52,14 +52,11 @@ export default {
             this.ActiveWeekdays = activeDaysClone;
         },
         ToggleWeekdaysFromValue(value) {
-            if (!value) {
-                return;
+            for (let i = 0; i < value.length; i++) {
+                if (parseInt(value[i])) {
+                    this.ToggleActiveWeekday(value.length - 1 - i);
+                }
             }
-
-            const activeIndex = value.length - 1;
-            this.ToggleActiveWeekday(activeIndex);
-
-            this.ToggleWeekdaysFromValue(value.slice(1));
         }
     },
     watch: {

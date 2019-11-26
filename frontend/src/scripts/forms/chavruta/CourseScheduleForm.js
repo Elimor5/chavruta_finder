@@ -10,7 +10,7 @@ export default {
     getDefaultData() {
         return {
             Occurence: 'weekly',
-            Weekdays: null,
+            Weekdays: '1000',
             MonthDay: null,
             StartTime: TimePickerHelper.convertToDateTime(20, 0),
             Length: null

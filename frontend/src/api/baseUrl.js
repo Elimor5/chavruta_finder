@@ -1,1 +1,1 @@
-export default process.env.NODE_ENV === 'production' ? 'chavruta-finder.com/api' : 'http://192.168.1.2:3000/api';
+export default process.env.NODE_ENV === 'production' ? 'chavruta-finder.com/api' : 'http://192.168.1.5:3000/api';
