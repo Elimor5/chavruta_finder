@@ -2,7 +2,6 @@ import {
     required
 } from 'vuelidate/lib/validators';
 
-import ChavrutaService from '../../../scripts/services/chavruta/chavrutaService'
 import TimePickerHelper from '../../helpers/course/TimePickerHelper';
 
 
@@ -16,46 +15,21 @@ export default {
             Length: 1
         }
     },
-    getValidations(model) {
-        const validations = {
-            Form: {
-                Occurence: {
-                    required
-                },
-                StartTime: {
-                    required
-                },
-                Length: {
-                    required
-                }
-            }
-        }
-
-        if (model.Occurence === 'monthly') {
-            validations.Form.MonthDay = {
-                required
-            }
-        } else if (model.Occurence === 'weekly') {
-            validations.Form.Weekdays = {
-                required
-            }
-        }
-        return validations;
-    },
-    convertFormData(formData) {
+    convertFormData(courseSchedule) {
         const {
-            Name,
-        } = formData;
+            Occurence,
+            Weekdays,
+            MonthDay,
+            StartTime,
+            Length
+        } = courseSchedule;
 
         return {
-            topic: {
-                name: Name,
-            }
+            occurrence: Occurence,
+            weekdays: Weekdays,
+            length: Length,
+            month_day: MonthDay,
+            start_time: StartTime
         }
     },
-    async submit(formData) {
-        return await ChavrutaService.createNewTopic(
-            formData
-        );
-    }
 }

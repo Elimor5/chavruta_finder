@@ -70,25 +70,8 @@ export default {
                 gender_restriction: GenderRestriction,
                 instructor_id: InstructorId,
                 summary: Summary,
-                availabilities_attributes: CourseSchedules.map(this.convertCourseSchedule)
+                availabilities_attributes: CourseSchedules.map(CourseScheduleForm.convertFormData)
             }
-        }
-    },
-    convertCourseSchedule(courseSchedule) {
-        const {
-            Occurence,
-            Weekdays,
-            MonthDay,
-            StartTime,
-            Length
-        } = courseSchedule;
-
-        return {
-            occurrence: Occurence,
-            weekdays: Weekdays,
-            length: Length,
-            month_day: MonthDay,
-            start_time: StartTime
         }
     },
     async submit(formData) {
