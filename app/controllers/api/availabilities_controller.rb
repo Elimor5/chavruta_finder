@@ -44,6 +44,6 @@ class Api::AvailabilitiesController < ApplicationController
     private
 
     def availability_params
-        params.require(:availability).permit(:occurrence, :length, :week_day, :month_day, :start_time)
+        params.require(:availability).permit(:occurrence, :length, :weekdays, :month_day, :start_time)
     end
 end

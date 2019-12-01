@@ -1,5 +1,5 @@
 class Availability < ApplicationRecord
-    validates :week_day, presence: true, if: :available_weekly?
+    validates :weekdays, presence: true, if: :available_weekly?
     validates :month_day, presence: true, if: :available_monthly?
 
     has_one :course_schedule

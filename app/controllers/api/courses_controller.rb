@@ -67,6 +67,6 @@ class Api::CoursesController < ApplicationController
     private
 
     def course_params
-        params.require(:course).permit(:start_date, :end_date, :level, :instructor_id, :summary, :title, :topic_id, :gender_restriction, topics_attributes: [:name], availabilities_attributes: [:occurrence, :week_day, :length, :month_day, :start_time])
+        params.require(:course).permit(:start_date, :end_date, :level, :instructor_id, :summary, :title, :topic_id, :gender_restriction, topics_attributes: [:name], availabilities_attributes: [:occurrence, :weekdays, :length, :month_day, :start_time])
     end
 end
