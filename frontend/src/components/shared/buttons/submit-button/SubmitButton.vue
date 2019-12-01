@@ -1,22 +1,27 @@
 <template>
-    <button class="submitButtonComponent" @click="HandleClick">
-        <slot></slot>
-    </button>
+    <div class="submitButtonComponent">
+        <button class="submitButtonComponent" @click="HandleClick">
+            <slot></slot>
+        </button>
+    </div>
 </template>
 
 <script>
 export default {
     methods: {
         HandleClick() {
-            this.$emit('click');
+            this.$emit("click");
         }
     }
-}
+};
 </script>
 
 <style lang="scss">
-    .submitButtonComponent {
-        margin-top: 15px;
+.submitButtonComponent {
+    text-align: center;
+
+    button {
+        margin: 15px;
         width: 90%;
         height: 35px;
         background: $colorPrimary;
@@ -25,5 +30,6 @@ export default {
         font-weight: bold;
         border-radius: 5%;
     }
+}
 </style>
 

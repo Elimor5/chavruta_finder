@@ -1,5 +1,5 @@
 <template>
-    <button class="searchResultComponent" @click="HandleClick">
+    <button type="button" class="searchResultComponent" @click="HandleClick">
         <span class="textContainer">
             <slot name="title"></slot>
         </span>

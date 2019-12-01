@@ -17,14 +17,14 @@
                 </template>
                 <template slot="content">Home</template>
             </SideNavItem>
-            <hr>
+            <hr />
             <SideNavItem Route="Find Chavruta">
                 <template slot="icon">
                     <v-ons-icon icon="fa-search" class="list-item__icon"></v-ons-icon>
                 </template>
                 <template slot="content">Find Chavruta</template>
             </SideNavItem>
-            <hr>
+            <hr />
             <template v-if="IsLoggedIn">
                 <SideNavItem Route="New Chavruta">
                     <template slot="icon">
@@ -32,7 +32,7 @@
                     </template>
                     <template slot="content">New Chavruta</template>
                 </SideNavItem>
-                <hr>
+                <hr />
                 <SideNavItem Route="Edit Account">
                     <template slot="icon">
                         <v-ons-icon
@@ -43,7 +43,7 @@
                     </template>
                     <template slot="content">Edit Account</template>
                 </SideNavItem>
-                <hr>
+                <hr />
                 <SideNavItem @click="LogOutUser">
                     <template slot="icon">
                         <v-ons-icon
@@ -62,7 +62,7 @@
                     </template>
                     <template slot="content">Log In</template>
                 </SideNavItem>
-                <hr>
+                <hr />
                 <SideNavItem Route="Sign Up">
                     <template slot="icon">
                         <v-ons-icon icon="fa-pen" class="list-item__icon"></v-ons-icon>
@@ -92,8 +92,13 @@ export default {
         }
     },
     methods: {
-        LogOutUser() {
-            return this.$store.dispatch("identity/logOutUser", { vm: this });
+        async LogOutUser() {
+            try {
+                await this.$store.dispatch("identity/logOutUser", { vm: this });
+                this.$router.push("/");
+            } catch (e) {
+                this.$toastr.toast(e);
+            }
         }
     }
 };

@@ -33,38 +33,69 @@ export default {
             Form: {
                 Title: {
                     required
+                },
+                TopicId: {
+                    required
+                },
+                StartDate: {
+                    required
+                },
+                EndDate: {
+                    required
                 }
             }
         }
     },
+
     convertFormData(formData) {
         const {
-            Username,
-            Password,
-            Name,
+            StartDate,
+            EndDate,
             Level,
-            IsInstructor,
-            IsMale
+            InstructorId,
+            Summary,
+            Title,
+            TopicId,
+            GenderRestriction,
+            CourseSchedules,
         } = formData;
 
         return {
-            user: {
-                username: Username,
-                password: Password,
-                name: Name,
+            course: {
+                topic_id: TopicId,
+                start_date: StartDate,
+                end_date: EndDate,
                 level: Level,
-                is_instructor: IsInstructor,
-                is_male: IsMale === '1' ? true : false
+                title: Title,
+                gender_restriction: GenderRestriction,
+                instructor_id: InstructorId,
+                summary: Summary,
+                availabilities_attributes: CourseSchedules.map(this.convertCourseSchedule)
             }
         }
     },
+    convertCourseSchedule(courseSchedule) {
+        const {
+            Occurence,
+            Weekdays,
+            MonthDay,
+            StartTime,
+            Length
+        } = courseSchedule;
+
+        return {
+            occurrence: Occurence,
+            weekdays: Weekdays,
+            length: Length,
+            month_day: MonthDay,
+            start_time: StartTime
+        }
+    },
     async submit(formData) {
-        const response = await http({
-            url: `/users`,
+        await http({
+            url: `/courses`,
             method: 'POST',
             data: formData,
         });
-
-        store.commit('identity/updateUser', response);
     }
 }

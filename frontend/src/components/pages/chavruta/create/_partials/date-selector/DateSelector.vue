@@ -7,6 +7,8 @@
             lang="en"
             :not-before="new Date()"
         ></DatePicker>
+        <FormErrors :validation="validations.StartDate"></FormErrors>
+
         <template v-if="DateRange.StartDate">
             <p>Chavruta End Date:</p>
             <DatePicker
@@ -15,16 +17,24 @@
                 lang="en"
                 :not-before="new Date(DateRange.StartDate)"
             ></DatePicker>
+            <FormErrors :validation="validations.EndDate"></FormErrors>
         </template>
     </div>
 </template>
 
 <script>
 import DatePicker from "vue2-datepicker";
+import FormErrors from "../../../../../shared/forms/form-errors/FormErrors.vue";
 
 export default {
+    props: {
+        validations: {
+            required: true
+        }
+    },
     components: {
-        DatePicker
+        DatePicker,
+        FormErrors
     },
     data() {
         return {

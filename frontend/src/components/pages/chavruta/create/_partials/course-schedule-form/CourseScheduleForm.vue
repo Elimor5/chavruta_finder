@@ -1,6 +1,7 @@
 <template>
     <div class="courseScheduleFormComponent" v-if="Form">
-        <v-ons-list class="listContainer">
+        <!-- TODO: add monthly meeting functionality -->
+        <!-- <v-ons-list class="listContainer">
             <v-ons-list-header>Select occurence</v-ons-list-header>
             <v-ons-list-item tappable>
                 <label class="left">
@@ -14,7 +15,7 @@
                 </label>
                 <label for="radio-monthly" class="center">Monthly</label>
             </v-ons-list-item>
-        </v-ons-list>
+        </v-ons-list>-->
 
         <template v-if="OccursWeekly">
             <WeekdayPicker v-model="Form.Weekdays"></WeekdayPicker>
@@ -24,7 +25,6 @@
             <TimePicker v-model="Form.StartTime"></TimePicker>
             <TimeLengthPicker :StartTime="Form.StartTime" v-model="Form.Length"></TimeLengthPicker>
         </div>
-
     </div>
 </template>
 

@@ -4,6 +4,7 @@
         <div class="weekdaysContainer">
             <template v-for="(day, $index) in Days">
                 <button
+                    type="button"
                     :key="$index"
                     class="dayContainer"
                     :class="{'active': ActiveWeekdays[$index] === true}"

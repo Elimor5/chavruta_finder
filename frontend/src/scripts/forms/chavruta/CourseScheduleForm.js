@@ -2,7 +2,7 @@ import {
     required
 } from 'vuelidate/lib/validators';
 
-import ChavrutaService from '../../services/chavruta/ChavrutaService'
+import ChavrutaService from '../../../scripts/services/chavruta/chavrutaService'
 import TimePickerHelper from '../../helpers/course/TimePickerHelper';
 
 
@@ -13,7 +13,7 @@ export default {
             Weekdays: '1000',
             MonthDay: null,
             StartTime: TimePickerHelper.convertToDateTime(20, 0),
-            Length: null
+            Length: 1
         }
     },
     getValidations(model) {

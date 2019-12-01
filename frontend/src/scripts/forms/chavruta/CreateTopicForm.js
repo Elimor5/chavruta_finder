@@ -3,8 +3,7 @@ import {
     maxLength
 } from 'vuelidate/lib/validators';
 
-import ChavrutaService from '../../services/chavruta/ChavrutaService'
-
+import ChavrutaService from '../../services/chavruta/chavrutaService'
 
 export default {
     getDefaultData() {
