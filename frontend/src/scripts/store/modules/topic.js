@@ -1,4 +1,4 @@
-import ChavrutaService from '../../services/chavruta/chavrutaService'
+import TopicService from '../../services/topic/topicService'
 import merge from 'lodash/merge';
 
 export default {
@@ -22,7 +22,7 @@ export default {
     },
     actions: {
         async getAllTopics(context, query) {
-            const topics = await ChavrutaService.getAllTopics(query);
+            const topics = await TopicService.getAllTopics(query);
 
             context.commit('updateTopics', topics.data.topics);
         }

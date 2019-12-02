@@ -3,7 +3,7 @@ import {
     maxLength
 } from 'vuelidate/lib/validators';
 
-import ChavrutaService from '../../services/chavruta/chavrutaService'
+import TopicServie from '../../services/topic/topicService'
 
 export default {
     getDefaultData() {
@@ -33,7 +33,7 @@ export default {
         }
     },
     async submit(formData) {
-        return await ChavrutaService.createNewTopic(
+        return await TopicServie.createNewTopic(
             formData
         );
     }

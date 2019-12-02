@@ -1,5 +1,5 @@
 <template>
-    <div class="topicSelectorComponent">
+    <div class="topicSearchComponent">
         <div class="searchContainer">
             <v-ons-search-input
                 ref="searchInput"
@@ -128,7 +128,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.topicSelectorComponent {
+.topicSearchComponent {
     .searchContainer {
         .trailLoaderContainer {
             display: flex;

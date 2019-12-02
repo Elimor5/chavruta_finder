@@ -34,7 +34,7 @@
             </cf-formgroup>
 
             <h3 class="sectionHeader">Step 3: Choose a topic</h3>
-            <TopicSelector @selected="UpdateSelectedTopic"></TopicSelector>
+            <TopicSearch @selected="UpdateSelectedTopic"></TopicSearch>
             <FormErrors :validation="$v.Form.TopicId"></FormErrors>
 
             <template v-if="Form.TopicId">
@@ -86,8 +86,8 @@
 <script>
 import CreateChavrutaForm from "../../../../scripts/forms/chavruta/CreateChavrutaForm";
 
-import SelectedTopicCard from "./_partials/topic-selector/_partials/selected-topic-card/SelectedTopicCard.vue";
-import TopicSelector from "./_partials/topic-selector/TopicSelector.vue";
+import SelectedTopicCard from "./_partials/topic-search/_partials/selected-topic-card/SelectedTopicCard.vue";
+import TopicSearch from "./_partials/topic-search/TopicSearch.vue";
 import DateSelector from "./_partials/date-selector/DateSelector.vue";
 import LevelSelector from "./_partials/level-selector/LevelSelector.vue";
 import GenderRestrictionsSelector from "./_partials/gender-restrictions-selector/GenderRestrictionsSelector.vue";
@@ -110,7 +110,7 @@ export default {
         };
     },
     components: {
-        TopicSelector,
+        TopicSearch,
         SelectedTopicCard,
         DateSelector,
         LevelSelector,
