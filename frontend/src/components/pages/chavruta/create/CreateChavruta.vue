@@ -4,7 +4,7 @@
             <h3 class="sectionHeader">Step 1: Name Your Chavruta</h3>
             <cf-formgroup class="titleFormGroup" :validation="$v.Form.Title">
                 <template slot="icon">
-                    <v-ons-icon icon="fa-group" size="30px" class="list-item__icon"></v-ons-icon>
+                    <v-ons-icon icon="fa-group" size="26px" class="list-item__icon"></v-ons-icon>
                 </template>
                 <template slot="input">
                     <v-ons-input
@@ -17,7 +17,23 @@
                 </template>
             </cf-formgroup>
 
-            <h3 class="sectionHeader">Step 2: Choose a topic</h3>
+            <h3 class="sectionHeader">Step 2: Where are you planning to learn?</h3>
+            <cf-formgroup class="titleFormGroup" :validation="$v.Form.Location">
+                <template slot="icon">
+                    <v-ons-icon icon="fa-school" size="26px" class="list-item__icon"></v-ons-icon>
+                </template>
+                <template slot="input">
+                    <v-ons-input
+                        class="inputField"
+                        float="true"
+                        placeholder="Beit Midrash"
+                        type="text"
+                        v-model.trim="Form.Location"
+                    ></v-ons-input>
+                </template>
+            </cf-formgroup>
+
+            <h3 class="sectionHeader">Step 3: Choose a topic</h3>
             <TopicSelector @selected="UpdateSelectedTopic"></TopicSelector>
             <FormErrors :validation="$v.Form.TopicId"></FormErrors>
 
@@ -25,13 +41,13 @@
                 <SelectedTopicCard :TopicId="Form.TopicId"></SelectedTopicCard>
             </template>
 
-            <h3 class="sectionHeader">Step 3: Select a Date Range</h3>
+            <h3 class="sectionHeader">Step 4: Select a Date Range</h3>
             <DateSelector @range-added="OnDateRangeAdded" :validations="$v.Form"></DateSelector>
 
-            <h3 class="sectionHeader">Step 4. Select a Skill Level</h3>
+            <h3 class="sectionHeader">Step 5. Select a Skill Level</h3>
             <LevelSelector v-model="Form.Level"></LevelSelector>
 
-            <h3 class="sectionHeader">Step 5. Is this Chavruta for Men or Women?</h3>
+            <h3 class="sectionHeader">Step 6. Is this Chavruta for Men or Women?</h3>
             <GenderRestrictionsSelector v-model="Form.GenderRestriction"></GenderRestrictionsSelector>
 
             <template v-if="IsInstructor">

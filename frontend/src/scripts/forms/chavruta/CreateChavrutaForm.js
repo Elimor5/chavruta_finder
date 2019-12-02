@@ -22,6 +22,7 @@ export default {
             Title: null,
             TopicId: null,
             GenderRestriction: '2',
+            Location: null,
             CourseSchedules: []
         }
     },
@@ -42,6 +43,9 @@ export default {
                 },
                 EndDate: {
                     required
+                },
+                Location: {
+                    required
                 }
             }
         }
@@ -57,6 +61,7 @@ export default {
             Title,
             TopicId,
             GenderRestriction,
+            Location,
             CourseSchedules,
         } = formData;
 
@@ -70,6 +75,7 @@ export default {
                 gender_restriction: GenderRestriction,
                 instructor_id: InstructorId,
                 summary: Summary,
+                location: Location,
                 availabilities_attributes: CourseSchedules.map(CourseScheduleForm.convertFormData)
             }
         }

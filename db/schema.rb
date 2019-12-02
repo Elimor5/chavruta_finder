@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_06_013739) do
+ActiveRecord::Schema.define(version: 2019_12_02_162004) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 2019_01_06_013739) do
     t.text "title", null: false
     t.integer "author_id", null: false
     t.string "gender_restriction", null: false
+    t.string "location", null: false
     t.index ["author_id"], name: "index_courses_on_author_id"
     t.index ["instructor_id"], name: "index_courses_on_instructor_id"
     t.index ["topic_id"], name: "index_courses_on_topic_id"

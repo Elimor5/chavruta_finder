@@ -1,5 +1,5 @@
 class Course < ApplicationRecord
-    validates :start_date, :end_date, :level, :gender_restriction, presence: true
+    validates :start_date, :end_date, :level, :gender_restriction, :location, presence: true
 
     belongs_to :topic
 
