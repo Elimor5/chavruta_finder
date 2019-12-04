@@ -110,11 +110,11 @@
                         <label for="checkbox-instructor" class="center">I am an instructor</label>
                     </v-ons-list-item>
                 </v-ons-list>
-                
-                <SubmitButton>
+
+                <MDButton>
                     <template v-if="IsEditMode">Update Account</template>
                     <template v-else>Sign Up</template>
-                </SubmitButton>
+                </MDButton>
             </v-ons-list>
         </form>
     </div>
@@ -124,11 +124,11 @@
 import SignupForm from "../../../../scripts/forms/auth/SignupForm";
 import EditUserForm from "../../../../scripts/forms/auth/EditUserForm";
 
-import SubmitButton from "../../../shared/buttons/submit-button/SubmitButton.vue";
+import MDButton from "../../../shared/buttons/md-button/MDButton.vue";
 
 export default {
     components: {
-        SubmitButton
+        MDButton
     },
     created() {
         if (this.IsEditMode) {

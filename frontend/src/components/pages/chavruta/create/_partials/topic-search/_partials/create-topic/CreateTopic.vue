@@ -20,7 +20,7 @@
                     </template>
                 </cf-formgroup>
 
-                <SubmitButton>Add</SubmitButton>
+                <MDButton>Add</MDButton>
             </v-ons-list>
         </form>
     </div>
@@ -29,14 +29,14 @@
 <script>
 import CreateTopicForm from "../../../../../../../../scripts/forms/chavruta/CreateTopicForm";
 
-import SubmitButton from "../../../../../../../shared/buttons/submit-button/SubmitButton.vue";
+import MDButton from "../../../../../../../shared/buttons/md-button/MDButton.vue";
 
 export default {
     created() {
         this.Form.Name = this.Query;
     },
     components: {
-        SubmitButton
+        MDButton
     },
     data() {
         return {
@@ -92,7 +92,7 @@ export default {
             flex-grow: 1;
         }
 
-        .submitButtonComponent {
+        .MDButtonComponent {
             margin-top: 0;
             margin: 0 15px;
             width: inherit;

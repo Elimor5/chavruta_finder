@@ -35,7 +35,7 @@
                     </template>
                 </cf-formgroup>
 
-                <SubmitButton>Log In</SubmitButton>
+                <MDButton>Log In</MDButton>
             </v-ons-list>
         </form>
     </div>
@@ -43,11 +43,11 @@
 
 <script>
 import LoginForm from "../../../../scripts/forms/auth/LoginForm.js";
-import SubmitButton from "../../../shared/buttons/submit-button/SubmitButton.vue";
+import MDButton from "../../../shared/buttons/md-button/MDButton.vue";
 
 export default {
     components: {
-        SubmitButton
+        MDButton
     },
     data() {
         return {

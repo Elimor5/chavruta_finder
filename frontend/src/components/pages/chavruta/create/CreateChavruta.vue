@@ -78,7 +78,7 @@
                 <CourseScheduleForm :Form="courseSchedule"></CourseScheduleForm>
             </div>
 
-            <SubmitButton>Create Course!</SubmitButton>
+            <MDButton>Create Course!</MDButton>
         </form>
     </div>
 </template>
@@ -92,7 +92,7 @@ import DateSelector from "./_partials/date-selector/DateSelector.vue";
 import LevelSelector from "./_partials/level-selector/LevelSelector.vue";
 import GenderRestrictionsSelector from "./_partials/gender-restrictions-selector/GenderRestrictionsSelector.vue";
 import CourseScheduleForm from "./_partials/course-schedule-form/CourseScheduleForm.vue";
-import SubmitButton from "../../../shared/buttons/submit-button/SubmitButton.vue";
+import MDButton from "../../../shared/buttons/md-button/MDButton.vue";
 import FormErrors from "../../../shared/forms/form-errors/FormErrors.vue";
 
 export default {
@@ -116,7 +116,7 @@ export default {
         LevelSelector,
         CourseScheduleForm,
         GenderRestrictionsSelector,
-        SubmitButton,
+        MDButton,
         FormErrors
     },
     computed: {
@@ -191,7 +191,7 @@ export default {
         height: 70px;
     }
 
-    .submitButtonComponent {
+    .MDButtonComponent {
         margin: 25px 0;
     }
 }
