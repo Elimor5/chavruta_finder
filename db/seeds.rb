@@ -8,5 +8,5 @@
 topics = ActiveSupport::JSON.decode(File.read('sefaria_categories.json'));
 
 topics.each do |topic|
-    Topic.create({name: topic});
+    Topic.create!({name: topic, author_id: 2});
 end 

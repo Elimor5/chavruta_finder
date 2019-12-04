@@ -1,4 +1,6 @@
 class Course < ApplicationRecord
+    include PgSearch::Model
+
     validates :start_date, :end_date, :level, :gender_restriction, :location, presence: true
 
     belongs_to :topic
@@ -22,4 +24,19 @@ class Course < ApplicationRecord
 
     accepts_nested_attributes_for :course_schedules, allow_destroy: true
     accepts_nested_attributes_for :availabilities, allow_destroy: true
+
+    pg_search_scope :search_course, { against: [:title, :location],
+                    associated_against: {
+                        topic: :name
+                    },
+                    using: {
+                        tsearch: {
+                            prefix: true
+                        }
+                    }
+                }
+
+    def topic_title 
+        self.topic.title
+    end
 end

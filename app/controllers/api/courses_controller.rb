@@ -1,6 +1,14 @@
 class Api::CoursesController < ApplicationController
     def index
-        @courses = Course.all
+        if params[:course][:search]
+            limit = params[:course][:limit]
+
+            @courses = Course.search_course(params[:course][:search]).limit(limit)
+        else
+            @courses = Course.all
+        end
+
+
 
         render :index
     end
@@ -67,6 +75,6 @@ class Api::CoursesController < ApplicationController
     private
 
     def course_params
-        params.require(:course).permit(:start_date, :end_date, :level, :instructor_id, :summary, :title, :topic_id, :gender_restriction, :location, topics_attributes: [:name], availabilities_attributes: [:occurrence, :weekdays, :length, :month_day, :start_time])
+        params.require(:course).permit(:start_date, :end_date, :level, :instructor_id, :summary, :title, :topic_id, :gender_restriction, :location, :search, :limit, topics_attributes: [:name], availabilities_attributes: [:occurrence, :weekdays, :length, :month_day, :start_time])
     end
 end
