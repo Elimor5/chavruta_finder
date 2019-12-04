@@ -7,6 +7,11 @@ class Course < ApplicationRecord
         foreign_key: :author_id,
         class_name: :User
 
+    belongs_to :instructor,
+        foreign_key: :instructor_id,
+        class_name: :User,
+        optional: true
+
     has_many :course_schedules, dependent: :destroy
     has_many :availabilities, through: :course_schedules, dependent: :destroy
     has_many :rescheduled_classes, through: :course_schedules, dependent: :destroy

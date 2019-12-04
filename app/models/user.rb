@@ -13,6 +13,10 @@ class User < ApplicationRecord
         foreign_key: :author_id,
         class_name: :Course
 
+    has_many :courses_taught,
+        foreign_key: :instructor_id,
+        class_name: :Course
+
     has_many :topics_created,
         foreign_key: :author_id,
         class_name: :Topic
