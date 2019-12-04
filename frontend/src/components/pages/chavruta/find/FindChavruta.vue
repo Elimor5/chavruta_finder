@@ -8,8 +8,6 @@
                     <CourseCard v-for="course in Courses" :key="course.id" :course="course"></CourseCard>
                 </v-ons-list>
             </template>
-
-            <!-- <template v-for="item in list"></template> -->
         </v-ons-page>
     </div>
 </template>
@@ -48,3 +46,19 @@ export default {
     }
 };
 </script>
+
+<style lang="scss">
+.findChavrutaComponent {
+    .list {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 7.5px;
+    }
+
+    .courseCardComponent {
+        .card {
+            margin: 7.5px;
+        }
+    }
+}
+</style>
