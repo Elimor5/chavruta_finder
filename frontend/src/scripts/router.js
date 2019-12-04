@@ -20,70 +20,71 @@ const router = new Router({
     mode: "history",
     base: process.env.BASE_URL,
     routes: [{
-            path: "/",
-            name: "Home",
-            component: Home
-        },
-        {
-            path: "/auth/login",
-            name: "Log In",
-            component: Login,
-            beforeEnter(to, from, next) {
-                if (store.state.identity.isAuthenticated) {
-                    next({
-                        path: '/'
-                    });
-                } else {
-                    next();
-                }
+        path: "/",
+        name: "Home",
+        component: Home
+    },
+    {
+        path: "/auth/login",
+        name: "Log In",
+        component: Login,
+        beforeEnter(to, from, next) {
+            if (store.state.identity.isAuthenticated) {
+                next({
+                    path: '/'
+                });
+            } else {
+                next();
             }
-        },
-        {
-            path: "/auth/signup",
-            name: "Sign Up",
-            component: Signup,
-            beforeEnter(to, from, next) {
-                if (store.state.identity.isAuthenticated) {
-                    next({
-                        path: '/'
-                    });
-                } else {
-                    next();
-                }
-            }
-        },
-        {
-            path: "/auth/edit",
-            name: "Edit Account",
-            component: Signup,
-            beforeEnter(to, from, next) {
-                if (!store.state.identity.isAuthenticated) {
-                    next({
-                        path: '/'
-                    });
-                } else {
-                    next();
-                }
-            },
-            props: {
-                IsEditMode: true
-            }
-        },
-        {
-            path: "/chavruta/find",
-            name: "Find Chavruta",
-            component: FindChavruta
-        },
-        {
-            path: "/chavruta/create",
-            name: "New Chavruta",
-            component: CreateChavruta
         }
+    },
+    {
+        path: "/auth/signup",
+        name: "Sign Up",
+        component: Signup,
+        beforeEnter(to, from, next) {
+            if (store.state.identity.isAuthenticated) {
+                next({
+                    path: '/'
+                });
+            } else {
+                next();
+            }
+        }
+    },
+    {
+        path: "/auth/edit",
+        name: "Edit Account",
+        component: Signup,
+        beforeEnter(to, from, next) {
+            if (!store.state.identity.isAuthenticated) {
+                next({
+                    path: '/'
+                });
+            } else {
+                next();
+            }
+        },
+        props: {
+            IsEditMode: true
+        }
+    },
+    {
+        path: "/chavruta/find",
+        name: "Find Chavruta",
+        component: FindChavruta
+    },
+    {
+        path: "/chavruta/create",
+        name: "New Chavruta",
+        component: CreateChavruta
+    }
     ]
 });
 
 router.beforeEach(async (to, from, next) => {
     document.title = "Chavruta Finder"
+    window.scrollTo(0, 0)
 
     await StatusCall();
 

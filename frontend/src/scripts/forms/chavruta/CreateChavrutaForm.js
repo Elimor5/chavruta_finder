@@ -8,6 +8,7 @@ import {
 import store from '../../store/store';
 
 import CourseScheduleForm from "./CourseScheduleForm";
+import courseService from '../../services/course/courseService';
 
 export default {
     getDefaultData() {
@@ -81,10 +82,6 @@ export default {
         }
     },
     async submit(formData) {
-        await http({
-            url: `/courses`,
-            method: 'POST',
-            data: formData,
-        });
+        await courseService.createCourse(formData)
     }
 }

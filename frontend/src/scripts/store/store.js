@@ -5,6 +5,7 @@ import loader from './modules/loader';
 import toastr from './modules/toastr';
 import identity from './modules/identity';
 import topic from './modules/topic';
+import course from './modules/course';
 
 Vue.use(Vuex)
 
@@ -13,6 +14,7 @@ export default new Vuex.Store({
         loader,
         toastr,
         identity,
-        topic
+        topic,
+        course
     }
 })

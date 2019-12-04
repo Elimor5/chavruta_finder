@@ -37,8 +37,6 @@
                             </template>
                         </v-ons-toolbar>
 
-                        <PullHook></PullHook>
-
                         <div class="pageContent">
                             <router-view></router-view>
                         </div>

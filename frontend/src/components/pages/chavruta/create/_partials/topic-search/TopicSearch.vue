@@ -95,7 +95,7 @@ export default {
 
             this.IsCreateTopicFormShown = false;
 
-            const searchBar = document.querySelector(".pageHeader");
+            const searchBar = document.querySelector(".topicInput");
             searchBar.scrollIntoView({ behavior: "smooth" });
 
             this.CloseDropdown();
