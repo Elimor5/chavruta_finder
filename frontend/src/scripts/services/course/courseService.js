@@ -17,5 +17,24 @@ export default {
             method: 'POST',
             data: formData,
         });
+    },
+
+    async enroll(course) {
+        await http({
+            url: '/enrollments',
+            method: 'POST',
+            data: {
+                enrollment: {
+                    course_id: course.id
+                }
+            }
+        })
+    },
+
+    async unenroll(enrollmentId) {
+        await http({
+            url: `/enrollments/${enrollmentId}`,
+            method: 'DELETE',
+        })
     }
 }

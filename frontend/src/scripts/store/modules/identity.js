@@ -10,13 +10,13 @@ export default {
     },
     mutations: {
         updateUser(state, userResponse) {
-            const {userIdentity, coursesCreated, preferredTopics, enrolledCourses} = userResponse.data;
-            
+            const { userIdentity, coursesCreated, preferredTopics, enrollments } = userResponse.data;
+
             state.currentUser = {
                 userIdentity,
-                coursesCreated: coursesCreated ? Object.keys(coursesCreated) : null,
-                preferredTopics: preferredTopics ? Object.keys(preferredTopics) : null,
-                enrolledCourses: enrolledCourses ? Object.keys(enrolledCourses) : null
+                coursesCreated: coursesCreated ? Object.keys(coursesCreated) : [],
+                preferredTopics: preferredTopics ? Object.keys(preferredTopics) : [],
+                enrollments: enrollments || {}
             };
 
             state.isStatusCallMade = true;
@@ -45,12 +45,12 @@ export default {
                     url: '/session',
                     method: 'DELETE'
                 });
-                
+
                 componentContext.vm.$ons.notification.toast('You have successfully logged out.', { timeout: 5000, animation: 'ascend' });
 
                 context.commit('resetUser');
             }
-            catch(e) {
+            catch (e) {
                 componentContext.vm.toastr.toast(e);
             }
         }

@@ -5,7 +5,7 @@
 
             <template v-if="Courses">
                 <v-ons-list>
-                    <CourseCard v-for="course in Courses" :key="course.id" :course="course"></CourseCard>
+                    <CourseCard v-for="course in Courses" :key="course.id" :Course="course"></CourseCard>
                 </v-ons-list>
             </template>
         </v-ons-page>
