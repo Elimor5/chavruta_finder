@@ -98,7 +98,7 @@
                     </v-ons-list-item>
                 </v-ons-list>
 
-                <v-ons-list class="listContainer">
+                <!-- <v-ons-list class="listContainer">
                     <v-ons-list-header>Are you teaching?</v-ons-list-header>
                     <v-ons-list-item tappable>
                         <label class="left">
@@ -109,7 +109,7 @@
                         </label>
                         <label for="checkbox-instructor" class="center">I am an instructor</label>
                     </v-ons-list-item>
-                </v-ons-list>
+                </v-ons-list>-->
 
                 <MDButton>
                     <template v-if="IsEditMode">Update Account</template>

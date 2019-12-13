@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import SearchResult from "../../../../../../../shared/buttons/search-result/SearchResult.vue";
+import SearchResult from "../../../../../../../../shared/buttons/search-result/SearchResult.vue";
 
 export default {
     components: {

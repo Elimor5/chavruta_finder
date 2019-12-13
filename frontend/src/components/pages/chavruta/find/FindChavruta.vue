@@ -5,7 +5,13 @@
 
             <template v-if="Courses">
                 <v-ons-list>
-                    <CourseCard v-for="course in Courses" :key="course.id" :Course="course"></CourseCard>
+                    <router-link
+                        v-for="course in Courses"
+                        :key="course.id"
+                        :to="CourseShowPagePath(course)"
+                    >
+                        <CourseCard :Course="course"></CourseCard>
+                    </router-link>
                 </v-ons-list>
             </template>
         </v-ons-page>
@@ -42,6 +48,9 @@ export default {
             await this.$refs.CourseSearch.DebouncedTopicsCall();
 
             done();
+        },
+        CourseShowPagePath(course) {
+            return `/chavruta/${course.id}`;
         }
     }
 };
@@ -50,8 +59,6 @@ export default {
 <style lang="scss">
 .findChavrutaComponent {
     .list {
-        display: flex;
-        flex-wrap: wrap;
         padding: 7.5px;
     }
 

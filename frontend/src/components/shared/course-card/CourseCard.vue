@@ -2,25 +2,42 @@
     <div class="courseCardComponent">
         <v-ons-card :key="Course.id">
             <p class="title">{{ Course.title }}</p>
-            <p class="topic">{{Course.topic}}</p>
+            <p class="topic">{{Course.topic.name}}</p>
 
             <p class="location">at {{ Course.location }}</p>
 
+            <slot></slot>
+
+            <h5 class="expirationWarning" v-if="IsCourseExpired">This course has ended.</h5>
+
             <template v-if="IsLoggedIn">
                 <div class="buttons">
+                    <template v-if="IsAuthorCurrentUser">
+                        <MDbutton class="warningButton" inverted="true" @click="ToggleDialog">Delete</MDbutton>
+                        <MDbutton class="editButton" inverted="true" @click="EditCourse">Edit</MDbutton>
+                    </template>
                     <template v-if="EnrollmentId">
                         <MDbutton
-                            class="unenrollButton"
+                            class="warningButton"
                             inverted="true"
                             @click="UnenrollFromCourse"
-                        >Leave Course</MDbutton>
+                        >Leave</MDbutton>
                     </template>
                     <template v-else>
-                        <MDbutton inverted="true" @click="EnrollInCourse">Enroll</MDbutton>
+                        <template v-if="!IsCourseExpired">
+                            <MDbutton inverted="true" @click="EnrollInCourse">Enroll</MDbutton>
+                        </template>
                     </template>
                 </div>
             </template>
         </v-ons-card>
+        <v-ons-dialog class="courseCardDialog" cancelable :visible.sync="IsDialogVisible">
+            <p class="dialog-text">Delete Chavruta?</p>
+            <div class="buttonsContainer">
+                <MDbutton class="editButton" inverted="true" @click="ToggleDialog">Cancel</MDbutton>
+                <MDbutton class="warningButton" inverted="true" @click="DeleteCourse">Delete</MDbutton>
+            </div>
+        </v-ons-dialog>
     </div>
 </template>
 
@@ -32,6 +49,11 @@ import courseService from "../../../scripts/services/course/courseService";
 export default {
     components: {
         MDbutton
+    },
+    data() {
+        return {
+            IsDialogVisible: false
+        };
     },
     props: {
         Course: {
@@ -47,6 +69,20 @@ export default {
         },
         IsLoggedIn() {
             return this.$store.state.identity.isAuthenticated;
+        },
+        IsCourseExpired() {
+            const courseEndDate = new Date(this.Course.endDate);
+            const today = new Date();
+
+            return courseEndDate < today;
+        },
+        IsAuthorCurrentUser() {
+            if (!this.IsLoggedIn) return false;
+
+            const currentUserId = this.$store.state.identity.currentUser
+                .userIdentity.id;
+
+            return currentUserId === this.Course.author.id;
         }
     },
     methods: {
@@ -66,6 +102,34 @@ export default {
             } catch (e) {
                 this.$toastr.toast(e);
             }
+        },
+        EditCourse() {
+            if (!this.IsLoggedIn) return false;
+
+            const courseId = this.Course.id;
+
+            this.$router.push(`/chavruta/edit/${courseId}`);
+        },
+        ToggleDialog() {
+            this.IsDialogVisible = !this.IsDialogVisible;
+        },
+        async DeleteCourse() {
+            this.$loader.show();
+
+            try {
+                await courseService.deleteCourse(this.$route.params["id"]);
+
+                this.$ons.notification.toast(
+                    "Course has been successfully deleted.",
+                    { timeout: 5000, animation: "ascend" }
+                );
+
+                this.$router.push("/");
+            } catch (e) {
+                this.$toastr.toast(e);
+            }
+
+            this.$loader.hide();
         }
     }
 };
@@ -90,17 +154,49 @@ export default {
     }
 
     .topic {
+        padding-bottom: 3px;
         color: gray;
+    }
+
+    .expirationWarning {
+        color: red;
     }
 
     .buttons {
         display: flex;
         justify-content: flex-end;
 
-        .unenrollButton {
+        button {
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        .warningButton {
             button {
                 color: red;
             }
+        }
+        .editButton {
+            button {
+                color: #228b22;
+            }
+        }
+    }
+}
+
+.courseCardDialog {
+    .dialog-text {
+        text-align: center;
+        font-weight: bold;
+        padding-bottom: 3px;
+    }
+    .buttonsContainer {
+        display: flex;
+        justify-content: space-around;
+
+        button {
+            padding-left: 30px;
+            padding-right: 30px;
         }
     }
 }

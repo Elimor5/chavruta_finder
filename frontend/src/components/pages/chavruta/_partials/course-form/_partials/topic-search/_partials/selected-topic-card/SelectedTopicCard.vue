@@ -11,8 +11,6 @@
 </template>
 
 <script>
-import store from "../../../../../../../../scripts/store/store";
-
 export default {
     data() {
         return {
@@ -22,12 +20,15 @@ export default {
     props: {
         TopicId: {
             required: true
-        }
+        },
+        TopicName: {}
     },
     watch: {
         TopicId: {
             handler() {
-                this.Topic = store.state.topic.topics[this.TopicId];
+                this.Topic = this.$store.state.topic.topics[this.TopicId] || {
+                    name: this.TopicName
+                };
             },
             immediate: true
         }

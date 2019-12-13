@@ -12,6 +12,8 @@ import Signup from '../components/pages/auth/signup/Signup.vue';
 
 import FindChavruta from '../components/pages/chavruta/find/FindChavruta.vue';
 import CreateChavruta from '../components/pages/chavruta/create/CreateChavruta.vue';
+import ShowChavruta from '../components/pages/chavruta/show/ShowChavruta.vue'
+import EditChavruta from '../components/pages/chavruta/edit/EditChavruta.vue'
 
 
 Vue.use(Router);
@@ -78,8 +80,14 @@ const router = new Router({
         path: "/chavruta/create",
         name: "New Chavruta",
         component: CreateChavruta
-    }
-    ]
+    },
+    {
+        path: "/chavruta/:id",
+        component: ShowChavruta
+    }, {
+        path: "/chavruta/edit/:id",
+        component: EditChavruta
+    }]
 });
 
 router.beforeEach(async (to, from, next) => {

@@ -29,6 +29,14 @@ export default {
             ShouldFetchMoreCourses: true
         };
     },
+    async created() {
+        const savedQuery = this.$route.query.search;
+
+        if (savedQuery) {
+            this.Query = savedQuery;
+            await this.GetCoursesByQuery();
+        }
+    },
     computed: {
         Limit: {
             get() {
@@ -72,6 +80,7 @@ export default {
             this.ShouldFetchMoreCourses = true;
 
             await this.DebouncedTopicsCall();
+            this.$router.push({ query: { search: this.Query } });
         }
     }
 };

@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import TimePickerHelper from "../../../../../../../scripts/helpers/course/TimePickerHelper";
+import TimePickerHelper from "../../../../../../../../scripts/helpers/course/TimePickerHelper";
 
 export default {
     props: {

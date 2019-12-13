@@ -11,11 +11,33 @@ export default {
         });
     },
 
+    async getCourse(id) {
+        return await http({
+            url: `/courses/${id}`,
+            method: 'GET'
+        });
+    },
+
     async createCourse(formData) {
-        await http({
+        return await http({
             url: `/courses`,
             method: 'POST',
             data: formData,
+        });
+    },
+
+    async updateCourse(formData) {
+        return await http({
+            url: `/courses/${formData.id}`,
+            method: 'PUT',
+            data: formData,
+        });
+    },
+
+    async deleteCourse(courseId) {
+        return await http({
+            url: `/courses/${courseId}`,
+            method: 'DELETE'
         });
     },
 

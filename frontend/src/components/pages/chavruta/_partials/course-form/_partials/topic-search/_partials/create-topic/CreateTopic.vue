@@ -27,9 +27,9 @@
 </template>
 
 <script>
-import CreateTopicForm from "../../../../../../../../scripts/forms/chavruta/CreateTopicForm";
+import CreateTopicForm from "../../../../../../../../../scripts/forms/chavruta/CreateTopicForm";
 
-import MDButton from "../../../../../../../shared/buttons/md-button/MDButton.vue";
+import MDButton from "../../../../../../../../shared/buttons/md-button/MDButton.vue";
 
 export default {
     created() {

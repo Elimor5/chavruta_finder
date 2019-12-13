@@ -1,6 +1,6 @@
 <template>
     <div class="MDButtonComponent">
-        <button :class="{'inverted': inverted}" @click="HandleClick">
+        <button :class="{'inverted': inverted}" @click.stop.prevent="HandleClick">
             <slot></slot>
         </button>
     </div>

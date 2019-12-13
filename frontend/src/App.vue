@@ -6,7 +6,7 @@
             <TrailLoader></TrailLoader>
         </template>
 
-        <template v-if="isStatusCallMade">
+        <template v-if="IsStatusCallMade">
             <v-ons-splitter>
                 <v-ons-splitter-side
                     swipeable
@@ -29,7 +29,7 @@
                                 ></v-ons-toolbar-button>
                             </div>
 
-                            <div class="center">{{$route.name}}</div>
+                            <div class="center">{{RouteName}}</div>
                             <template v-if="!IsLoggedIn">
                                 <div class="right">
                                     <v-ons-button modifier="quiet" @click="NavigateToLogin">Log in</v-ons-button>
@@ -72,8 +72,11 @@ export default {
         IsLoggedIn() {
             return this.$store.state.identity.isAuthenticated;
         },
-        isStatusCallMade() {
+        IsStatusCallMade() {
             return this.$store.state.identity.isStatusCallMade;
+        },
+        RouteName() {
+            return this.$route.name ? this.$route.name : this.$route.meta.name;
         }
     },
     methods: {

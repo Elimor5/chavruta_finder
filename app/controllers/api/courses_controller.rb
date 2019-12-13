@@ -52,6 +52,7 @@ class Api::CoursesController < ApplicationController
         @course = Course.find_by_id(params[:id])
 
         if @course
+            
             @course.update(course_params)
 
             render :show
@@ -75,6 +76,6 @@ class Api::CoursesController < ApplicationController
     private
 
     def course_params
-        params.require(:course).permit(:start_date, :end_date, :level, :instructor_id, :summary, :title, :topic_id, :gender_restriction, :location, :search, :limit, topics_attributes: [:name], availabilities_attributes: [:occurrence, :weekdays, :length, :month_day, :start_time])
+        params.require(:course).permit(:start_date, :end_date, :level, :instructor_id, :summary, :title, :topic_id, :gender_restriction, :location, :search, :limit, topics_attributes: [:name], availabilities_attributes: [:occurrence, :weekdays, :length, :month_day, :start_time, :id])
     end
 end

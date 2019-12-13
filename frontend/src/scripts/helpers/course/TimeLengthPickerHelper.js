@@ -22,5 +22,11 @@ export default {
         }
 
         return defaultTimes
+    },
+    convertCourseLength(lengthDigit) {
+        const defaultTimes = this.getDefaultTimes()
+        const defaultTimeIndex = (lengthDigit / .25) - 1
+
+        return defaultTimes[defaultTimeIndex]
     }
 }

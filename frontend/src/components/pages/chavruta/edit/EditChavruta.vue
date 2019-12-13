@@ -1,27 +1,37 @@
 <template>
-    <div class="createChavrutaComponent">
-        <CourseForm :Form="Form" @submit="SubmitForm"></CourseForm>
+    <div class="editChavrutaComponent" v-if="Form">
+        <CourseForm :Form="Form" @submit="SubmitForm">
+            <template slot="buttonText">Update Course!</template>
+        </CourseForm>
     </div>
 </template>
 
 <script>
-import CreateChavrutaForm from "../../../../scripts/forms/chavruta/CreateChavrutaForm";
-
 import CourseForm from "../_partials/course-form/CourseForm.vue";
-import courseService from "../../../../scripts/services/course/courseService";
+import EditChavrutaForm from "../../../../scripts/forms/chavruta/EditChavrutaForm";
+import CourseService from "../../../../scripts/services/course/courseService";
 
 export default {
-    created() {
+    async created() {
         this.VerifyLoggedIn();
 
-        this.Form.CourseSchedules.push(
-            CreateChavrutaForm.getDefaultCourseSchedule()
-        );
+        this.$loader.show();
+
+        try {
+            const response = await CourseService.getCourse(
+                this.$route.params.id
+            );
+
+            this.Form = EditChavrutaForm.populateFormFromCourse(response.data);
+        } catch (e) {
+            this.$toastr.toast(e);
+        }
+
+        this.$loader.hide();
     },
     data() {
         return {
-            IsTeaching: false,
-            Form: CreateChavrutaForm.getDefaultData()
+            Form: null
         };
     },
     components: {
@@ -45,17 +55,15 @@ export default {
             this.$loader.show();
 
             try {
-                const convertedFormData = CreateChavrutaForm.convertFormData(
+                const convertedFormData = EditChavrutaForm.convertFormData(
                     formData
                 );
-                const response = await CreateChavrutaForm.submit(
+                const response = await EditChavrutaForm.submit(
                     convertedFormData
                 );
 
-                await courseService.enroll(response.data);
-
                 this.$ons.notification.toast(
-                    "Course has been successfully created.",
+                    "Course has been successfully updated.",
                     { timeout: 5000, animation: "ascend" }
                 );
 

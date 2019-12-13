@@ -1,13 +1,7 @@
-import {
-    required,
-} from 'vuelidate/lib/validators';
-import {
-    http
-} from '../../../api/http';
-
 import store from '../../store/store';
 
 import CourseScheduleForm from "./CourseScheduleForm";
+import CourseValidations from './CourseValidations'
 import courseService from '../../services/course/courseService';
 
 export default {
@@ -31,25 +25,7 @@ export default {
         return CourseScheduleForm.getDefaultData()
     },
     getValidations() {
-        return {
-            Form: {
-                Title: {
-                    required
-                },
-                TopicId: {
-                    required
-                },
-                StartDate: {
-                    required
-                },
-                EndDate: {
-                    required
-                },
-                Location: {
-                    required
-                }
-            }
-        }
+        return CourseValidations.getCourseValidations()
     },
 
     convertFormData(formData) {
@@ -82,6 +58,6 @@ export default {
         }
     },
     async submit(formData) {
-        await courseService.createCourse(formData)
+        return await courseService.createCourse(formData)
     }
 }

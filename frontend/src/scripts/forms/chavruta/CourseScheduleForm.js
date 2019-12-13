@@ -1,7 +1,3 @@
-import {
-    required
-} from 'vuelidate/lib/validators';
-
 import TimePickerHelper from '../../helpers/course/TimePickerHelper';
 
 
@@ -12,7 +8,25 @@ export default {
             Weekdays: '1000',
             MonthDay: null,
             StartTime: TimePickerHelper.convertToDateTime(20, 0),
-            Length: 1
+            Length: 1,
+            Id: undefined
+        }
+    },
+    convertFromJSON(availability) {
+        const { occurrence,
+            weekdays,
+            length,
+            monthDay,
+            startTime,
+            id } = availability
+
+        return {
+            Occurence: occurrence,
+            Weekdays: weekdays,
+            MonthDay: monthDay,
+            StartTime: new Date(startTime),
+            Length: parseFloat(length),
+            Id: id
         }
     },
     convertFormData(courseSchedule) {
@@ -21,7 +35,8 @@ export default {
             Weekdays,
             MonthDay,
             StartTime,
-            Length
+            Length,
+            Id
         } = courseSchedule;
 
         return {
@@ -29,7 +44,8 @@ export default {
             weekdays: Weekdays,
             length: Length,
             month_day: MonthDay,
-            start_time: StartTime
+            start_time: StartTime,
+            id: Id
         }
     },
 }

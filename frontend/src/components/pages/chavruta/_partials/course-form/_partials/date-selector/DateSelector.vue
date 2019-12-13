@@ -24,17 +24,24 @@
 
 <script>
 import DatePicker from "vue2-datepicker";
-import FormErrors from "../../../../../shared/forms/form-errors/FormErrors.vue";
+import FormErrors from "../../../../../../shared/forms/form-errors/FormErrors.vue";
 
 export default {
     props: {
         validations: {
+            required: true
+        },
+        Form: {
             required: true
         }
     },
     components: {
         DatePicker,
         FormErrors
+    },
+    created() {
+        this.DateRange.StartDate = this.Form.StartDate;
+        this.DateRange.EndDate = this.Form.EndDate;
     },
     data() {
         return {
@@ -45,6 +52,11 @@ export default {
         };
     },
     watch: {
+        "DateRange.StartDate": {
+            handler() {
+                this.$emit("range-added", this.DateRange);
+            }
+        },
         "DateRange.EndDate": {
             handler() {
                 this.$emit("range-added", this.DateRange);

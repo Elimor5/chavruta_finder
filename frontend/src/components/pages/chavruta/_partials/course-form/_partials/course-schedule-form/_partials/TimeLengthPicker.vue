@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import TimeLengthPickerHelper from "../../../../../../../scripts/helpers/course/TimeLengthPickerHelper";
+import TimeLengthPickerHelper from "../../../../../../../../scripts/helpers/course/TimeLengthPickerHelper";
 
 export default {
     props: {
