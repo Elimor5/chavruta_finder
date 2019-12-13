@@ -35,6 +35,8 @@ export default {
         if (savedQuery) {
             this.Query = savedQuery;
             await this.GetCoursesByQuery();
+        } else {
+            this.$store.commit("course/updateCourses", []);
         }
     },
     computed: {

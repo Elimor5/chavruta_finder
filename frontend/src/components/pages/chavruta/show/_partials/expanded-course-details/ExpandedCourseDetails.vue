@@ -28,7 +28,7 @@
             <p>{{Course.instructor.name}}</p>
         </template>
 
-        <template v-if="Course.enrolledUsers.length">
+        <template v-if="Course.enrolledUsers && Course.enrolledUsers.length">
             <h5>Enrolled Users:</h5>
             <ol>
                 <li

@@ -1,14 +1,14 @@
 class Api::CoursesController < ApplicationController
     def index
+        gender_filter = current_user.is_male ? '1' : '0' 
+        
         if params[:course][:search]
             limit = params[:course][:limit]
 
-            @courses = Course.search_course(params[:course][:search]).limit(limit)
+            @courses = Course.search_course(params[:course][:search]).where.not(gender_restriction: gender_filter).limit(limit)
         else
-            @courses = Course.all
+            @courses = Course.all.where.not(gender_restriction: gender_filter)
         end
-
-
 
         render :index
     end
