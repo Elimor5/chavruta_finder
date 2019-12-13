@@ -3,17 +3,7 @@
         <v-ons-page :infinite-scroll="loadMore">
             <CourseSearch ref="CourseSearch"></CourseSearch>
 
-            <template v-if="Courses">
-                <v-ons-list>
-                    <router-link
-                        v-for="course in Courses"
-                        :key="course.id"
-                        :to="CourseShowPagePath(course)"
-                    >
-                        <CourseCard :Course="course"></CourseCard>
-                    </router-link>
-                </v-ons-list>
-            </template>
+            <CourseResults></CourseResults>
         </v-ons-page>
     </div>
 </template>
@@ -22,16 +12,15 @@
 import Vue from "vue";
 import CourseSearch from "../find/_partials/CourseSearch.vue";
 import CourseCard from "../../../shared/course-card/CourseCard.vue";
+import CourseResults from "../_partials/course-results/CourseResults";
 
 export default {
     components: {
         CourseSearch,
-        CourseCard
+        CourseCard,
+        CourseResults
     },
     computed: {
-        Courses() {
-            return this.$store.state.course.courses;
-        },
         Limit: {
             get() {
                 return this.$store.state.course.limit;
@@ -48,9 +37,6 @@ export default {
             await this.$refs.CourseSearch.DebouncedTopicsCall();
 
             done();
-        },
-        CourseShowPagePath(course) {
-            return `/chavruta/${course.id}`;
         }
     }
 };

@@ -135,7 +135,7 @@ export default {
             this.Form.StartDate = dateRange.StartDate;
             this.Form.EndDate = dateRange.EndDate;
         },
-        async SubmitForm() {
+        SubmitForm() {
             if (!this.$validate(this.$v)) return;
 
             this.$emit("submit", this.Form);

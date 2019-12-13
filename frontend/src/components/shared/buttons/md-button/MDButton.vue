@@ -1,6 +1,6 @@
 <template>
     <div class="MDButtonComponent">
-        <button :class="{'inverted': inverted}" @click.stop.prevent="HandleClick">
+        <button :class="{'inverted': Inverted}" @click="HandleClick">
             <slot></slot>
         </button>
     </div>
@@ -9,12 +9,20 @@
 <script>
 export default {
     props: {
-        inverted: {
+        Inverted: {
+            default: false
+        },
+        IsNested: {
             default: false
         }
     },
     methods: {
-        HandleClick() {
+        HandleClick(e) {
+            if (this.IsNested) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+
             this.$emit("click");
         }
     }

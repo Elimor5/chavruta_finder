@@ -23,6 +23,22 @@ export default {
             const courses = await CourseService.getAllCourses(query);
 
             context.commit('updateCourses', courses.data);
+        },
+        async getCourse(context, courseId) {
+            const response = await CourseService.getCourse(courseId);
+
+            const courses = context.state.courses
+            const updatedCourseIndex = courses.findIndex((el) => el.id == courseId)
+
+            const updatedCourses = [...courses.slice(0, updatedCourseIndex), response.data, ...courses.slice(updatedCourseIndex + 1)]
+
+            context.commit('updateCourses', updatedCourses);
+        },
+        async removeCourse(context, courseId) {
+            await CourseService.deleteCourse(courseId);
+
+            const updatedCourses = context.state.courses.filter(course => course.id !== courseId)
+            context.commit('updateCourses', updatedCourses);
         }
     }
 }

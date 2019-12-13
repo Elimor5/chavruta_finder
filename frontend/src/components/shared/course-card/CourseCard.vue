@@ -13,19 +13,32 @@
             <template v-if="IsLoggedIn">
                 <div class="buttons">
                     <template v-if="IsAuthorCurrentUser">
-                        <MDbutton class="warningButton" inverted="true" @click="ToggleDialog">Delete</MDbutton>
-                        <MDbutton class="editButton" inverted="true" @click="EditCourse">Edit</MDbutton>
+                        <template v-if="ShowAdminButtons">
+                            <MDbutton
+                                class="warningButton"
+                                Inverted="true"
+                                IsNested="true"
+                                @click="ToggleDialog"
+                            >Delete</MDbutton>
+                            <MDbutton
+                                class="editButton"
+                                Inverted="true"
+                                IsNested="true"
+                                @click="EditCourse"
+                            >Edit</MDbutton>
+                        </template>
                     </template>
                     <template v-if="EnrollmentId">
                         <MDbutton
+                            IsNested="true"
                             class="warningButton"
-                            inverted="true"
+                            Inverted="true"
                             @click="UnenrollFromCourse"
                         >Leave</MDbutton>
                     </template>
                     <template v-else>
                         <template v-if="!IsCourseExpired">
-                            <MDbutton inverted="true" @click="EnrollInCourse">Enroll</MDbutton>
+                            <MDbutton Inverted="true" IsNested="true" @click="EnrollInCourse">Enroll</MDbutton>
                         </template>
                     </template>
                 </div>
@@ -34,8 +47,8 @@
         <v-ons-dialog class="courseCardDialog" cancelable :visible.sync="IsDialogVisible">
             <p class="dialog-text">Delete Chavruta?</p>
             <div class="buttonsContainer">
-                <MDbutton class="editButton" inverted="true" @click="ToggleDialog">Cancel</MDbutton>
-                <MDbutton class="warningButton" inverted="true" @click="DeleteCourse">Delete</MDbutton>
+                <MDbutton class="editButton" Inverted="true" @click="ToggleDialog">Cancel</MDbutton>
+                <MDbutton class="warningButton" Inverted="true" @click="DeleteCourse">Delete</MDbutton>
             </div>
         </v-ons-dialog>
     </div>
@@ -52,12 +65,16 @@ export default {
     },
     data() {
         return {
-            IsDialogVisible: false
+            IsDialogVisible: false,
+            IsLoaded: false
         };
     },
     props: {
         Course: {
             required: true
+        },
+        ShowAdminButtons: {
+            default: false
         }
     },
     computed: {
@@ -91,6 +108,7 @@ export default {
                 await courseService.enroll(this.Course);
                 // identity call returns all enrollments
                 await this.$store.dispatch("identity/fetchIdentity");
+                await this.$store.dispatch("course/getCourse", this.Course.id);
             } catch (e) {
                 this.$toastr.toast(e);
             }
@@ -99,6 +117,7 @@ export default {
             try {
                 await courseService.unenroll(this.EnrollmentId);
                 await this.$store.dispatch("identity/fetchIdentity");
+                await this.$store.dispatch("course/getCourse", this.Course.id);
             } catch (e) {
                 this.$toastr.toast(e);
             }
@@ -117,7 +136,10 @@ export default {
             this.$loader.show();
 
             try {
-                await courseService.deleteCourse(this.$route.params["id"]);
+                await this.$store.dispatch(
+                    "course/removeCourse",
+                    this.Course.id
+                );
 
                 this.$ons.notification.toast(
                     "Course has been successfully deleted.",

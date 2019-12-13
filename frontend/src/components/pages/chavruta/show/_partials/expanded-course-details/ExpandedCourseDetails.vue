@@ -23,9 +23,20 @@
             <p>{{Course.summary}}</p>
         </template>
 
-        <template v-if="Course.instructor">
+        <template v-if="Course.instructor.id">
             <h5>Instructor:</h5>
             <p>{{Course.instructor.name}}</p>
+        </template>
+
+        <template v-if="Course.enrolledUsers.length">
+            <h5>Enrolled Users:</h5>
+            <ol>
+                <li
+                    class="namesList"
+                    v-for="username in Course.enrolledUsers"
+                    :key="username"
+                >{{username}}</li>
+            </ol>
         </template>
     </div>
 </template>
@@ -91,6 +102,10 @@ export default {
     h5 {
         font-weight: bold;
         font-size: 16px;
+    }
+
+    .namesList {
+        padding-bottom: 10px;
     }
 }
 </style>

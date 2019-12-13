@@ -1,6 +1,6 @@
 <template>
     <div class="showChavrutaComponent" v-if="Course">
-        <CourseCard :key="Course.id" :Course="Course">
+        <CourseCard :key="Course.id" :Course="Course" :ShowAdminButtons="true">
             <ExpandedCourseDetails :Course="Course"></ExpandedCourseDetails>
         </CourseCard>
     </div>
@@ -21,10 +21,11 @@ export default {
 
         try {
             const { id } = this.$route.params;
-            const response = await courseService.getCourse(id);
+            await this.$store.dispatch("course/getCourse", id);
 
-            this.Course = response.data;
-            this.$route.meta.name = this.Course.title;
+            if (this.Course) {
+                this.$route.meta.name = this.Course.title;
+            }
         } catch (e) {
             this.$toastr.toast(e);
             this.$router.push("/");
@@ -32,12 +33,15 @@ export default {
 
         this.$loader.hide();
     },
-    data() {
-        return {
-            Course: null
-        };
+    computed: {
+        Course() {
+            const courses = this.$store.state.course.courses;
+
+            return courses.find(
+                course => course.id.toString() === this.$route.params.id
+            );
+        }
     },
-    computed: {},
     methods: {}
 };
 </script>
