@@ -88,10 +88,12 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .timePickerComponent {
     .list {
         display: flex;
+        height: 55px;
+        margin: 0;
 
         .list-item {
             width: 65px;

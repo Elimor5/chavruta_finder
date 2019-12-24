@@ -22,10 +22,6 @@ export default {
         try {
             const { id } = this.$route.params;
             await this.$store.dispatch("course/getCourse", id);
-
-            if (this.Course) {
-                this.$route.meta.name = this.Course.title;
-            }
         } catch (e) {
             this.$toastr.toast(e);
             this.$router.push("/");

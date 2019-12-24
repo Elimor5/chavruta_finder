@@ -58,7 +58,6 @@ export default {
         .tabOption {
             color: #9cb5de;
             padding: 0;
-            box-shadow: 0 4px 2px -2px gray;
             transition: 0.5s background-color ease;
 
             h6 {
@@ -74,7 +73,7 @@ export default {
             &.active {
                 color: white;
 
-                background: darken($colorPrimary, 10%);
+                background: darken($colorPrimary, 14%);
             }
         }
     }

@@ -59,6 +59,8 @@ export default {
 
     .list {
         display: flex;
+        height: 55px;
+        margin: 0;
     }
 }
 </style>

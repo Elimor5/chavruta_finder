@@ -40,7 +40,7 @@ export default {
         width: 97%;
         height: 30px;
         font-size: 15px;
-        background-color: white;
+        background-color: $backgroundColor;
         border: none;
         color: gray;
 

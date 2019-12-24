@@ -51,8 +51,9 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 .dashboardComponent {
-    height: auto;
+    // required for sticky header to work
+    height: auto !important;
 }
 </style>

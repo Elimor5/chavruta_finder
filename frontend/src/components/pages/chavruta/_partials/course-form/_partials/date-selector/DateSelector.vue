@@ -66,8 +66,19 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .dateSelectorComponent {
     padding-bottom: 30px 0;
+
+    .mx-datepicker {
+        width: 100%;
+
+        .mx-input {
+            height: 49px;
+            border-radius: 3px;
+
+            box-shadow: $boxShadowLight;
+        }
+    }
 }
 </style>

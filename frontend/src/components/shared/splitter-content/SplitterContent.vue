@@ -11,6 +11,7 @@
         </template>
 
         <div class="navItems">
+            <hr />
             <SideNavItem Route="Home">
                 <template slot="icon">
                     <v-ons-icon icon="fa-home" class="list-item__icon"></v-ons-icon>
@@ -80,6 +81,7 @@
                     </template>
                     <template slot="content">Sign Up</template>
                 </SideNavItem>
+                <hr />
             </template>
         </div>
     </div>
@@ -141,6 +143,7 @@ export default {
         width: 100%;
         background: white;
         padding: 7.5px 0;
+        background-color: $backgroundColor;
     }
 }
 </style>

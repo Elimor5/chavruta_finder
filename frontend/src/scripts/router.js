@@ -86,6 +86,7 @@ const router = new Router({
     },
     {
         path: "/chavruta/:id",
+        name: 'Show Chavruta',
         component: ShowChavruta
     }, {
         path: "/chavruta/edit/:id",

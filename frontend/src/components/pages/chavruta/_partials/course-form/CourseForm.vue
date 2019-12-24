@@ -172,6 +172,14 @@ export default {
     .summaryInput {
         width: 100%;
         height: 70px;
+        box-shadow: $boxShadowLight;
+        border-radius: 3px;
+        border: none;
+
+        &::placeholder {
+            padding: 5px 0 0 5px;
+            font-size: 14px;
+        }
     }
 
     .MDButtonComponent {

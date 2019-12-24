@@ -101,7 +101,7 @@ export default {
 
             background-color: white;
             transition: background-color 0.25s ease;
-            transition: color 0.25s ease;
+            transition: all 0.35s ease;
 
             border-radius: 50%;
             outline: none;

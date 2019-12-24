@@ -6,6 +6,7 @@
                     v-for="(course, index) in Courses"
                     :key="index"
                     :to="CourseShowPagePath(course)"
+                    :event="!IsExpired(course) ? 'click' : ''"
                 >
                     <CourseCard :Course="course"></CourseCard>
                 </router-link>
@@ -16,6 +17,7 @@
 
 <script>
 import CourseCard from "../course-card/CourseCard.vue";
+import CourseDetailsHelper from "../../../scripts/helpers/course/CourseDetailsHelper";
 
 export default {
     components: {
@@ -29,7 +31,20 @@ export default {
     methods: {
         CourseShowPagePath(course) {
             return `/chavruta/${course.id}`;
+        },
+        IsExpired(course) {
+            return CourseDetailsHelper.isExpired(course);
         }
     }
 };
 </script>
+
+<style lang="scss">
+.courseResultsComponent {
+    .list {
+        background: $backgroundColor;
+        margin: 0;
+        box-shadow: none;
+    }
+}
+</style>

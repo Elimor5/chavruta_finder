@@ -1,6 +1,6 @@
 <template>
     <div class="MDButtonComponent">
-        <button :class="{'inverted': Inverted}" @click="HandleClick">
+        <button :class="{'inverted': Inverted}" @click="HandleClick" :disabled="IsLoading">
             <slot></slot>
         </button>
     </div>
@@ -14,6 +14,11 @@ export default {
         },
         IsNested: {
             default: false
+        }
+    },
+    computed: {
+        IsLoading() {
+            return this.$store.state.loader.isLoading;
         }
     },
     methods: {

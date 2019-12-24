@@ -76,7 +76,7 @@ export default {
             return this.$store.state.identity.isStatusCallMade;
         },
         RouteName() {
-            return this.$route.name ? this.$route.name : this.$route.meta.name;
+            return this.$route.name || "";
         }
     },
     methods: {

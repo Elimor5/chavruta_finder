@@ -82,7 +82,7 @@
                     </v-ons-list-item>
                 </v-ons-list>
 
-                <v-ons-list class="listContainer">
+                <v-ons-list class="listContainer gender">
                     <v-ons-list-header>Gender</v-ons-list-header>
                     <v-ons-list-item tappable>
                         <label class="left">
@@ -214,6 +214,10 @@ export default {
 
     .listContainer {
         padding-left: 5px;
+
+        &.gender {
+            margin-top: 20px;
+        }
     }
 
     .passwordField {

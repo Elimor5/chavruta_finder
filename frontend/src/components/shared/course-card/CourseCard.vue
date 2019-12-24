@@ -10,7 +10,7 @@
 
             <h5 class="expirationWarning" v-if="IsCourseExpired">This course has ended.</h5>
 
-            <template v-if="IsLoggedIn">
+            <template v-if="IsLoggedIn  && !IsCourseExpired">
                 <div class="buttons">
                     <template v-if="IsAuthorCurrentUser">
                         <template v-if="ShowAdminButtons">
@@ -37,9 +37,7 @@
                         >Leave</MDbutton>
                     </template>
                     <template v-else>
-                        <template v-if="!IsCourseExpired">
-                            <MDbutton Inverted="true" IsNested="true" @click="EnrollInCourse">Enroll</MDbutton>
-                        </template>
+                        <MDbutton Inverted="true" IsNested="true" @click="EnrollInCourse">Enroll</MDbutton>
                     </template>
                 </div>
             </template>
@@ -58,6 +56,7 @@
 import { parseWeekdays } from "../../../scripts/helpers/course/WeekdayPickerHelper";
 import MDbutton from "../../shared/buttons/md-button/MDButton.vue";
 import courseService from "../../../scripts/services/course/courseService";
+import CourseDetailsHelper from "../../../scripts/helpers/course/CourseDetailsHelper";
 
 export default {
     components: {
@@ -88,10 +87,7 @@ export default {
             return this.$store.state.identity.isAuthenticated;
         },
         IsCourseExpired() {
-            const courseEndDate = new Date(this.Course.endDate);
-            const today = new Date();
-
-            return courseEndDate < today;
+            return CourseDetailsHelper.isExpired(this.Course);
         },
         IsAuthorCurrentUser() {
             if (!this.IsLoggedIn) return false;

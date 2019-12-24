@@ -51,6 +51,10 @@ export default {
     .formGroupContainer {
         height: 75px;
 
+        .left {
+            padding-bottom: 36px;
+        }
+
         .inputField {
             width: 100%;
             padding-right: 20px;
