@@ -44,6 +44,17 @@
                     <template slot="content">Edit Account</template>
                 </SideNavItem>
                 <hr />
+                <SideNavItem Route="Dashboard">
+                    <template slot="icon">
+                        <v-ons-icon
+                            style="padding-right: 0"
+                            icon="fa-dashboard"
+                            class="list-item__icon"
+                        ></v-ons-icon>
+                    </template>
+                    <template slot="content">Dashboard</template>
+                </SideNavItem>
+                <hr />
                 <SideNavItem @click="LogOutUser">
                     <template slot="icon">
                         <v-ons-icon

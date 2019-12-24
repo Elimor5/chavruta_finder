@@ -12,7 +12,7 @@
 import Vue from "vue";
 import CourseSearch from "../find/_partials/CourseSearch.vue";
 import CourseCard from "../../../shared/course-card/CourseCard.vue";
-import CourseResults from "../_partials/course-results/CourseResults";
+import CourseResults from "../../../shared/course-results/CourseResults";
 
 export default {
     components: {

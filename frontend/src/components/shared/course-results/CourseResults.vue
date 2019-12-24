@@ -15,7 +15,7 @@
 </template>   
 
 <script>
-import CourseCard from "../../../../shared/course-card/CourseCard";
+import CourseCard from "../course-card/CourseCard.vue";
 
 export default {
     components: {

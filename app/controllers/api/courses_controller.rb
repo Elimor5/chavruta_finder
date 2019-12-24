@@ -1,13 +1,24 @@
 class Api::CoursesController < ApplicationController
     def index
-        gender_filter = current_user.is_male ? '1' : '0' 
-        
         if params[:course][:search]
             limit = params[:course][:limit]
-
-            @courses = Course.search_course(params[:course][:search]).where.not(gender_restriction: gender_filter).limit(limit)
+            
+            @courses = Course.search_course(params[:course][:search])
         else
-            @courses = Course.all.where.not(gender_restriction: gender_filter)
+            @courses = Course.all
+        end
+
+        if params[:course][:created] 
+            @courses = Course.where({author_id: current_user.id})
+        end
+
+        if params[:course][:enrolled] 
+            @courses = current_user.enrolled_courses
+        end
+        
+        if logged_in?
+            gender_filter = current_user.is_male ? '1' : '0' 
+            @courses = @courses.where.not(gender_restriction: gender_filter).limit(limit) 
         end
 
         render :index
@@ -76,6 +87,6 @@ class Api::CoursesController < ApplicationController
     private
 
     def course_params
-        params.require(:course).permit(:start_date, :end_date, :level, :instructor_id, :summary, :title, :topic_id, :gender_restriction, :location, :search, :limit, topics_attributes: [:name], availabilities_attributes: [:occurrence, :weekdays, :length, :month_day, :start_time, :id])
+        params.require(:course).permit(:start_date, :end_date, :level, :instructor_id, :summary, :title, :topic_id, :gender_restriction, :location, :search, :limit, :created, :enrolled, topics_attributes: [:name], availabilities_attributes: [:occurrence, :weekdays, :length, :month_day, :start_time, :id])
     end
 end

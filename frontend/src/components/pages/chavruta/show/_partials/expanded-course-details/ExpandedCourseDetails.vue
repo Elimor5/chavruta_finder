@@ -30,13 +30,12 @@
 
         <template v-if="Course.enrolledUsers && Course.enrolledUsers.length">
             <h5>Enrolled Users:</h5>
-            <ol>
-                <li
-                    class="namesList"
-                    v-for="username in Course.enrolledUsers"
-                    :key="username"
-                >{{username}}</li>
-            </ol>
+            <ul class="namesList">
+                <li class="namesListItem" v-for="username in Course.enrolledUsers" :key="username">
+                    <UserAvatar :Name="username" :Color="GetRandomColor()" size="30"></UserAvatar>
+                    {{username}}
+                </li>
+            </ul>
         </template>
     </div>
 </template>
@@ -46,8 +45,14 @@ import { parseWeekdays } from "../../../../../../scripts/helpers/course/WeekdayP
 import TimePickerHelper from "../../../../../../scripts/helpers/course/TimePickerHelper";
 import { formatDate } from "../../../../../../scripts/helpers/course/DateHelper";
 import TimeLengthPickerHelper from "../../../../../../scripts/helpers/course/TimeLengthPickerHelper";
+import RandomColorGenerator from "../../../../../../scripts/helpers/course/RandomColorGenerator";
+
+import UserAvatar from "../../../../../shared/user-avatar/UserAvatar.vue";
 
 export default {
+    components: {
+        UserAvatar
+    },
     props: {
         Course: {
             required: true
@@ -90,6 +95,9 @@ export default {
             return TimeLengthPickerHelper.convertCourseLength(
                 availability.length
             );
+        },
+        GetRandomColor() {
+            return RandomColorGenerator.GetRandomColor();
         }
     }
 };
@@ -105,7 +113,17 @@ export default {
     }
 
     .namesList {
-        padding-bottom: 10px;
+        list-style: none;
+
+        &Item {
+            padding-bottom: 10px;
+            display: flex;
+            align-items: center;
+
+            .userAvatarComponent {
+                margin-right: 10px;
+            }
+        }
     }
 }
 </style>

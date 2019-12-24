@@ -15,8 +15,19 @@ import CreateChavruta from '../components/pages/chavruta/create/CreateChavruta.v
 import ShowChavruta from '../components/pages/chavruta/show/ShowChavruta.vue'
 import EditChavruta from '../components/pages/chavruta/edit/EditChavruta.vue'
 
+import Dashboard from '../components/pages/dashboard/Dashboard.vue'
 
 Vue.use(Router);
+
+function authGuard(to, from, next) {
+    if (!store.state.identity.isAuthenticated) {
+        next({
+            path: '/'
+        });
+    } else {
+        next();
+    }
+}
 
 const router = new Router({
     mode: "history",
@@ -58,15 +69,7 @@ const router = new Router({
         path: "/auth/edit",
         name: "Edit Account",
         component: Signup,
-        beforeEnter(to, from, next) {
-            if (!store.state.identity.isAuthenticated) {
-                next({
-                    path: '/'
-                });
-            } else {
-                next();
-            }
-        },
+        beforeEnter: authGuard,
         props: {
             IsEditMode: true
         }
@@ -87,6 +90,11 @@ const router = new Router({
     }, {
         path: "/chavruta/edit/:id",
         component: EditChavruta
+    }, {
+        path: "/dashboard",
+        beforeEnter: authGuard,
+        name: 'Dashboard',
+        component: Dashboard
     }]
 });
 

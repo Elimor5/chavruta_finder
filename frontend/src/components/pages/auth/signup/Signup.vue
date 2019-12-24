@@ -98,6 +98,7 @@
                     </v-ons-list-item>
                 </v-ons-list>
 
+                <!-- TODO: implement instructor functionality -->
                 <!-- <v-ons-list class="listContainer">
                     <v-ons-list-header>Are you teaching?</v-ons-list-header>
                     <v-ons-list-item tappable>

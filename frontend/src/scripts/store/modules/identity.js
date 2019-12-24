@@ -10,11 +10,11 @@ export default {
     },
     mutations: {
         updateUser(state, userResponse) {
-            const { userIdentity, coursesCreated, preferredTopics, enrollments } = userResponse.data;
+            const { userIdentity, preferredTopics, enrollments } = userResponse.data;
 
             state.currentUser = {
                 userIdentity,
-                coursesCreated: coursesCreated ? Object.keys(coursesCreated) : [],
+
                 preferredTopics: preferredTopics ? Object.keys(preferredTopics) : [],
                 enrollments: enrollments || {}
             };

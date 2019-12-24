@@ -3,11 +3,11 @@ import {
 } from '../../../api/http';
 
 export default {
-    async getAllCourses(searchQueryParams) {
+    async getAllCourses(params) {
         return await http({
             url: `/courses`,
             method: 'GET',
-            params: searchQueryParams
+            params
         });
     },
 
