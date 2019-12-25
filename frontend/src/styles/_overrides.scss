@@ -14,3 +14,15 @@ a {
         margin-right: 15px;
     }
 } 
+
+.page__content::-webkit-scrollbar {
+    display: none;
+}
+
+@media only screen and (min-width: 892px) {
+    body {
+        width: 400px;
+        height: 700px;
+    }
+  }
+

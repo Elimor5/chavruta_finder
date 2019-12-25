@@ -12,6 +12,11 @@
                 </router-link>
             </v-ons-list>
         </template>
+        <template v-else>
+            <v-ons-card>
+                <h4>There are no courses to show.</h4>
+            </v-ons-card>
+        </template>
     </div>
 </template>   
 

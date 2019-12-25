@@ -21,6 +21,8 @@ class Api::CoursesController < ApplicationController
             @courses = @courses.where.not(gender_restriction: gender_filter).limit(limit) 
         end
 
+        @courses = @courses.filter{ |course| !course.is_expired }
+
         render :index
     end
 
@@ -52,10 +54,10 @@ class Api::CoursesController < ApplicationController
     def show
         @course = Course.find_by_id(params[:id])
 
-        if @course
+        if @course && !@course.is_expired
             render :show
         else
-            render(json: ['Course not found'], status: 422)
+            render(json: ['Course not found or has expired'], status: 422)
         end
     end
 

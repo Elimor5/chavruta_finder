@@ -39,4 +39,8 @@ class Course < ApplicationRecord
     def topic_title 
         self.topic.title
     end
+
+    def is_expired
+        self.end_date < Date.today
+    end 
 end

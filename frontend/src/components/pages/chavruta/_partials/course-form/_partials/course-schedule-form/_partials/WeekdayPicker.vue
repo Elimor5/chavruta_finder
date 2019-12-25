@@ -103,6 +103,8 @@ export default {
             transition: background-color 0.25s ease;
             transition: all 0.35s ease;
 
+            box-shadow: $boxShadowLight;
+
             border-radius: 50%;
             outline: none;
 

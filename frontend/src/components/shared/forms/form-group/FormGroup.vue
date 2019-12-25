@@ -52,7 +52,7 @@ export default {
         height: 75px;
 
         .left {
-            padding-bottom: 36px;
+            padding-bottom: 27px;
         }
 
         .inputField {

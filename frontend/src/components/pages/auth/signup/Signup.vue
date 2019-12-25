@@ -208,7 +208,7 @@ export default {
 }
 
 .formInputContainer {
-    padding-bottom: 20px;
+    padding-top: 15px;
 
     text-align: center;
 
