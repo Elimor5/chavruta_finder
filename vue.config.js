@@ -9,7 +9,6 @@ module.exports = {
   chainWebpack: config => {
     config.module
       .rule('fonts')
-      .test(/\.(woff2)(\?.*)?$/)
       .use('url-loader')
       .loader('file-loader') // not url-loader but file-loader !
       .tap(options => { // not .option() but .tap(options...)
