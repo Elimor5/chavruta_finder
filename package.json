@@ -34,7 +34,6 @@
     "onsenui": "^2.10.6",
     "vue": "^2.5.17",
     "vue-clickaway": "^2.2.2",
-    "vue-onsenui": "^2.6.1",
     "vue-router": "^3.0.1",
     "vue2-datepicker": "^2.6.4",
     "@vue/cli-service": "^3.0.3",
