@@ -21,7 +21,8 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "watch": "webpack --config ./node_modules/@vue/cli-service/webpack.config.js --watch"
+    "watch": "webpack --config ./node_modules/@vue/cli-service/webpack.config.js --watch",
+    "postinstall": "webpack"
   },
   "dependencies": {
     "axios": "^0.18.0",

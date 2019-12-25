@@ -23,7 +23,7 @@
     position: relative;
     width: 100%;
     height: 300px;
-    background-image: url("https://s3-us-east-2.amazonaws.com/illumevents1-pro/events/images/000/000/511/original/relig.jpg?1545701061");
+    background-image: url("https://w3.chabad.org/media/images/1065/QIse10657525.jpg");
     background-size: cover;
     background-repeat: no-repeat;
 

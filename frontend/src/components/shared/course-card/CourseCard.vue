@@ -1,5 +1,5 @@
 <template>
-    <div class="courseCardComponent">
+    <div class="courseCardComponent" v-if="Course">
         <v-ons-card :key="Course.id">
             <p class="title">{{ Course.title }}</p>
             <p class="topic">{{Course.topic.name}}</p>

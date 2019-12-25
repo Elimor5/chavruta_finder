@@ -3,7 +3,7 @@ const fs = require('fs');
 const content = fs.readFileSync("sefaria_index.json");
 const json = JSON.parse(content);
 const categories = findCategories(json);
-// console.log(json.map(obj => obj.category));
+
 
 function findCategories(obj) {
     let categories = [];
