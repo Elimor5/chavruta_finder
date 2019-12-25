@@ -9,10 +9,13 @@ module.exports = {
   chainWebpack: config => {
     config.module
       .rule('fonts')
+      .test(/\.(woff2)(\?.*)?$/)
       .use('url-loader')
-      .loader('url-loader')
-      .tap(options => {
-        Object.assign(options, { fallback: { options: { name: 'fonts/1.[ext]' } } })
+      .loader('file-loader') // not url-loader but file-loader !
+      .tap(options => { // not .option() but .tap(options...)
+        // modify the options...
+        options.name = 'fonts/[name].[ext]'
+        return options
       })
   },
   css: {
