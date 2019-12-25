@@ -10,7 +10,7 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 
 Rails.application.config.assets.precompile << Proc.new do |path|
     if path =~ /\.(eot|svg|ttf|woff|woff2)$/
-      p path
+      p 'test' + " " + path
       false
     end
   end
