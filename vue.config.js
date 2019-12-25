@@ -6,17 +6,6 @@ module.exports = {
   configureWebpack: {
     entry: path.resolve(__dirname, "frontend", "src", "scripts", "main.js")
   },
-  chainWebpack: config => {
-    config.module
-      .rule('fonts')
-      .use('url-loader')
-      .loader('file-loader') // not url-loader but file-loader !
-      .tap(options => { // not .option() but .tap(options...)
-        // modify the options...
-        options.name = 'fonts/[name].[ext]'
-        return options
-      })
-  },
   css: {
     loaderOptions: {
       sass: {
