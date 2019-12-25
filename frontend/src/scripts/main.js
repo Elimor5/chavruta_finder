@@ -3,8 +3,8 @@ import App from '../App.vue';
 import router from './router';
 import store from './store/store';
 
-import 'onsenui/css/onsenui.css';
-import 'onsenui/css/onsen-css-components.css';
+// import 'onsenui/css/onsenui.css';
+// import 'onsenui/css/onsen-css-components.css';
 import VueOnsen from 'vue-onsenui';
 
 import Vuelidate from 'vuelidate';
@@ -19,7 +19,7 @@ Vue.config.productionTip = false
 
 Vue.component('cf-formgroup', FormGroup);
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     const el = document.getElementById('app');
 
     Vue.use(VueOnsen);
@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", function() {
             }
 
 
-            Vue.prototype.$validate = function(vuelidate) {
+            Vue.prototype.$validate = function (vuelidate) {
                 vuelidate.$touch();
 
                 if (vuelidate.$error) {
