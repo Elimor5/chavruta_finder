@@ -49,5 +49,5 @@ fs.writeFile("sefaria_categories.json", uniqueCategories(categories), 'utf8', fu
         return console.log(err);
     }
 
-    console.log("The file was saved!");
+    console.log("The file was saved!!");
 });
