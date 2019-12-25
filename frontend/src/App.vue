@@ -23,10 +23,7 @@
                     <v-ons-page>
                         <v-ons-toolbar>
                             <div class="left">
-                                <v-ons-toolbar-button
-                                    icon="ion-navicon, material: md-menu"
-                                    @click="ToggleSplitter"
-                                ></v-ons-toolbar-button>
+                                <v-ons-toolbar-button icon="md-menu" @click="ToggleSplitter"></v-ons-toolbar-button>
                             </div>
 
                             <div class="center">{{RouteName}}</div>
