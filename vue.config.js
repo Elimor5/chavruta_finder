@@ -12,8 +12,7 @@ module.exports = {
       .use('url-loader')
       .loader('url-loader')
       .tap(options => {
-        console.log(options)
-        Object.assign(options, { name: 'fonts/1.[ext]' })
+        Object.assign(options, { fallback: { name: 'fonts/1.[ext]' } })
       })
   },
   css: {
