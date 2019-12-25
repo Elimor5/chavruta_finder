@@ -11,6 +11,7 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 Rails.application.config.assets.precompile << Proc.new do |path|
     if path =~ /\.(woff|woff2)\z/
       false
+    end
   end
 
 # Precompile additional assets.
