@@ -20,6 +20,7 @@ Vue.config.productionTip = false
 Vue.component('cf-formgroup', FormGroup);
 
 document.addEventListener("DOMContentLoaded", function () {
+    console.log('loaded')
     const el = document.getElementById('app');
 
     Vue.use(VueOnsen);
