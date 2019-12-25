@@ -2,6 +2,7 @@ const path = require("path");
 
 module.exports = {
   outputDir: path.resolve(__dirname, "app", "assets", "javascripts", "dist"),
+  assetsDir: '../../../assets/',
   configureWebpack: {
     entry: path.resolve(__dirname, "frontend", "src", "scripts", "main.js")
   },
