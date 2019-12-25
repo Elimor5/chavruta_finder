@@ -9,7 +9,8 @@ Rails.application.config.assets.version = '1.0'
 Rails.application.config.assets.paths << Rails.root.join('node_modules')
 
 Rails.application.config.assets.precompile << Proc.new do |path|
-    if path =~ /\.(woff|woff2)\z/
+    if path =~ /\.(eot|svg|ttf|woff|woff2)$/
+      p path
       false
     end
   end
