@@ -1,24 +1,11 @@
-# README
+# Chavruta Finder
+## A simple application built to foster Torah learning in the Jewish community.
+### Crated using Vue.js and Ruby on Rails
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+[Live Link](https://chavruta-finder.herokuapp.com/)
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Features: 
+1. Build for use on a mobile browser
+2. Search capability using `pgsearch` to be able to find courses by title or topic
+3. Ability to enroll in courses, manage courses enrolled and courses created.
+4. Custom auth pattern.
