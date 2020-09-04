@@ -34,7 +34,7 @@
     "@vue/cli-plugin-eslint": "^3.0.3",
     "@vue/cli-service": "^3.0.3",
     "axios": "^0.18.0",
-    "node-sass": "^4.13.0",
+    "node-sass": "^4.13.1",
     "onsenui": "^2.10.6",
     "sass-loader": "^7.0.1",
     "vue": "^2.5.17",
