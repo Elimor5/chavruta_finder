@@ -33,7 +33,7 @@
     "@vue/cli-plugin-babel": "^3.0.3",
     "@vue/cli-plugin-eslint": "^3.0.3",
     "@vue/cli-service": "^3.0.3",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "node-sass": "^4.13.0",
     "onsenui": "^2.10.6",
     "sass-loader": "^7.0.1",
